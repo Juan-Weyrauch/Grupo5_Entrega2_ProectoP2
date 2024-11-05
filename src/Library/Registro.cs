@@ -2,11 +2,11 @@ namespace ClassLibrary;
 
 public class Registro: IRegistroPokemon
 {
-    public string Name { get; set; }
-    public int Damage { get; set; }
-    public int Health {get; set;}
-    public int Defense { get; set; }
-     public  ITipoPokemon TipoPokemon { get; set; }
+    public string Name { get; private set; }
+    public int Damage { get; private set; }
+    public int Health {get; private set;}
+    public int Defense { get; private set; }
+     public  ITipoPokemon TipoPokemon { get; private set; }
     // dic<ataques> moveset { get; set; }
 
     public Registro(string name, int damage, int health, int defense)

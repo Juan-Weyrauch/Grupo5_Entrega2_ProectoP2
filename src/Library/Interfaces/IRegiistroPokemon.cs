@@ -1,13 +1,13 @@
 namespace ClassLibrary;
 
-public interface IRegistroPokemon
+public interface  IRegistroPokemon
 {
-    string Name { get; set; }
-    int Damage { get; set; }
-    int Health { get; set; }
-    ITipoPokemon TipoPokemon { get; set; }
+     string Name { get; }
+    int Damage { get;  }
+    int Health { get;  }
+    ITipoPokemon TipoPokemon { get;  }
     // dic<ataques> moveset { get; set; }
-    public IPokemon CrearPokemon();
-    
-    void Accept(IVisitor visitor);
+    abstract public IPokemon CrearPokemon();
+
+    public void Accept(IVisitor visitor);
 }

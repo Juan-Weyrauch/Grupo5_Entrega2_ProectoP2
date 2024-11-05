@@ -3,8 +3,8 @@ namespace ClassLibrary;
 public interface IPokemon
 {
     string Name { get; }
-    int damage { get; set; }
-    int defense { get; set; }
+    int damage { get;  }
+    int defense { get;  }
     ITipoPokemon TipoPokemon { get; }
     
     void Accept(IVisitor visitor);
