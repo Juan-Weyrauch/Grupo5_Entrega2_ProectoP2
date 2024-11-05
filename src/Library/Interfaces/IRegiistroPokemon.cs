@@ -8,6 +8,9 @@ public interface  IRegistroPokemon
     ITipoPokemon TipoPokemon { get;  }
     // dic<ataques> moveset { get; set; }
      public IPokemon CrearPokemon();
-     
-    public IPokemon Accept(IVisitor visitor);
+
+     public string AcceptObtenerNombre(IVisitor visitor);
+
+     // Método Accept para crear un Pokémon
+     public IPokemon AcceptCrearPokemon(IVisitor visitor);
 }

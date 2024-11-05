@@ -27,7 +27,7 @@ public static class FabricaPokemon
         for (int i = 1; i <= PokedexPokemon.Count; i++)  // Cambié el bucle para incluir el último índice
         {
             // Aquí el visitor extrae solo el nombre del registro
-            string nombre = PokedexPokemon[i].Accept(infoVisitor);
+            string nombre = PokedexPokemon[i].AcceptObtenerNombre(infoVisitor); // esto tiene que de alguna manera dar los nombres.
             PokemonsTotales.Add($"{i}) {nombre}");
         }
 
@@ -40,7 +40,7 @@ public static class FabricaPokemon
         InfoVisitor InfoVisitor = new();
         foreach (int numero in entrada)
         {
-            IPokemon pokemontemp = PokedexPokemon[numero].Accept(InfoVisitor);
+            IPokemon pokemontemp = PokedexPokemon[numero].AcceptCrearPokemon(InfoVisitor); // Esto tiene que ir creando los Pokemons.
             PokemonsTemporal.Add(pokemontemp); // Son muchos puntos probablemente aplicar visitor
         }
         Jugador.EstablecerEquipo(PokemonsTemporal); 

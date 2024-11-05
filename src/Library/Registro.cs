@@ -24,9 +24,15 @@ public class Registro: IRegistroPokemon
         return new Pokemon(this.Name, this.Damage, this.Health, this.Defense);
     }
     // public DevolverMoves();
-    
-    public IPokemon Accept(IVisitor visitor)
+    // Si true crea pokemon, sino consigue los nombres del registro.
+    public string AcceptObtenerNombre(IVisitor visitor)
     {
-        visitor.Visit(this);
+        return visitor.VisitObtenerNombre(this);
+    }
+
+    // Método Accept para crear un Pokémon
+    public IPokemon AcceptCrearPokemon(IVisitor visitor)
+    {
+        return visitor.VisitCrearPoke(this);
     }
 }
