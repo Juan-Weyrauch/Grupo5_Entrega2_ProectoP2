@@ -2,7 +2,7 @@ namespace ClassLibrary;
 
 public static class FabricaPokemon
 {   
-    public static Dictionary<int, IRegistroPokemon> PokedexPokemon = new Dictionary<int, IRegistroPokemon >();
+    public  static Dictionary<int, IRegistroPokemon> PokedexPokemon = new Dictionary<int, IRegistroPokemon >();
 
     public static void CargarPokemons()
     {
@@ -11,16 +11,14 @@ public static class FabricaPokemon
         //PokedexPokemon.Add(3, new Registro());
             
     }
-    public static  void CrearPokemon(List<int> entrada)
+    public static void InstanciarPokes(List<int> entrada, IPlayer Jugador) // Tiene que llegarle los valores del player.
     {
         List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
         foreach (int numero in entrada)
         {
-            IRegistroPokemon rElegido = PokedexPokemon[numero];
-            IPokemon pokemonTemp = new Pokemon(rElegido.DevolverNombre()) ;
-            PokemonsTemporal.Add();
+            PokemonsTemporal.Add(PokedexPokemon[numero].CrearPokemon());
         }
-        
+        Jugador.EstablecerEquipo(PokemonsTemporal);
         
     }
 }

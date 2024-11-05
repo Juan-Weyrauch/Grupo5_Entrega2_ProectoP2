@@ -8,7 +8,7 @@ public class Pokemon: IPokemon
     public int health { get; set; }
     public ITipoPokemon TipoPokemon { get; }
 
-    Pokemon(string name, int damage, int defense, int health)
+    public Pokemon(string name, int damage, int defense, int health)
     {
         Name = name;
         damage = damage;

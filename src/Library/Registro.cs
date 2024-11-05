@@ -20,23 +20,9 @@ public class Registro: IRegistroPokemon
        // TipoPokemon = tipoPokemon; No esta creado tipo todavia
     }
 
-    public string DevolverNombre()
+    public  IPokemon CrearPokemon()
     {
-        return Name;
-    }
-
-    public int DevolverDamage()
-    {
-        return Damage;
-    }
-
-    public int DevolverHealth()
-    { return Health;
-    }
-
-    public ITipoPokemon DevolverTipo()
-    { return TipoPokemon;
+        return new Pokemon(this.Name, this.Damage, this.Health, this.Defense);
     }
     // public DevolverMoves();
-}
 }
