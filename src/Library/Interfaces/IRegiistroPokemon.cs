@@ -7,7 +7,7 @@ public interface  IRegistroPokemon
     int Health { get;  }
     ITipoPokemon TipoPokemon { get;  }
     // dic<ataques> moveset { get; set; }
-    abstract public IPokemon CrearPokemon();
+     public IPokemon CrearPokemon();
 
     public void Accept(IVisitor visitor);
 }
