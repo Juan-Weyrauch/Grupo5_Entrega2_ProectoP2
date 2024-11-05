@@ -12,6 +12,5 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="obj\InfoVisitor.cs" />
   </ItemGroup>
 </Project>

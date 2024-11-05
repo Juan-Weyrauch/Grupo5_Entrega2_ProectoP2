@@ -10,6 +10,11 @@
             instancia los pokemons como objetos y los envia hacia las listas, se deberia hacer con visitor.
             </summary>
         </member>
+        <member name="M:ClassLibrary.FabricaPokemon.CargarPokemons">
+            <summary>
+            Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Train">
             <summary>
             Esta clase representa un tren muy básico.

@@ -4,7 +4,7 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
-        <member name="T:Tests.TrainTests">
+        <member name="T:Tests.TestFabricaPokemon">
             <summary>
             Prueba de la clase <see cref="T:ClassLibrary.Train"/>.
             </summary>
