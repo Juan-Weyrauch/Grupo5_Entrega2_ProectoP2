@@ -2,16 +2,14 @@ namespace ClassLibrary;
 
 public class InfoVisitor : IVisitor
 {
-    public IPokemon
-        Visit(IRegistroPokemon registroPokemon) // No estoy seguro que un vistor este bien que tenga un return.
+    public void Visit(IRegistroPokemon registroPokemon)
     {
-        return registroPokemon.CrearPokemon();
+        //Lo que necesitemos que haga con los resigtros
     }
 
-    public string VisitNombreRegistro(IRegistroPokemon registroPokemon)
+    public void Visit(IPokemon pokemon)
     {
-        return 
+        //Lo que necesitemos que haga el visitor 
     }
-    public void Visit(IPokemon pokemon){}
-    public void Visit(Player jugador){}
+}
 }
