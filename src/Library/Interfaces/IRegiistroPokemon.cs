@@ -8,6 +8,6 @@ public interface  IRegistroPokemon
     ITipoPokemon TipoPokemon { get;  }
     // dic<ataques> moveset { get; set; }
      public IPokemon CrearPokemon();
-
+     
     public void Accept(IVisitor visitor);
 }
