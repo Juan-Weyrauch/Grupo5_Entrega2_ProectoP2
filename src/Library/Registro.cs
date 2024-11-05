@@ -12,17 +12,21 @@ public class Registro: IRegistroPokemon
     public Registro(string name, int damage, int health, int defense)
     {
         Name = name;
-        defense = defense;
-        
+        Defense = defense;
         Damage = damage;
         Health = health;
         
        // TipoPokemon = tipoPokemon; No esta creado tipo todavia
     }
 
-    public  IPokemon CrearPokemon()
+    public IPokemon CrearPokemon()
     {
         return new Pokemon(this.Name, this.Damage, this.Health, this.Defense);
     }
     // public DevolverMoves();
+    
+    public void Accept(IVisitor visitor)
+    {
+        visitor.Visit(this);
+    }
 }

@@ -5,8 +5,12 @@ public static class FabricaPokemon
     /// Los registros son clases que tienenl la informacion de la creacion de cada pokemon. Estos tienen un metodo que
     /// instancia los pokemons como objetos y los envia hacia las listas, se deberia hacer con visitor.
     /// </summary>
-    public  static Dictionary<int, IRegistroPokemon> PokedexPokemon = new Dictionary<int, IRegistroPokemon >();
+    public  static Dictionary<int, IRegistroPokemon> PokedexPokemon = new();
 
+    
+    /// <summary>
+    /// Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
+    /// </summary>
     public static void CargarPokemons()// Para entender mejor leer IRegistro y Registro. 
     {
         PokedexPokemon.Add(1, new Registro("Bulbasur", 3, 3,4));
@@ -25,7 +29,7 @@ public static class FabricaPokemon
         
     }
 }
-/// Bulbasur.
-/// Tipo
-/// Ataque
-/// Daño 
+// Bulbasur.
+// Tipo
+// Ataque
+// Daño 

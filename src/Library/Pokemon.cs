@@ -16,4 +16,9 @@ public class Pokemon: IPokemon
         health = health; 
         //ITipoPokemon tipoPokemon = tipoPokemon;
     }
+    
+    public void Accept(IVisitor visitor)
+    {
+        visitor.Visit(this);
+    }
 }

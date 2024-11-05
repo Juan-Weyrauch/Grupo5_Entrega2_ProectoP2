@@ -6,4 +6,6 @@ public interface IPokemon
     int damage { get; set; }
     int defense { get; set; }
     ITipoPokemon TipoPokemon { get; }
+    
+    void Accept(IVisitor visitor);
 }
