@@ -8,15 +8,10 @@ public class InfoVisitor : IVisitor
         return registroPokemon.CrearPokemon();
     }
 
-    public string
-        VisitNombreRegistro(
-            IRegistroPokemon registroPokemon) // No estoy seguro que un vistor este bien que tenga un return.
+    public string VisitNombreRegistro(IRegistroPokemon registroPokemon)
     {
-        return registroPokemon.Name;
+        return 
     }
-
-    // esta sin crear.
-    public string VisitNombrePokemon(IPokemon pokemon)
-    {
-    public string
+    public void Visit(IPokemon pokemon){}
+    public void Visit(Player jugador){}
 }

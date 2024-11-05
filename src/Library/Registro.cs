@@ -25,7 +25,7 @@ public class Registro: IRegistroPokemon
     }
     // public DevolverMoves();
     
-    public void Accept(IVisitor visitor)
+    public IPokemon Accept(IVisitor visitor)
     {
         visitor.Visit(this);
     }

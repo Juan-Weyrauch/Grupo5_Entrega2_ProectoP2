@@ -9,5 +9,5 @@ public interface  IRegistroPokemon
     // dic<ataques> moveset { get; set; }
      public IPokemon CrearPokemon();
      
-    public void Accept(IVisitor visitor);
+    public IPokemon Accept(IVisitor visitor);
 }

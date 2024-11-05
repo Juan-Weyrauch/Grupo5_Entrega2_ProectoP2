@@ -21,21 +21,26 @@ public static class FabricaPokemon
     public static List<string> DevolverNombresPokedex()
     {
         List<string> PokemonsTotales = new List<string>();
-        InfoVisitor InfoVisitor = new();
-        for (int i = 1; i != PokedexPokemon.Count; i++)
+        InfoVisitor infoVisitor = new();  // Usamos el visitor para obtener la información
+    
+        // Recorremos la Pokedex y extraemos los nombres usando el visitor
+        for (int i = 1; i <= PokedexPokemon.Count; i++)  // Cambié el bucle para incluir el último índice
         {
-            PokemonsTotales.Add($"{i}) " + InfoVisitor.VisitNombreRegistro(PokedexPokemon[i]));
+            // Aquí el visitor extrae solo el nombre del registro
+            string nombre = PokedexPokemon[i].Accept(infoVisitor);
+            PokemonsTotales.Add($"{i}) {nombre}");
         }
 
         return PokemonsTotales;
     }
+
     public static void InstanciarPokes(List<int> entrada, IPlayer Jugador) // Tiene que llegarle los valores del player.
     {// Falta traer la info desde jugador hacia aca. 
         List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
         InfoVisitor InfoVisitor = new();
         foreach (int numero in entrada)
         {
-            IPokemon pokemontemp = InfoVisitor.Visit(PokedexPokemon[numero]);
+            IPokemon pokemontemp = PokedexPokemon[numero].Accept(InfoVisitor);
             PokemonsTemporal.Add(pokemontemp); // Son muchos puntos probablemente aplicar visitor
         }
         Jugador.EstablecerEquipo(PokemonsTemporal); 
