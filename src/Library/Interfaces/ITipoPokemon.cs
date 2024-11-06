@@ -4,6 +4,6 @@ public interface ITipoPokemon
 {
     string Name { get; }
 
-    public void EstablecerRelacionesElementales(List<ITipoPokemon> Fortalezas, List<ITipoPokemon> Deblidades,
+    public void EstablecerRelacionesElementales(List<ITipoPokemon> Fortalezas, List<ITipoPokemon> Debilidades,
         List<ITipoPokemon> Immnunidades);
 }
