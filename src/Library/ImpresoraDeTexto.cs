@@ -2,11 +2,11 @@ using ClassLibrary;
 
 namespace Library;
 
-public class ImpresoraDeTexto
+public static class ImpresoraDeTexto
 {
     //PokemonsYHablidades pokemonsYHablidades = new PokemonsYHablidades();
 
-    public void startPrint() // Imprimir cuando se inicia el Juego.
+    public startPrint() // Imprimir cuando se inicia el Juego.
     {
         Console.Clear();
         Console.WriteLine("╔═════════════════════╗");
@@ -17,7 +17,7 @@ public class ImpresoraDeTexto
         Console.WriteLine("╚═════════════════════╝");
     }
 
-    public void endPrint() // Imprimir cuando se elige la segunda opcion el Juego.
+    public endPrint() // Imprimir cuando se elige la segunda opcion el Juego.
     {
         Console.Clear();
         Console.WriteLine("╔══════════════════════╗");
@@ -25,7 +25,7 @@ public class ImpresoraDeTexto
         Console.WriteLine("╚══════════════════════╝");
     }
 
-    public void finDelJuego() // Imprmir cuando se termina el juego
+    public finDelJuego() // Imprmir cuando se termina el juego
     {
         Console.Clear();
         Console.WriteLine("╔══════════════════════════╗");
@@ -33,7 +33,7 @@ public class ImpresoraDeTexto
         Console.WriteLine("╚══════════════════════════╝");
     }
 
-    public void playerName(int num) // Imprmir a la hora de elegir el nombre el jugador
+    public  playerName(int num) // Imprmir a la hora de elegir el nombre el jugador
     {
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine($"║ Ingrese el nombre del Jugador {num}:        ║");
