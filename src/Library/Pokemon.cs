@@ -3,17 +3,17 @@ namespace ClassLibrary;
 public class Pokemon: IPokemon
 {
     public string Name { get; }
-    public int damage { get; set; }
-    public int defense { get; set; }
-    public int health { get; set; }
+    public int Damage { get; set; }
+    public int Defense { get; set; }
+    public int Health { get; set; }
     public ITipoPokemon TipoPokemon { get; }
 
     public Pokemon(string name, int damage, int defense, int health)
     {
         Name = name;
-        damage = damage;
-        defense = defense;
-        health = health; 
+        Damage = damage;
+        Defense = defense;
+        Health = health; 
         //ITipoPokemon tipoPokemon = tipoPokemon;
     }
     
