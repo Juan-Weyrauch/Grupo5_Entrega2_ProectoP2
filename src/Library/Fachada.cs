@@ -14,9 +14,9 @@ public static class Fachada
             {
                 //deberia ser SistemaDeCombate.Combatir();
             }
-            else if (incial == 2)
+            else if (inicial == 2)
             {
-                ImpresoraDeTexto.printEnd();
+                ImpresoraDeTexto.endPrint();
                 break;
             }
             else
