@@ -6,7 +6,7 @@ public static class ImpresoraDeTexto
 {
     //PokemonsYHablidades pokemonsYHablidades = new PokemonsYHablidades();
 
-    public startPrint() // Imprimir cuando se inicia el Juego.
+    public static void startPrint() // Imprimir cuando se inicia el Juego.
     {
         Console.Clear();
         Console.WriteLine("╔═════════════════════╗");
@@ -17,7 +17,7 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚═════════════════════╝");
     }
 
-    public endPrint() // Imprimir cuando se elige la segunda opcion el Juego.
+    public static void endPrint() // Imprimir cuando se elige la segunda opcion el Juego.
     {
         Console.Clear();
         Console.WriteLine("╔══════════════════════╗");
@@ -25,7 +25,7 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚══════════════════════╝");
     }
 
-    public finDelJuego() // Imprmir cuando se termina el juego
+    public static void finDelJuego() // Imprmir cuando se termina el juego
     {
         Console.Clear();
         Console.WriteLine("╔══════════════════════════╗");
@@ -33,14 +33,14 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚══════════════════════════╝");
     }
 
-    public  playerName(int num) // Imprmir a la hora de elegir el nombre el jugador
+    public static void playerName(int num) // Imprmir a la hora de elegir el nombre el jugador
     {
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine($"║ Ingrese el nombre del Jugador {num}:        ║");
         Console.WriteLine("╚═════════════════════════════════════════╝");
     }
 
-    public void mostrarListaPokemons() // Se muestra lo mismo para el rival que para el jugador.
+    public static void mostrarListaPokemons() // Se muestra lo mismo para el rival que para el jugador.
     {
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine("║        Selecciona los pokemons!         ║");
