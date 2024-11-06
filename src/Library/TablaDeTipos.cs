@@ -1,111 +1,43 @@
 ﻿namespace ClassLibrary;
 
-public class TypeTable
+public class TablaDeTipos
 {
-    private Dictionary<string, TipoPokemon> types;
-
-    public TypeTable()
+    ITipoPokemon agua = new TipoPokemon("Agua");
+    ITipoPokemon fuego = new TipoPokemon("Fuego");
+    ITipoPokemon planta = new TipoPokemon("Planta");
+    ITipoPokemon electrico = new TipoPokemon("Eléctrico");
+    ITipoPokemon hielo = new TipoPokemon("Hielo");
+    ITipoPokemon lucha = new TipoPokemon("Lucha");
+    ITipoPokemon veneno = new TipoPokemon("Veneno");
+    ITipoPokemon tierra = new TipoPokemon("Tierra");
+    ITipoPokemon volador = new TipoPokemon("Volador");
+    ITipoPokemon psiquico = new TipoPokemon("Psíquico");
+    ITipoPokemon bicho = new TipoPokemon("Bicho");
+    ITipoPokemon roca = new TipoPokemon("Roca");
+    ITipoPokemon fantasma = new TipoPokemon("Fantasma");
+    ITipoPokemon dragon = new TipoPokemon("Dragón");
+    ITipoPokemon normal = new TipoPokemon("Normal");
+ public void EstablecerRelaciones()
     {
-        types = new Dictionary<string, TipoPokemon>();
-        InitializeTypes();
-    }
-
-    // Inicializa todos los tipos con fortalezas, debilidades e inmunidades
-    private void InitializeTypes()
-    {
-        // Tipo Agua
-        var agua = new TipoPokemon("Agua");
-        agua.Strengths.AddRange(new[] { "Fuego", "Tierra", "Roca" });
-        agua.Weaknesses.AddRange(new[] { "Planta", "Eléctrico" });
-        types["Agua"] = agua;
-
-        // Tipo Fuego
-        var fuego = new TipoPokemon("Fuego");
-        fuego.Strengths.AddRange(new[] { "Planta", "Bicho", "Hielo"});
-        fuego.Weaknesses.AddRange(new[] { "Agua", "Roca", "Tierra" });
-        types["Fuego"] = fuego;
-
-        // Tipo Planta
-        var planta = new TipoPokemon("Planta");
-        planta.Strengths.AddRange(new[] { "Agua", "Tierra", "Roca" });
-        planta.Weaknesses.AddRange(new[] { "Fuego", "Hielo", "Veneno", "Volador", "Bicho" });
-        types["Planta"] = planta;
-
-        // Tipo Eléctrico
-        var electrico = new TipoPokemon("Eléctrico");
-        electrico.Strengths.AddRange(new[]{ "Agua", "Volador"});
-        electrico.Weaknesses.AddRange(new[]{"Tierra"});
-        types["Eléctrico"] = electrico;
-
-        // Tipo Hielo
-        var hielo = new TipoPokemon("Hielo");
-        hielo.Strengths.AddRange(new[] { "Planta", "Tierra", "Volador", "Dragón" });
-        hielo.Weaknesses.AddRange(new[] { "Fuego", "Lucha", "Roca"});
-        types["Hielo"] = hielo;
-
-        // Tipo Lucha
-        var lucha = new TipoPokemon("Lucha");
-        lucha.Strengths.AddRange(new[] { "Normal", "Hielo", "Roca"});
-        lucha.Weaknesses.AddRange(new[] { "Volador", "Psíquico"});
-        lucha.Immunities.AddRange(new[]{ "Fantasma" });
-        types["Lucha"] = lucha;
-
-        // Tipo Veneno
-        var veneno = new TipoPokemon("Veneno");
-        veneno.Strengths.AddRange(new[] { "Planta" });
-        veneno.Weaknesses.AddRange(new[] { "Tierra", "Psíquico" });
-        types["Veneno"] = veneno;
-
-        // Tipo Tierra
-        var tierra = new TipoPokemon("Tierra");
-        tierra.Strengths.AddRange(new[] { "Fuego", "Eléctrico", "Veneno", "Roca"});
-        tierra.Weaknesses.AddRange(new[] { "Agua", "Hielo", "Planta" });
-        tierra.Immunities.Add("Eléctrico");
-        types["Tierra"] = tierra;
-
-        // Tipo Volador
-        var flying = new TipoPokemon("Volador");
-        flying.Strengths.AddRange(new[] { "Planta", "Lucha", "Bicho" });
-        flying.Weaknesses.AddRange(new[] { "Eléctrico", "Hielo", "Roca" });
-        flying.Immunities.AddRange(new[]{"Tierra"});
-        types["Volador"] = flying;
-
-        // Tipo Psíquico
-        var psiquico = new TipoPokemon("Psíquico");
-        psiquico.Strengths.AddRange(new[] { "Lucha", "Veneno" });
-        psiquico.Weaknesses.AddRange(new[] { "Bicho"});
-        psiquico.Immunities.AddRange(new[]{"Fantasma"});
-        types["Psíquico"] = psiquico;
-
-        // Tipo Bicho
-        var bicho = new TipoPokemon("Bicho");
-        bicho.Strengths.AddRange(new[] { "Planta", "Psíquico" });
-        bicho.Weaknesses.AddRange(new[] { "Fuego", "Volador", "Roca" });
-        types["Bicho"] = bicho;
-
-        // Tipo Roca
-        var roca = new TipoPokemon("Roca");
-        roca.Strengths.AddRange(new[] { "Fuego", "Hielo", "Volador", "Bicho" });
-        roca.Weaknesses.AddRange(new[] { "Agua", "Planta", "Lucha", "Tierra"});
-        types["Roca"] = roca;
-
-        // Tipo Fantasma
-        var fantasma = new TipoPokemon("Fantasma");
-        fantasma.Strengths.AddRange(new[] { "Psíquico", "Fantasma" });
-        fantasma.Weaknesses.AddRange(new[] { "Fantasma" });
-        fantasma.Immunities.AddRange(new[]{"Normal", "Lucha"});
-        types["Fantasma"] = fantasma;
-
-        // Tipo Dragón
-        var dragon = new TipoPokemon("Dragón");
-        dragon.Strengths.Add("Dragón");
-        dragon.Weaknesses.AddRange(new[] { "Hielo", "Dragón" });
-        types["Dragón"] = dragon;
-
-        // Tipo Normal
-        var normal = new TipoPokemon("Normal");
-        normal.Weaknesses.Add("Lucha");
-        normal.Immunities.Add("Fantasma");
-        types["Normal"] = normal;
+        agua.EstablecerRelacionesElementales([fuego, tierra, roca], [agua, electrico, planta], []); // Agua es fuerte contra Fuego, Tierra, Roca; débil contra Agua, Eléctrico, Planta
+fuego.EstablecerRelacionesElementales([planta, hielo, bicho], [agua, roca, tierra], []); // Fuego es fuerte contra Planta, Hielo, Bicho, Acero; débil contra Agua, Roca, Tierra
+planta.EstablecerRelacionesElementales([agua, tierra, roca], [fuego, volador, bicho, veneno, hielo], []); // Planta es fuerte contra Agua, Tierra, Roca; débil contra Fuego, Volador, Bicho, Veneno, Hielo
+electrico.EstablecerRelacionesElementales([agua, volador], [tierra], []); // Eléctrico es fuerte contra Agua y Volador; débil contra Tierra
+hielo.EstablecerRelacionesElementales([planta, tierra, dragon, volador], [fuego, agua, lucha, roca], []); // Hielo es fuerte contra Planta, Tierra, Dragón, Volador; débil contra Fuego, Agua, Lucha, Acero, Roca
+lucha.EstablecerRelacionesElementales([normal, hielo, roca ], [volador, psiquico], []); // Lucha es fuerte contra Normal, Hielo, Roca, Acero; débil contra Volador, Psíquico, Hada
+veneno.EstablecerRelacionesElementales([planta], [agua, tierra, psiquico], []); // Veneno es fuerte contra Planta y Hada; débil contra Agua, Tierra, Psíquico
+tierra.EstablecerRelacionesElementales([fuego, electrico, veneno, roca], [agua, planta, hielo], []); // Tierra es fuerte contra Fuego, Eléctrico, Veneno, Roca, Acero; débil contra Agua, Planta, Hielo
+volador.EstablecerRelacionesElementales([planta, lucha, bicho], [electrico, roca, hielo], []); // Volador es fuerte contra Planta, Lucha, Bicho; débil contra Eléctrico, Roca, Hielo
+psiquico.EstablecerRelacionesElementales([lucha, veneno], [], []); // Psíquico es fuerte contra Lucha y Veneno; débil contra Siniestro y Acero
+bicho.EstablecerRelacionesElementales([planta, psiquico], [fuego, volador, roca], []); // Bicho es fuerte contra Planta, Psíquico, y Siniestro; débil contra Fuego, Volador, Roca
+roca.EstablecerRelacionesElementales([fuego, hielo, volador, bicho], [agua, planta, tierra, lucha], []); // Roca es fuerte contra Fuego, Hielo, Volador, Bicho; débil contra Agua, Planta, Tierra, Lucha, Acero
+fantasma.EstablecerRelacionesElementales([fantasma, psiquico], [normal], []); // Fantasma es fuerte contra Fantasma y Psíquico; inmune a Normal y Siniestro
+dragon.EstablecerRelacionesElementales([dragon], [hielo], []); // Dragón es fuerte contra Dragón; débil contra Hielo, Hada, Acero
+normal.EstablecerRelacionesElementales([], [lucha], [fantasma]); // Normal es débil contra Lucha; inmune a Fantasma
     }
 }
+// Instanciar todos los tipos de Pokémon
+
+
+// Establecer las relaciones elementales
+

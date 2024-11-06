@@ -3,7 +3,7 @@ namespace ClassLibrary;
 public interface ITipoPokemon
 {
     string Name { get; }
-    int Damage { get;  }
-    int Defense { get;  }
-    ITipoPokemon Type { get; }
+
+    public void EstablecerRelacionesElementales(List<ITipoPokemon> Fortalezas, List<ITipoPokemon> Deblidades,
+        List<ITipoPokemon> Immnunidades);
 }
