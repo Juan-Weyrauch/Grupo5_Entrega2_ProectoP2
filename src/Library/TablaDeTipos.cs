@@ -108,7 +108,7 @@
         // Método para obtener las relaciones de un tipo específico
         public (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) ObtenerRelaciones(string tipo)
         {
-            return TablaTiposPokemon.ContainsKey(tipo) ? TablaTiposPokemon[tipo] : (new List<string>(), new List<string>(), new List<string>());
+            return TablaTiposPokemon[tipo];
         }
     }
 }
