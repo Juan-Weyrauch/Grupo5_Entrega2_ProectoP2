@@ -36,7 +36,7 @@ public static class ImpresoraDeTexto
     public static void playerName(int num) // Imprmir a la hora de elegir el nombre el jugador
     {
         Console.WriteLine("╔═════════════════════════════════════════╗");
-        Console.WriteLine($"║ Ingrese el nombre del Jugador {num}:        ║");
+        Console.WriteLine($"║ Ingrese el nombre del Jugador {num}:    ║");
         Console.WriteLine("╚═════════════════════════════════════════╝");
     }
 
