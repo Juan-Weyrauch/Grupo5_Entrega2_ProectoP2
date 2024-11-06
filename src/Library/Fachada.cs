@@ -1,6 +1,32 @@
+using Library;
+
 namespace ClassLibrary;
 
-public class Fachada
+public static class Fachada
 {
-    
+    public static void Start()
+    {
+        while (true)
+        {
+            ImpresoraDeTexto.startPrint();
+            int inicial = Convert.ToInt32(Console.ReadLine());
+            if (inicial == 1)
+            {
+                //deberia ser SistemaDeCombate.Combatir();
+            }
+            else if (inicial == 2)
+            {
+                ImpresoraDeTexto.endPrint();
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Por favor, introduce un número válido (1 o 2).");
+                Console.WriteLine("Presiona cualquier tecla para intentar de nuevo...");
+                Console.ReadKey(); // Esperar a que el usuario presione una tecla antes de continuar
+                continue;
+            }
+            
+        }
+    }
 }
