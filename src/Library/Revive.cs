@@ -1,3 +1,5 @@
+using ClassLibrary;
+
 public class Revive : IItem
 {
     public string Nombre => "Revive";
@@ -13,25 +15,6 @@ public class Revive : IItem
         else
         {
             Console.WriteLine($"{pokemon.Name} aún no está debilitado.");
-        }
-    }
-}
-
-public class FullRestore : IItem
-{
-    public string Nombre => "FullRestore";
-
-    public void Usar(IPokemon pokemon)
-    {
-        if (pokemon.Health > 0) // Solo puede usarse si el Pokémon está activo
-        {
-            pokemon.EliminarEfectosDeEstado();
-            pokemon.Curar(pokemon.InicialHealth - pokemon.Health); // Restaura toda la vida
-            Console.WriteLine($"{pokemon.Name} ha sido restaurado completamente.");
-        }
-        else
-        {
-            Console.WriteLine($"{pokemon.Name} está debilitado y no puede usar Full Restore.");
         }
     }
 }

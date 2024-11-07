@@ -1,7 +1,6 @@
-namespace Library;
+namespace ClassLibrary;
 
-public class FullRestore : IItems
-{
+public class FullRestore : IItem{
     public string Nombre => "FullRestore";
 
     public void Usar(IPokemon pokemon)
