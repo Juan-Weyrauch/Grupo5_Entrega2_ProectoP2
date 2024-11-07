@@ -6,5 +6,5 @@ public class IAtaque
     int Poder { get;  }
     int Precsion { get;  }
     string Tipo { get; }
-    
+    bool Especial { get; }
 } 
