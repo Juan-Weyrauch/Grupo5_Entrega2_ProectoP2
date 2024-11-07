@@ -6,17 +6,18 @@ public class Pokemon: IPokemon
     public int Damage { get; set; }
     public int Defense { get; set; }
     public int Health { get; set; }
-    public ITipoPokemon TipoPokemon { get; }
+    
+    public string Tipo { get; private set; }
 
-    public Pokemon(string name, int damage, int defense, int health)
+    public Pokemon(string name, int damage, int defense, int health, string tipo)
     {
         Name = name;
         Damage = damage;
         Defense = defense;
-        Health = health; 
-        //ITipoPokemon tipoPokemon = tipoPokemon;
+        Health = health;
+        Tipo = tipo;
     }
-    
+
     public void Accept(IVisitor visitor)
     {
         visitor.Visit(this);
