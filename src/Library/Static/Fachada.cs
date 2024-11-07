@@ -12,7 +12,7 @@ public static class Fachada
             int inicial = Convert.ToInt32(Console.ReadLine());
             if (inicial == 1)
             {
-                //deberia ser SistemaDeCombate.Combatir();
+                Fachada.selecciones();
             }
             else if (inicial == 2)
             {
@@ -28,5 +28,11 @@ public static class Fachada
             }
             
         }
+    }
+
+    public static void selecciones()
+    {
+        Player Jugador1 = new Player();
+        Player Jugador2 = new Player();
     }
 }
