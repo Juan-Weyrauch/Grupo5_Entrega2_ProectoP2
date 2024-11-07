@@ -18,15 +18,17 @@ public static class FabricaPokemon
         //PokedexPokemon.Add(3, new Registro());
             
     }
-    public static void InstanciarPokes(List<int> entrada, IPlayer Jugador) // Tiene que llegarle los valores del player.
+    public static List<IPokemon> InstanciarPokes( IPlayer Jugador) // Tiene que llegarle los valores del player.
     {// Falta traer la info desde jugador hacia aca. 
+        List<int>entrada = Jugador.EleccionPokemon;
         List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
         foreach (int numero in entrada)
         {
             PokemonsTemporal.Add(PokedexPokemon[numero].CrearPokemon()); // Son muchos puntos probablemente aplicar visitor
         }
-        Jugador.EstablecerEquipo(PokemonsTemporal); 
-        
+
+        return PokemonsTemporal;
+
     }
 }
 // Bulbasur.
