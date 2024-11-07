@@ -5,7 +5,7 @@ public class InfoVisitor : IVisitor
     // Crear un Pokémon a partir del registro
     public IPokemon VisitCrearPoke(Registro registro)
     {
-        return new Pokemon(registro.Name, registro.Damage, registro.Health, registro.Defense);
+        return registro.CrearPokemon();
     }
 
     // Obtener solo el nombre del registro
