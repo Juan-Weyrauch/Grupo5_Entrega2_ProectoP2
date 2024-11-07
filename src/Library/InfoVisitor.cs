@@ -16,7 +16,4 @@ public class InfoVisitor : IVisitor
     }
 
     // esta sin crear.
-    public string VisitNombrePokemon(IPokemon pokemon)
-    {
-    public string
 }

@@ -5,5 +5,5 @@ public interface IVisitor
     IPokemon Visit(IRegistroPokemon registroPokemon);
     string VisitNombreRegistro(IRegistroPokemon registroPokemon);
     void Visit(IPokemon pokemon);
-    void Visit(Player jugador);
+   // void Visit(Player jugador);
 }

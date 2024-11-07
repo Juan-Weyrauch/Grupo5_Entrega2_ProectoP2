@@ -29,7 +29,7 @@ public static class FabricaPokemon
 
         return PokemonsTotales;
     }
-    public static List<IPokemon> InstanciarPokes( IPlayer Jugador) // Tiene que llegarle los valores del player.
+    public static void InstanciarPokes( IPlayer Jugador) // Tiene que llegarle los valores del player.
     {// Falta traer la info desde jugador hacia aca. 
         List<int>entrada = Jugador.EleccionPokemon;
         List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
@@ -40,7 +40,8 @@ public static class FabricaPokemon
             PokemonsTemporal.Add(pokemontemp); // Son muchos puntos probablemente aplicar visitor
         }
 
-        return PokemonsTemporal;
+        Jugador.EstablecerEquipo(PokemonsTemporal); // Esto esta bien no? No interfiere como tal en el comportamiento
+        
 
     }
 }
