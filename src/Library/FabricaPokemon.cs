@@ -34,7 +34,7 @@ public static class FabricaPokemon
         return PokemonsTotales;
     }
 
-    public static void InstanciarPokes(List<int> entrada, IPlayer Jugador) // Tiene que llegarle los valores del player.
+    public static List<IPokemon> InstanciarPokes(List<int> entrada, IPlayer Jugador) // Tiene que llegarle los valores del player.
     {// Falta traer la info desde jugador hacia aca. 
         List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
         InfoVisitor InfoVisitor = new();
@@ -43,8 +43,9 @@ public static class FabricaPokemon
             IPokemon pokemontemp = PokedexPokemon[numero].AcceptCrearPokemon(InfoVisitor); // Esto tiene que ir creando los Pokemons.
             PokemonsTemporal.Add(pokemontemp); // Son muchos puntos probablemente aplicar visitor
         }
-        Jugador.EstablecerEquipo(PokemonsTemporal); 
-        
+
+        return PokemonsTemporal;
+
     }
 }
 // Bulbasur.
