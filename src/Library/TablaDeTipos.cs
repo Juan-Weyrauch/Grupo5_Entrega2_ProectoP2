@@ -3,15 +3,15 @@
     public class TablaDeTipos
     {
         // Diccionario que almacena las relaciones de fortalezas, debilidades e inmunidades para cada tipo
-        private Dictionary<string, (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)> TablaTiposPokemon;
+       static private Dictionary<string, (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)> TablaTiposPokemon;
 
-        public TablaDeTipos()
+         static TablaDeTipos()
         {
             TablaTiposPokemon = new Dictionary<string, (List<string>, List<string>, List<string>)>();
             CrearTabla();
         }
 
-        private void CrearTabla()
+        private static void CrearTabla()
         {
             // Llenado del diccionario con las relaciones de cada tipo
             TablaTiposPokemon["Agua"] = (

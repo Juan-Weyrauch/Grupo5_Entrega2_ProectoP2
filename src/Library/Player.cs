@@ -11,8 +11,4 @@ public class Player : IPlayer
         Name = name;
         Equipo = equipo;
     } 
-    public void EstablecerEquipo(List<IPokemon> EquipoNuevo) // creo que esto deberia ser de la fabrica
-    {
-        Equipo = EquipoNuevo;
-    }
 }

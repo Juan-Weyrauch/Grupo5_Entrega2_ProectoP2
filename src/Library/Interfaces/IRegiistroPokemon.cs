@@ -5,7 +5,7 @@ public interface  IRegistroPokemon
      string Name { get; }
     int Damage { get;  }
     int Health { get;  }
-    ITipoPokemon TipoPokemon { get;  }
+    string  Tipo { get; }
     // dic<ataques> moveset { get; set; }
      public IPokemon CrearPokemon();
      

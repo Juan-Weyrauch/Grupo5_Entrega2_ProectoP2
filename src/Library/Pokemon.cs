@@ -1,24 +1,20 @@
 namespace ClassLibrary;
 
-public class Pokemon: IPokemon
+public class Pokemon : IPokemon
 {
-    public string Name { get; }
-    public int Damage { get; set; }
-    public int Defense { get; set; }
-    public int Health { get; set; }
-    public ITipoPokemon TipoPokemon { get; }
+    public string Name { get; private set; }
+    public int Damage { get; private set; }
+    public int Defense { get; private set; }
+    public int Health { get; private set; }
+    public string Tipo { get; private set; }
 
-    public Pokemon(string name, int damage, int defense, int health)
+
+    public Pokemon(string name, int damage, int defense, int health, string tipo)
     {
         Name = name;
         Damage = damage;
         Defense = defense;
-        Health = health; 
-        //ITipoPokemon tipoPokemon = tipoPokemon;
+        Health = health;
+        Tipo = tipo;  
     }
-    
-    /*public void Accept(IVisitor visitor)
-    {
-        visitor.Visit(this);
-    }*/
 }
