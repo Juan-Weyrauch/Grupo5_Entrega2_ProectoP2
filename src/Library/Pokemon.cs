@@ -17,8 +17,8 @@ public class Pokemon: IPokemon
         //ITipoPokemon tipoPokemon = tipoPokemon;
     }
     
-    public void Accept(IVisitor visitor)
+    /*public void Accept(IVisitor visitor)
     {
         visitor.Visit(this);
-    }
+    }*/
 }

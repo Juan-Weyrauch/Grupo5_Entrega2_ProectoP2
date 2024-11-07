@@ -7,5 +7,5 @@ public interface IPokemon
     int Defense { get;  }
     ITipoPokemon TipoPokemon { get; }
     
-    void Accept(IVisitor visitor);
+   // void Accept(IVisitor visitor);
 }
