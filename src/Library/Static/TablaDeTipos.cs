@@ -104,7 +104,7 @@
                 inmunidades: new List<string>()
             );
         }
-
+     
         // Método para obtener las relaciones de un tipo específico
         public (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) ObtenerRelaciones(string tipo)
         {

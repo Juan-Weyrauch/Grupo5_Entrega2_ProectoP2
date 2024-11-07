@@ -10,5 +10,5 @@ public class Player : IPlayer
     {
         Name = name;
         Equipo = equipo;
-    } 
+    }   
 }
