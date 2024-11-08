@@ -78,8 +78,9 @@ public static class ImpresoraDeTexto
         int i = 1;
         foreach (IPokemon pokemon in jugador.Equipo)
         {
-            string pokemonNameForDisplay = pokemon.GetName();
+            string pokemonNameForDisplay = pokemon.Name;  // Access Name directly
             Console.WriteLine($"{i}) {pokemonNameForDisplay}\n");
+            i++;
         }
     }
 }
