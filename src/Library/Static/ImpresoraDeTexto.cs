@@ -53,11 +53,12 @@ public static class ImpresoraDeTexto
         {
             Console.WriteLine(nombrePokemon); 
         }
+        
     }
 
-    public static void selectYourPokemon(int numberOfPokemonSelected)
+    public static void selectYourPokemon()
     {
-        
+        Console.Write("Select Your Pokemon: ");
     }
 }
     
