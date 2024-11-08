@@ -1,114 +1,127 @@
-﻿namespace ClassLibrary
-{
-    public class TablaDeTipos
+﻿
+    // Diccionario que almacena las relaciones de fortalezas, debilidades e inmunidades para cada tipo
+  
+
+    namespace ClassLibrary
     {
-        // Diccionario que almacena las relaciones de fortalezas, debilidades e inmunidades para cada tipo
-       static private Dictionary<string, (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)> TablaTiposPokemon;
-
-         static TablaDeTipos()
+        public class TablaDeTipos
         {
-            TablaTiposPokemon = new Dictionary<string, (List<string>, List<string>, List<string>)>();
-            CrearTabla();
-        }
+            // Diccionario que almacena las relaciones de fortalezas, debilidades e inmunidades para cada tipo
+            static private
+                Dictionary<string, (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)>
+                TablaTiposPokemon;
 
-        private static void CrearTabla()
-        {
-            // Llenado del diccionario con las relaciones de cada tipo
-            TablaTiposPokemon["Agua"] = (
-                fortalezas: new List<string> { "Fuego", "Tierra", "Roca" },
-                debilidades: new List<string> { "Eléctrico", "Planta" },
-                inmunidades: new List<string>()
-            );
+            // Método para inicializar los datos de la tabla
+            public static void CrearTabla()
+            {
+                // Inicializa el diccionario
+                TablaTiposPokemon = new Dictionary<string, (List<string>, List<string>, List<string>)>();
 
-            TablaTiposPokemon["Bicho"] = (
-                fortalezas: new List<string> { "Planta", "Psíquico", "Siniestro" },
-                debilidades: new List<string> { "Fuego", "Roca", "Volador", "Veneno" },
-                inmunidades: new List<string>()
-            );
+                // Llenado del diccionario con las relaciones de cada tipo
+                TablaTiposPokemon["Agua"] = (
+                    new List<string> { "Fuego", "Tierra", "Roca" }, // Fortalezas
+                    new List<string> { "Eléctrico", "Planta" }, // Debilidades
+                    new List<string>() // Inmunidades
+                );
 
-            TablaTiposPokemon["Dragón"] = (
-                fortalezas: new List<string> { "Dragón" },
-                debilidades: new List<string> { "Hielo", "Dragón" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Bicho"] = (
+                    new List<string> { "Planta", "Psíquico", "Siniestro" },
+                    new List<string> { "Fuego", "Roca", "Volador", "Veneno" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Eléctrico"] = (
-                fortalezas: new List<string> { "Agua", "Volador" },
-                debilidades: new List<string> { "Tierra" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Dragón"] = (
+                    new List<string> { "Dragón" },
+                    new List<string> { "Hielo", "Dragón" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Fantasma"] = (
-                fortalezas: new List<string> { "Fantasma", "Psíquico" },
-                debilidades: new List<string> { "Fantasma" },
-                inmunidades: new List<string> { "Normal" }
-            );
+                TablaTiposPokemon["Eléctrico"] = (
+                    new List<string> { "Agua", "Volador" },
+                    new List<string> { "Tierra" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Fuego"] = (
-                fortalezas: new List<string> { "Planta", "Hielo", "Bicho" },
-                debilidades: new List<string> { "Agua", "Roca", "Tierra" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Fantasma"] = (
+                    new List<string> { "Fantasma", "Psíquico" },
+                    new List<string> { "Fantasma" },
+                    new List<string> { "Normal" }
+                );
 
-            TablaTiposPokemon["Hielo"] = (
-                fortalezas: new List<string> { "Planta", "Tierra", "Dragón", "Volador" },
-                debilidades: new List<string> { "Fuego", "Lucha", "Roca" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Fuego"] = (
+                    new List<string> { "Planta", "Hielo", "Bicho" },
+                    new List<string> { "Agua", "Roca", "Tierra" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Lucha"] = (
-                fortalezas: new List<string> { "Normal", "Hielo", "Roca", "Bicho" },
-                debilidades: new List<string> { "Psíquico", "Volador" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Hielo"] = (
+                    new List<string> { "Planta", "Tierra", "Dragón", "Volador" },
+                    new List<string> { "Fuego", "Lucha", "Roca" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Normal"] = (
-                fortalezas: new List<string>(),
-                debilidades: new List<string> { "Lucha" },
-                inmunidades: new List<string> { "Fantasma" }
-            );
+                TablaTiposPokemon["Lucha"] = (
+                    new List<string> { "Normal", "Hielo", "Roca", "Bicho" },
+                    new List<string> { "Psíquico", "Volador" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Planta"] = (
-                fortalezas: new List<string> { "Agua", "Tierra", "Roca" },
-                debilidades: new List<string> { "Fuego", "Volador", "Bicho", "Veneno", "Hielo" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Normal"] = (
+                    new List<string>(),
+                    new List<string> { "Lucha" },
+                    new List<string> { "Fantasma" }
+                );
 
-            TablaTiposPokemon["Psíquico"] = (
-                fortalezas: new List<string> { "Lucha", "Veneno" },
-                debilidades: new List<string> { "Bicho", "Fantasma" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Planta"] = (
+                    new List<string> { "Agua", "Tierra", "Roca" },
+                    new List<string> { "Fuego", "Volador", "Bicho", "Veneno", "Hielo" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Roca"] = (
-                fortalezas: new List<string> { "Fuego", "Hielo", "Volador", "Bicho" },
-                debilidades: new List<string> { "Agua", "Lucha", "Planta", "Tierra" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Psíquico"] = (
+                    new List<string> { "Lucha", "Veneno" },
+                    new List<string> { "Bicho", "Fantasma" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Tierra"] = (
-                fortalezas: new List<string> { "Fuego", "Eléctrico", "Veneno", "Roca" },
-                debilidades: new List<string> { "Agua", "Hielo", "Planta" },
-                inmunidades: new List<string> { "Eléctrico" }
-            );
+                TablaTiposPokemon["Roca"] = (
+                    new List<string> { "Fuego", "Hielo", "Volador", "Bicho" },
+                    new List<string> { "Agua", "Lucha", "Planta", "Tierra" },
+                    new List<string>()
+                );
 
-            TablaTiposPokemon["Veneno"] = (
-                fortalezas: new List<string> { "Planta", "Hada" },
-                debilidades: new List<string> { "Psíquico", "Tierra" },
-                inmunidades: new List<string>()
-            );
+                TablaTiposPokemon["Tierra"] = (
+                    new List<string> { "Fuego", "Eléctrico", "Veneno", "Roca" },
+                    new List<string> { "Agua", "Hielo", "Planta" },
+                    new List<string> { "Eléctrico" }
+                );
 
-            TablaTiposPokemon["Volador"] = (
-                fortalezas: new List<string> { "Planta", "Lucha", "Bicho" },
-                debilidades: new List<string> { "Eléctrico", "Hielo", "Roca" },
-                inmunidades: new List<string>()
-            );
-        }
-     
-        // Método para obtener las relaciones de un tipo específico
-         public static (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) ObtenerRelaciones(string tipo)
-        {
-            return TablaTiposPokemon[tipo];
+                TablaTiposPokemon["Veneno"] = (
+                    new List<string> { "Planta", "Hada" },
+                    new List<string> { "Psíquico", "Tierra" },
+                    new List<string>()
+                );
+
+                TablaTiposPokemon["Volador"] = (
+                    new List<string> { "Planta", "Lucha", "Bicho" },
+                    new List<string> { "Eléctrico", "Hielo", "Roca" },
+                    new List<string>()
+                );
+            }
+
+            // Método para obtener las relaciones de un tipo específico
+            public static (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)
+                ObtenerRelaciones(string tipo)
+            {
+                if (TablaTiposPokemon.ContainsKey(tipo))
+                {
+                    return TablaTiposPokemon[tipo];
+                }
+                else
+                {
+                    // Si el tipo no se encuentra, devolver valores predeterminados (vacíos)
+                    return (new List<string>(), new List<string>(), new List<string>());
+                }
+            }
         }
     }
-}

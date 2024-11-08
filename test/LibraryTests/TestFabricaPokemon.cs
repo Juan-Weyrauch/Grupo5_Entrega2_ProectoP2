@@ -29,8 +29,9 @@ namespace Tests
         [Test]
      public void TestearImprmir(){
             
-         Console.WriteLine(FabricaPokemon.DevolverNombresPokedex());
-         var a = FabricaPokemon.DevolverNombresPokedex();
+        TablaDeTipos.CrearTabla();
+        var a = TablaDeTipos.ObtenerRelaciones("Planta");
+        Console.WriteLine(TablaDeTipos.ObtenerRelaciones("Planta"));
      }
      /*   public void TestearTipos()
        {
