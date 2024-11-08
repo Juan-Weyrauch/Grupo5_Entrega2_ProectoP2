@@ -1,5 +1,3 @@
-
-
 namespace ClassLibrary;
 
 public interface IPokemon
@@ -10,11 +8,13 @@ public interface IPokemon
     int Health { get;  }
     int Estado { get; } // 0  es normal, 1 quemado, 2 envenanado, 3 paralizar, 4 Dormido  
     string Tipo { get; }
+    int InicialHealth { get; }
 
-    
-    
 
-    
-   public void DecreseHealth(int valueAfterCalculation);
+
+
+    public void DecreaseHealth(int valueAfterCalculation);
     // void Accept(IVisitor visitor);
+    void Curar(int cantidad);
+    void EliminarEfectosDeEstado();
 }

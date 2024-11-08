@@ -19,8 +19,7 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-
-            
+            Fachada.Start();
         }
     }
 }
