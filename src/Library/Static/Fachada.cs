@@ -32,7 +32,17 @@ namespace ClassLibrary;
 
     public static void selecciones()
     {
-        Player Jugador1 = new Player();
-        Player Jugador2 = new Player();
+        List <IPokemon> pokemonsForPlayers = new List<IPokemon>();
+        string inputName = Console.ReadLine();
+        Player Jugador2 = new Player(inputName, pokemonsForPlayers, 0);
+
+        for (int i = 1; i < 3; i++)
+        {
+            if (i == 1)
+            {
+                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*shall revise*/ i);
+                ImpresoraDeTexto.mostrarListaPokemons();
+            }
+        }
     }
 }
