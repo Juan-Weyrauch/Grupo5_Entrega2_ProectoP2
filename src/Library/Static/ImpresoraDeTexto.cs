@@ -75,7 +75,8 @@ public static class ImpresoraDeTexto
 
     public static void ValorFueraDeRango()
     {
-        Console.WriteLine("");
+        Console.WriteLine("El valor ingresado esta fuera del rango. ");
+        Console.Write("Ingrese un numero valido: ");
     }
 
     public static void MostrarPokemons(Player jugador)
