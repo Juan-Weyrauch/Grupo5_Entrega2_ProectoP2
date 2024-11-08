@@ -40,7 +40,7 @@ namespace ClassLibrary;
         List<IPlayer> players = new List<IPlayer>(); // maybe it's better to send a list index
         
         //para poder llamar a 'GetValidatedNumber(1, n)'
-        int n = 82; // debe ser la cantidad de pokemons que mostremos en la matriz
+        int n = FabricaPokemon.DevolverTotal(); // debe ser la cantidad de pokemons que mostremos en la matriz
 
         for (int i = 1; i <= 2; i++)
         {
@@ -50,7 +50,7 @@ namespace ClassLibrary;
             if (i == 1)
             {
                 Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
-                ImpresoraDeTexto.mostrarListaPokemons(); /*TODO change this*/
+                ImpresoraDeTexto.mostrarListaPokemons(inputName);
                 for (int j = 0; j <= 6; j++)
                 {
                     ImpresoraDeTexto.selectYourPokemon();
