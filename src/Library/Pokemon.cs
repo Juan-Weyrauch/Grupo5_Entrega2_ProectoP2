@@ -9,7 +9,12 @@ public class Pokemon : IPokemon
     public int Estado { get; private set; } // 0  es normal, 1 quemado, 2 envenanado, 3 paralizar, 4 Dormido  
     public string Tipo { get; private set; }
 
-
+   
+    public void DecreseHealth(int valueAfterCalculation) // Resta de vida despues del calculo de daño. 
+    {
+        Health -= valueAfterCalculation;
+        if (Health < 0) Health = 0;
+    }
     public Pokemon(string name, int damage, int defense, int health, string tipo)
     {
         Name = name;
@@ -19,4 +24,5 @@ public class Pokemon : IPokemon
         Tipo = tipo;
         Estado = 0; // Por defecto el Estado es normal.
     }
+    
 }

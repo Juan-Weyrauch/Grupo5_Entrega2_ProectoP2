@@ -31,8 +31,8 @@ namespace ClassLibrary;
     }
 
     public static void selecciones()
-    {
-        Player Jugador1 = new Player();
-        Player Jugador2 = new Player();
+    { // Da error porque Falta poner parametros adentro.
+        ImpresoraDeTexto.mostrarListaPokemons(); // Esto printea todas las posiblidades para elegir, el formato debe mejorarse igualmente.
+        
     }
 }
