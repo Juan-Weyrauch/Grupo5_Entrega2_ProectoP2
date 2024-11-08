@@ -36,12 +36,12 @@ public  static class Combate
                // Si no se corresponde con ningún estado, no hace nada
                break;
        }
-       pokemon.DecreseHealth(calculoDaño);
+       pokemon.DecreaseHealth(calculoDaño);
        
    }
 
    public static void Recibir(IPokemon pokemon, int damage)
    {
-       pokemon.DecreseHealth(damage);
+       pokemon.DecreaseHealth(damage);
    }
 }
