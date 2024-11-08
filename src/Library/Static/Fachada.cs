@@ -61,7 +61,7 @@ namespace ClassLibrary;
                     {
                         // este metodo recibe y verifica el valor ingresado
                         int numberOfPokemonSelected = Convert.ToInt32(Console.ReadLine());
-                        numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n, numberOfPokemonSelected);
+                       // numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n, numberOfPokemonSelected);
                         valuesForPokemons.Add(numberOfPokemonSelected);
                     }
                     catch (FormatException)
@@ -75,7 +75,11 @@ namespace ClassLibrary;
                         i--;
                     }
                 }
-                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
+
+                List < IPokemon> PokemonsCreados = FabricaPokemon.InstanciarPokes(valuesForPokemons);
+                ImpresoraDeTexto.EligePokemonInicial(PokemonsCreados);
+                int Eleccion = Convert.ToInt32(Console.ReadLine());
+                players.Add(new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ Eleccion));
 
             }
         }

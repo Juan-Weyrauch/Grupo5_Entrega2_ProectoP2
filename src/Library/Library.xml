@@ -4,6 +4,14 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="M:ClassLibrary.Calculator.CombatValidation(ClassLibrary.Player,ClassLibrary.Player)">
+            <summary>
+            
+            </summary>
+            <param name="jugador1"></param>
+            <param name="jugador2"></param>
+            <returns>boolean</returns>
+        </member>
         <member name="F:ClassLibrary.FabricaPokemon.PokedexPokemon">
             <summary>
             Los registros son clases que tienen la informacion de la creacion de cada pokemon. Estos tienen un metodo que
@@ -13,6 +21,11 @@
         <member name="M:ClassLibrary.FabricaPokemon.CargarPokemons">
             <summary>
             Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Fachada.selecciones">
+            <summary>
+            
             </summary>
         </member>
     </members>
