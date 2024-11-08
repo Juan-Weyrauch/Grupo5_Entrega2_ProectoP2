@@ -28,7 +28,25 @@ public  static class Combate
                break;
 
            case 3: // Parálisis (Ejemplo, puedes definir lo que debe hacer en este caso)
+               Random par = new Random();
+               Random par2 = new Random();
+               int prob = par.Next(1, 5);
+               int prob2 = par2.Next(1, 5);
+
+               if (par == par2)
+               {
+                   // Debe perder el turno
+               }
                
+               break;
+           
+           case 4: // Dormido
+               Random dor = new Random();
+               Random dor2 = new Random();
+               int pdor = dor.Next(1, i);
+               int pdor2 = dor2.Next();
+               //creo de deberia hacer un for o un while que vaya restando turnos hasta 4
+               // para revisar si esta dormido si el numero es igual sale y se despierta?
                break;
 
            // Agregar otros estados de Pokémon según sea necesario
