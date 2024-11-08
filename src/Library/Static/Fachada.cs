@@ -1,5 +1,5 @@
 using Library;
-using ClassLibrary;
+using Library.Static;
 
 namespace ClassLibrary;
 
@@ -44,21 +44,21 @@ namespace ClassLibrary;
 
         for (int i = 1; i <= 2; i++)
         {
-            Console.WriteLine($"Enter the name of Player {i}:");
+            Console.WriteLine($"Enter the name of Player {i}:"); //dont know if this should go in Impresora
             inputName = Console.ReadLine();
+            int numberOfPokemonSelected;
             
             if (i == 1)
             {
+                
                 ImpresoraDeTexto.mostrarListaPokemons(inputName);
                 for (int j = 0; j <= 6; j++)
                 {
                     ImpresoraDeTexto.selectYourPokemon();
+                    
                     try
                     {
-                        // este metodo recibe y verifica el valor ingresado con 
-                        int numberOfPokemonSelected = Convert.ToInt32(Console.ReadLine());
-                        numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n, numberOfPokemonSelected);
-                        
+                        numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n);
                     }
                     catch (FormatException)
                     {
@@ -68,12 +68,11 @@ namespace ClassLibrary;
                     catch (ArgumentOutOfRangeException)
                     {
                         Console.WriteLine("Number out of range. Please enter a number within the allowed range.");
-                        i--;
                     }
                 }
                 Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
-
             }
         }
     }
 }
+
