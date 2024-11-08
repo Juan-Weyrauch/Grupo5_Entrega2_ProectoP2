@@ -56,7 +56,9 @@ namespace ClassLibrary;
                     try
                     {
                         // este metodo recibe y verifica el valor ingresado con 
-                        int numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n);
+                        int numberOfPokemonSelected = Convert.ToInt32(Console.ReadLine());
+                        numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n, numberOfPokemonSelected);
+                        
                     }
                     catch (FormatException)
                     {
@@ -66,6 +68,7 @@ namespace ClassLibrary;
                     catch (ArgumentOutOfRangeException)
                     {
                         Console.WriteLine("Number out of range. Please enter a number within the allowed range.");
+                        i--;
                     }
                 }
                 Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
