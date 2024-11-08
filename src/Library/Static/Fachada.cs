@@ -49,13 +49,13 @@ namespace ClassLibrary;
             
             if (i == 1)
             {
-                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
                 ImpresoraDeTexto.mostrarListaPokemons(inputName);
                 for (int j = 0; j <= 6; j++)
                 {
                     ImpresoraDeTexto.selectYourPokemon();
                     try
                     {
+                        // este metodo recibe y verifica el valor ingresado con 
                         int numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n);
                     }
                     catch (FormatException)
@@ -68,6 +68,8 @@ namespace ClassLibrary;
                         Console.WriteLine("Number out of range. Please enter a number within the allowed range.");
                     }
                 }
+                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
+
             }
         }
     }

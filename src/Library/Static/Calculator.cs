@@ -4,6 +4,7 @@ using ClassLibrary;
 public static class Calculator
 {
     public static int GetValidatedNumber(int min, int max){
+        //aca se lee el input del usuario 
         if (!int.TryParse(Console.ReadLine(), out int number))
         {
             throw new FormatException("Debe ingresar un numero entero"); // Si no es un numero tira esto
