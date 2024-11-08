@@ -1,5 +1,5 @@
 namespace ClassLibrary;
-
+z
 public class InfoVisitor : IVisitor
 {
     // Crear un Pokémon a partir del registro
