@@ -65,6 +65,12 @@ public static class ImpresoraDeTexto
                 Console.WriteLine();
             }
         }
+        
+    }
+
+    public static void selectYourPokemon()
+    {
+        Console.Write("Select Your Pokemon: ");
     }
 }
     

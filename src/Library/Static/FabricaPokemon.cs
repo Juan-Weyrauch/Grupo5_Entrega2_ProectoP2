@@ -2,7 +2,7 @@ namespace ClassLibrary;
 
 public static class FabricaPokemon
 {   /// <summary>
-    /// Los registros son clases que tienenl la informacion de la creacion de cada pokemon. Estos tienen un metodo que
+    /// Los registros son clases que tienen la informacion de la creacion de cada pokemon. Estos tienen un metodo que
     /// instancia los pokemons como objetos y los envia hacia las listas, se deberia hacer con visitor.
     /// </summary>
     
