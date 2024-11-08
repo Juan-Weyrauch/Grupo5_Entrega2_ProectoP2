@@ -4,14 +4,11 @@ public class Player : IPlayer
 {
     public string Name { get; }
     // inventario quizas? Aca? 
-    public List <IPokemon> Equipo { get;  set; }
-    public void Elegir(List<int> eleccionplayer)
-    {
-        // Visitor a FabricaPokemon
-    }
+    public List <IPokemon> Equipo { get; private set; }
 
-    public void EstablecerEquipo(List<IPokemon> EquipoNuevo)
+    public Player(string name, List<IPokemon> equipo)
     {
-        Equipo = EquipoNuevo;
-    }
+        Name = name;
+        Equipo = equipo;
+    }   
 }
