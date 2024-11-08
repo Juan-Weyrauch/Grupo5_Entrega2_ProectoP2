@@ -73,6 +73,11 @@ public static class ImpresoraDeTexto
         Console.Write("Select Your Pokemon: ");
     }
 
+    public static void ValorFueraDeRango()
+    {
+        Console.WriteLine("");
+    }
+
     public static void MostrarPokemons(Player jugador)
     {
         int i = 1;

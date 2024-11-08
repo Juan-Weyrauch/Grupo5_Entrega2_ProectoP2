@@ -1,29 +1,33 @@
+using System.Diagnostics.CodeAnalysis;
+using Library;
+
 namespace ClassLibrary;
 using ClassLibrary;
 
 public static class Calculator
 {
-    public static int GetValidatedNumber(int min, int max){
+    public static int GetValidatedNumber(int min, int max, int PokemonValue){
         //aca se lee el input del usuario 
-        if (!int.TryParse(Console.ReadLine(), out int number))
+        while (PokemonValue > max || PokemonValue < min)
         {
-            throw new FormatException("Debe ingresar un numero entero"); // Si no es un numero tira esto
+            ImpresoraDeTexto.ValorFueraDeRango();
         }
 
-        if (number < min || number > max)
-        {
-            throw new ArgumentOutOfRangeException("Fuera de rango!"); // Si esta fuera de rango
-        }
-
-        return number; // si es valido el numero, lo devuelve
+        return PokemonValue;
     }
     
-    public static bool CombatValidation(Player Jugador1, Player Jugador2)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="jugador1"></param>
+    /// <param name="jugador2"></param>
+    /// <returns>boolean</returns>
+    public static bool CombatValidation([NotNull] Player jugador1, [NotNull] Player jugador2)
     {
-        int Equipo1 = Jugador1.getInventarioCount();
-        int Equipo2 = Jugador2.getInventarioCount();
+        int equipo1 = jugador1.getInventarioCount();
+        int equipo2 = jugador2.getInventarioCount();
     
-        if ( (Equipo1 > 0 )&&( Equipo2 > 0 ) ){ return true; } 
+        if ( (equipo1 > 0 )&&( equipo2 > 0 ) ){ return true; } 
         else{ return false; }
     }
 }
