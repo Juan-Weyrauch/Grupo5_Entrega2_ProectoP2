@@ -34,7 +34,7 @@ public static class FabricaPokemon
         return PokemonsTotales;
     }
 
-    public static List<IPokemon> InstanciarPokes(List<int> entrada, IPlayer Jugador) // Tiene que llegarle los valores del player.
+    public static List<IPokemon> InstanciarPokes(List<int> entrada) // Tiene que llegarle los valores del player.
     {// Falta traer la info desde jugador hacia aca. 
         List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
         InfoVisitor InfoVisitor = new();

@@ -26,9 +26,14 @@ public class Registro: IRegistroPokemon
         return new Pokemon(this.Name, this.Damage, this.Health, this.Defense, this.Tipo);
     }
     // public DevolverMoves();
-    
-    public void Accept(IVisitor visitor)
+
+    public string AcceptObtenerNombre(IVisitor visitor)
     {
-        visitor.Visit(this);
+      return  visitor.visitNombreRegistro(this);
+    }
+
+    public IPokemon AcceptCrearPokemon(IVisitor visitor)
+    {
+        return visitor.visitCrearPokemon(this);
     }
 }

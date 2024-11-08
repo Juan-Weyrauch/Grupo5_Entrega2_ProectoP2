@@ -26,7 +26,7 @@ namespace Tests
             Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasur")); // se debe cambiar por un visitor. 
         }
 
-        public void TestearTipos()
+     /*   public void TestearTipos()
         {
             List<int> elementos = [1];
             FabricaPokemon.CargarPokemons();
@@ -34,6 +34,6 @@ namespace Tests
             Player EjemploJugador = new Player("Pedro", Pokemons);
            // Quiero testear La creacion de tipos pero me resulta muy complicado.
            
-        }
+        }*/
     }
 }
