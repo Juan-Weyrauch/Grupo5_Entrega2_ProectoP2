@@ -4,6 +4,12 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:ClassLibrary.Player">
+            <summary>
+            Unicamente se Crea a el Player cuando se tenga todos los datos para crearlo.
+            Es decir luego de haberle preguntado, su nombre, Eleccion de equipo y su pokemon en el campo.
+            </summary>
+        </member>
         <member name="F:ClassLibrary.FabricaPokemon.PokedexPokemon">
             <summary>
             Los registros son clases que tienenl la informacion de la creacion de cada pokemon. Estos tienen un metodo que

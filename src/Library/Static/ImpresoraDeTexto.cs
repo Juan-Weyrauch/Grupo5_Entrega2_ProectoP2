@@ -47,11 +47,22 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚═════════════════════════════════════════╝");
         /// Aca Ahora debe mostrar los registros de la Pokedex en la factory.
         
-        List<string> nombresPokemons = FabricaPokemon.DevolverNombresPokedex();
+        
+        FabricaPokemon.CargarPokemons();
 
-        foreach (var nombrePokemon in nombresPokemons) /// Aca se tiene que implementar la logica de matrices.
+        int columnas = 3;  // Define cuántos nombres por fila
+        int contador = 0;
+
+        foreach (string cadena in FabricaPokemon.DevolverNombresPokedex())
         {
-            Console.WriteLine(nombrePokemon); 
+            Console.Write(cadena + "\t");
+
+            // Imprime un salto de línea cada "columnas" nombres
+            contador++;
+            if (contador % columnas == 0)
+            {
+                Console.WriteLine();
+            }
         }
     }
 }

@@ -26,9 +26,10 @@ public static class FabricaPokemon
         // Recorremos la Pokedex y extraemos los nombres usando el visitor
         for (int i = 1; i <= PokedexPokemon.Count; i++)  // Cambié el bucle para incluir el último índice
         {
+            string num = i.ToString();
             // Aquí el visitor extrae solo el nombre del registro
             string nombre = PokedexPokemon[i].AcceptObtenerNombre(infoVisitor); // esto tiene que de alguna manera dar los nombres.
-            PokemonsTotales.Add($"{i}) {nombre}");
+            PokemonsTotales.Add($"{num}) {nombre}");
         }
 
         return PokemonsTotales;

@@ -32,7 +32,7 @@ namespace ClassLibrary;
 
     public static void selecciones()
     {
-        Player Jugador1 = new Player();
-        Player Jugador2 = new Player();
+        ImpresoraDeTexto.mostrarListaPokemons(); // Esto printea todas las posiblidades para elegir, el formato debe mejorarse igualmente.
+        
     }
 }
