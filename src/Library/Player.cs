@@ -1,17 +1,19 @@
 namespace ClassLibrary;
-
+/// <summary>
+/// Unicamente se Crea a el Player cuando se tenga todos los datos para crearlo.
+/// Es decir luego de haberle preguntado, su nombre, Eleccion de equipo y su pokemon en el campo.
+/// </summary>
 public class Player : IPlayer
 {
     public string Name { get; }
     // inventario quizas? Aca? 
-    public List <IPokemon> Equipo { get;  set; }
-    public void Elegir(List<int> eleccionplayer)
-    {
-        // Visitor a FabricaPokemon
-    }
+    public List <IPokemon> Equipo { get; private set; }
+    public IPokemon SelectedPokemon {get; private set;} 
 
-    public void EstablecerEquipo(List<IPokemon> EquipoNuevo)
+    public Player(string name, List<IPokemon> equipo, int EleccionEquipo)
     {
-        Equipo = EquipoNuevo;
-    }
+        Name = name;
+        Equipo = equipo;
+        SelectedPokemon = Equipo[EleccionEquipo-1]; // Esto permite elegir a el pokemon de una manera que tenga sentido.
+    }   
 }

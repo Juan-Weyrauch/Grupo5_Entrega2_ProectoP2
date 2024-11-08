@@ -2,9 +2,9 @@ using Library;
 
 namespace ClassLibrary;
 
-public static class Fachada
-{
-    public static void Start()
+    public static class Fachada
+    {
+        public static void Start()
     {
         while (true)
         {

@@ -1,9 +1,20 @@
-namespace Library;
+namespace ClassLibrary;
 
-public class Ataque
+public class Ataque : IAtaque
 {
-    string Name { get; }
-    int Poder { get;  }
-    int Precsion { get;  }
-    string Tipo { get; }
+    public string Name { get; private set; }
+    public int Poder { get; private set; }
+    public int Precision { get; private set; }
+    public string Tipo { get; private set; }
+    public bool Especial { get; private set;}
+
+    public Ataque(string name, int poder, int precision, string tipo, bool especial)
+    {
+        Name = name;
+        Poder = poder;
+        Precision = precision;
+        Tipo = tipo;
+        Especial = especial;
+        
+    }
 }
