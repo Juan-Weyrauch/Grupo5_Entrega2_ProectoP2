@@ -18,10 +18,29 @@ namespace Tests
         [Test] // Aquí es donde debe ir el atributo [Test], en un método
         public void StartTrainTest()
         {
-            Player EjemploJugador = new Player();
+            
+            List<int> elementos = [1];
             FabricaPokemon.CargarPokemons();
-            FabricaPokemon.InstanciarPokes( [1], EjemploJugador); // Asegúrate de pasar un arreglo
+            List<IPokemon >Pokemons = FabricaPokemon.InstanciarPokes(elementos); // Asegúrate de pasar un arreglo
+            Player EjemploJugador = new Player("Pedro", Pokemons,1);
             Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasur")); // se debe cambiar por un visitor. 
         }
+
+        [Test]
+     public void TestearImprmir(){
+            
+         Console.WriteLine(FabricaPokemon.DevolverNombresPokedex());
+         var a = FabricaPokemon.DevolverNombresPokedex();
+     }
+     /*   public void TestearTipos()
+       {
+           List<int> elementos = [1];
+           FabricaPokemon.CargarPokemons();
+           List<IPokemon >Pokemons = FabricaPokemon.InstanciarPokes(elementos); // Asegúrate de pasar un arreglo
+           Player EjemploJugador = new Player("Pedro", Pokemons);
+          // Quiero testear La creacion de tipos pero me resulta muy complicado.
+
+       }*/
     }
+     
 }

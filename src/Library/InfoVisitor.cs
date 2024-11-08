@@ -2,16 +2,19 @@ namespace ClassLibrary;
 
 public class InfoVisitor : IVisitor
 {
-    // Crear un Pokémon a partir del registro
-    public IPokemon VisitCrearPoke(Registro registro)
+    public IPokemon
+        visitCrearPokemon(IRegistroPokemon registroPokemon) // No estoy seguro que un vistor este bien que tenga un return.
     {
-        return new Pokemon(registro.Name, registro.Damage, registro.Health, registro.Defense);
+        return registroPokemon.CrearPokemon();
     }
 
-    // Obtener solo el nombre del registro
-    public string VisitObtenerNombre(Registro registro)
+    public string
+        visitNombreRegistro(IRegistroPokemon registroPokemon) // No estoy seguro que un vistor este bien que tenga un return.
     {
-        return registro.Name;
+        return registroPokemon.Name;
     }
-    public void Visit(IPokemon pokemon){}
+
+   
+
+    // esta sin crear.
 }
