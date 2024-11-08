@@ -8,7 +8,7 @@ public class Ataque : IAtaque
     public string Tipo { get; private set; }
     public bool Especial { get; private set;}
 
-    public Ataque(string name, int poder, int precision, string tipo, bool especial)
+    public Ataque(string name, int poder, int precision, string tipo, int especial)
     {
         Name = name;
         Poder = poder;
