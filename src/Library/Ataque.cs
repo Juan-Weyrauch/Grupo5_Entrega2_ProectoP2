@@ -6,7 +6,7 @@ public class Ataque : IAtaque
     public int Poder { get; private set; }
     public int Precision { get; private set; }
     public string Tipo { get; private set; }
-    public bool Especial { get; private set;}
+    public int Especial { get; private set;}
 
     public Ataque(string name, int poder, int precision, string tipo, int especial)
     {

@@ -13,7 +13,7 @@ public static class FabricaAtaque
         Dictionary<int, IAtaque> ataquesDiccionario = new Dictionary<int, IAtaque>();
 
         // Lista de algunos ataques populares de Pokemon con nombres y tipos en español (formato: nombre, poder, precisión, tipo, causaEfectoEspecial)
-        List<(string, int, int, string, bool)> ataquesPokemon = new List<(string, int, int, string, int)>
+        List<(string, int, int, string, int)> ataquesPokemon = new List<(string, int, int, string, int)>
         {
             ("Placaje", 40, 100, "Normal", 0),
             ("Latigo Cepa", 45, 100, "Planta", 0),
