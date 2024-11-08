@@ -18,7 +18,7 @@ public static class FabricaAtaque
             ("Placaje", 40, 100, "Normal", 0),
             ("Latigo Cepa", 45, 100, "Planta", 0),
             ("Lanzallamas", 90, 100, "Fuego", 1),  // Puede causar quemadura
-            ("Rayo", 90, 100, "Electrico", 3),  // Puede paralizar
+            ("Rayo", 90, 100, "Eléctrico", 3),  // Puede paralizar
             ("Pistola de Agua", 40, 100, "Agua", 0),
             ("Terremoto", 100, 100, "Tierra", 0),
             ("Bola Sombra", 80, 100, "Fantasma", 0),
@@ -31,7 +31,7 @@ public static class FabricaAtaque
             ("Cola de Hierro", 100, 75, "Acero", 0),
             ("Tormenta de Hielo", 110, 70, "Hielo", 0),  
             ("Bomba Lodo", 90, 100, "Veneno", 2),  // Puede envenenar
-            ("Trueno", 110, 70, "Electrico", 3),  // Puede paralizar
+            ("Trueno", 110, 70, "Eléctrico", 3),  // Puede paralizar
             ("Rayo Solar", 120, 100, "Planta", 0),
             ("Cargallamas", 50, 100, "Fuego", 0),
             ("Cola Aqua", 90, 90, "Agua", 0),
@@ -48,9 +48,9 @@ public static class FabricaAtaque
             ("Hoja Afilada", 55, 95, "Planta", 0),
             ("Puño Hielo", 75, 100, "Hielo", 0),  
             ("Puño Fuego", 75, 100, "Fuego", 0),
-            ("Puño Trueno", 75, 100, "Electrico", 3),  // Puede paralizar
+            ("Puño Trueno", 75, 100, "Eléctrico", 3),  // Puede paralizar
             ("Tormenta Floral", 130, 90, "Planta", 0),
-            ("Carga Salvaje", 90, 100, "Electrico", 0),
+            ("Carga Salvaje", 90, 100, "Eléctrico", 0),
             ("Impacto Gigante", 150, 90, "Normal", 0),
             ("Combate Cercano", 120, 100, "Lucha", 0),
             ("Cabezazo Zen", 80, 90, "Psiquico", 0),
@@ -77,12 +77,12 @@ public static class FabricaAtaque
             ("Ola de Calor", 95, 90, "Fuego", 0),
             ("Flare de Semilla", 100, 85, "Planta", 0),
             ("Llamarada", 110, 85, "Fuego", 0),
-            ("Voltaje Ascendente", 70, 100, "Electrico", 0),
+            ("Voltaje Ascendente", 70, 100, "Eléctrico", 0),
             ("Puño de Enfoque", 150, 100, "Lucha", 0),
             ("Perforacion Terrestre", 80, 95, "Tierra", 0),
             ("Absorción Gigante", 75, 100, "Planta", 0),
             ("Disparo de Barro", 55, 95, "Tierra", 0),
-            ("Rayo de Carga", 50, 90, "Electrico", 0),
+            ("Rayo de Carga", 50, 90, "Eléctrico", 0),
             ("Ataque Triple", 80, 100, "Normal", 0),
             ("Rebotar", 85, 85, "Volador", 0),
             ("Golpe Abajo", 65, 100, "Oscuro", 0),
