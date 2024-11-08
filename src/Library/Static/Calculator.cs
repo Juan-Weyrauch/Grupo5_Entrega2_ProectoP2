@@ -27,7 +27,10 @@ public static class Calculator
         int equipo1 = jugador1.getInventarioCount();
         int equipo2 = jugador2.getInventarioCount();
     
-        if ( (equipo1 > 0 )&&( equipo2 > 0 ) ){ return true; } 
-        else{ return false; }
+        if ( (equipo1 > 0 )&&( equipo2 > 0 ) ){ return true; }
+        else
+        {
+            return false;
+        }
     }
 }
