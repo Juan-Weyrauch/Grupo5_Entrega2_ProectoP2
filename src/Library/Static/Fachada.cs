@@ -40,8 +40,13 @@ namespace ClassLibrary;
         {
             if (i == 1)
             {
-                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*shall revise*/ i);
-                ImpresoraDeTexto.mostrarListaPokemons();
+                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
+                ImpresoraDeTexto.mostrarListaPokemons(); /*TODO change this*/
+                for (int j = 0; j <= 6; j++)
+                {
+                    int numberOfPokemonSelected = Convert.ToInt16(Console.ReadLine());
+                    ImpresoraDeTexto.selectYourPokemon();
+                }
             }
         }
     }
