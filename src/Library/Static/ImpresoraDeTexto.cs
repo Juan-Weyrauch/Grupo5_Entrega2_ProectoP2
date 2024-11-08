@@ -40,10 +40,11 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚═════════════════════════════════════════╝");
     }
 
-    public static void mostrarListaPokemons() // Se muestra lo mismo para el rival que para el jugador.
+    public static void mostrarListaPokemons(string jugador) // Se muestra lo mismo para el rival que para el jugador.
     {
+        
         Console.WriteLine("╔═════════════════════════════════════════╗");
-        Console.WriteLine("║        Selecciona los pokemons!         ║");
+        Console.WriteLine($"║        Selecciona los pokemons de {jugador} !    ║");
         Console.WriteLine("╚═════════════════════════════════════════╝");
         /// Aca Ahora debe mostrar los registros de la Pokedex en la factory.
         

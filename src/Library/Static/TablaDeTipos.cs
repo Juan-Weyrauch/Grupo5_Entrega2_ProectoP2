@@ -106,7 +106,7 @@
         }
      
         // Método para obtener las relaciones de un tipo específico
-        public (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) ObtenerRelaciones(string tipo)
+         public static (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) ObtenerRelaciones(string tipo)
         {
             return TablaTiposPokemon[tipo];
         }
