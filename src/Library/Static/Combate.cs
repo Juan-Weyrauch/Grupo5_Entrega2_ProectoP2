@@ -44,4 +44,16 @@ public  static class Combate
    {
        pokemon.DecreaseHealth(damage);
    }
+
+   public static void Combatir(IPlayer Jugador1, IPlayer Jugador2)
+   {
+       int turno = 0;
+       while (Calculator.CombatValidation(Jugador1, Jugador2)){
+           if ( turno == 0 )
+           {
+               ImpresoraDeTexto.MostrarPokemons(Jugador1);
+
+           }
+       }
+   }
 }

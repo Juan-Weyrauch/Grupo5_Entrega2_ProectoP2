@@ -1,5 +1,5 @@
 using Library;
-using Library.Static;
+using ClassLibrary;
 
 namespace ClassLibrary;
 

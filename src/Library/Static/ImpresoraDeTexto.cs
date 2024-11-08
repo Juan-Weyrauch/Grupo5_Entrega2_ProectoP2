@@ -72,5 +72,15 @@ public static class ImpresoraDeTexto
     {
         Console.Write("Select Your Pokemon: ");
     }
+
+    public static void MostrarPokemons(Player jugador)
+    {
+        int i = 1;
+        foreach (IPokemon pokemon in jugador.Equipo)
+        {
+            string pokemonNameForDisplay = pokemon.GetName();
+            Console.WriteLine($"{i}) {pokemonNameForDisplay}\n");
+        }
+    }
 }
     

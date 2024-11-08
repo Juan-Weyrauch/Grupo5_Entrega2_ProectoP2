@@ -1,4 +1,5 @@
-namespace Library.Static;
+namespace ClassLibrary;
+using ClassLibrary;
 
 public static class Calculator
 {
@@ -14,5 +15,14 @@ public static class Calculator
         }
 
         return number; // si es valido el numero, lo devuelve
+    }
+    
+    public static bool CombatValidation(Player Jugador1, Player Jugador2)
+    {
+        int Equipo1 = Jugador1.getInventarioCount();
+        int Equipo2 = Jugador2.getInventarioCount();
+    
+        if ( (Equipo1 > 0 )&&( Equipo2 > 0 ) ){ return true; } 
+        else{ return false; }
     }
 }

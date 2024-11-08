@@ -37,4 +37,9 @@ public class Player : IPlayer
         }
         
     }
+
+    public int getInventarioCount()
+    {
+        return Inventario.Count();
+    }
 }
