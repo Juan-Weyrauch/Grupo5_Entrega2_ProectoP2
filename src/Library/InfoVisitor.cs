@@ -14,5 +14,7 @@ public class InfoVisitor : IVisitor
         return registroPokemon.Name;
     }
 
+   
+
     // esta sin crear.
 }
