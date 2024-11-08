@@ -1,11 +1,14 @@
 using Library;
+using Library.Static;
 
 namespace ClassLibrary;
 
     public static class Fachada
     {
         public static void Start()
-    {
+    { // maybe this should return an int and just evalueate that 
+      // meaning that i just call Printer, Printer calls Calculator which returns a value to Printer
+      // and I just evaluate that number here
         while (true)
         {
             ImpresoraDeTexto.startPrint();
@@ -34,14 +37,37 @@ namespace ClassLibrary;
     {
         List <IPokemon> pokemonsForPlayers = new List<IPokemon>();
         string inputName = Console.ReadLine();
-        Player Jugador2 = new Player(inputName, pokemonsForPlayers, 0);
+        List<IPlayer> players = new List<IPlayer>(); // maybe it's better to send a list index
+        
+        //para poder llamar a 'GetValidatedNumber(1, n)'
+        int n = FabricaPokemon.DevolverTotal(); // debe ser la cantidad de pokemons que mostremos en la matriz
 
-        for (int i = 1; i < 3; i++)
+        for (int i = 1; i <= 2; i++)
         {
+            Console.WriteLine($"Enter the name of Player {i}:");
+            inputName = Console.ReadLine();
+            
             if (i == 1)
             {
-                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*shall revise*/ i);
-                ImpresoraDeTexto.mostrarListaPokemons();
+                Player Jugador1 = new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ 1);
+                ImpresoraDeTexto.mostrarListaPokemons(inputName);
+                for (int j = 0; j <= 6; j++)
+                {
+                    ImpresoraDeTexto.selectYourPokemon();
+                    try
+                    {
+                        int numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n);
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid format. Please enter a valid integer.");
+                        i--;
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        Console.WriteLine("Number out of range. Please enter a number within the allowed range.");
+                    }
+                }
             }
         }
     }
