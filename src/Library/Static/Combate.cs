@@ -51,8 +51,14 @@ public  static class Combate
        while (Calculator.CombatValidation(Jugador1, Jugador2)){
            if ( turno == 0 )
            {
-               ImpresoraDeTexto.MostrarPokemons(Jugador1);
-
+                ImpresoraDeTexto.MostrarPokemons(Jugador1);
+                turno = 1;
+                
+           }
+           else
+           {
+               ImpresoraDeTexto.MostrarPokemons(Jugador2);
+               turno = 0;
            }
        }
    }
