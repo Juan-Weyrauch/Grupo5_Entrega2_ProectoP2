@@ -89,4 +89,14 @@ public static class ImpresoraDeTexto
             i++;
         }
     }
+    
+    public static void EligePokemonInicial(List<IPokemon> Equipo)
+    {
+        for (int i = 1; i < Equipo.Count+1; i++)
+        {
+            
+            Console.WriteLine($"{i}) {Equipo[i].Name}");
+            
+        }
+    }
 }
