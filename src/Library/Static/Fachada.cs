@@ -33,10 +33,14 @@ namespace ClassLibrary;
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static void selecciones()
     {
         List <IPokemon> pokemonsForPlayers = new List<IPokemon>();
         string inputName = Console.ReadLine();
+        List<int> valuesForPokemons = new List<int>();
         List<IPlayer> players = new List<IPlayer>(); // maybe it's better to send a list index
         
         //para poder llamar a 'GetValidatedNumber(1, n)'
@@ -55,10 +59,10 @@ namespace ClassLibrary;
                     ImpresoraDeTexto.selectYourPokemon();
                     try
                     {
-                        // este metodo recibe y verifica el valor ingresado con 
+                        // este metodo recibe y verifica el valor ingresado
                         int numberOfPokemonSelected = Convert.ToInt32(Console.ReadLine());
                         numberOfPokemonSelected = Calculator.GetValidatedNumber(1, n, numberOfPokemonSelected);
-                        
+                        valuesForPokemons.Add(numberOfPokemonSelected);
                     }
                     catch (FormatException)
                     {
