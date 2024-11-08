@@ -40,7 +40,7 @@ namespace ClassLibrary;
         List<IPlayer> players = new List<IPlayer>(); // maybe it's better to send a list index
         
         //para poder llamar a 'GetValidatedNumber(1, n)'
-        int n = 82; // debe ser la cantidad de pokemons que mostremos en la matriz
+        int n = FabricaPokemon.DevolverTotal(); // debe ser la cantidad de pokemons que mostremos en la matriz
 
         for (int i = 1; i <= 2; i++)
         {

@@ -49,6 +49,11 @@ public static class FabricaPokemon
         return PokemonsTemporal;
 
     }
+    
+    public static int DevolverTotal()
+    {
+        return (PokedexPokemon.Count);
+    }
 }
 // Bulbasur.
 // Tipo
