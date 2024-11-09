@@ -6,17 +6,30 @@ using ClassLibrary;
 
 public static class Calculator
 {
-    public static int GetValidatedNumber(int min, int max, int PokemonValue){
-        //aca se lee el input del usuario 
-        while (PokemonValue > max || PokemonValue < min)
+    public static int GetValidatedNumber(int min, int max, int PokemonValue)
+    {
+        // Asegúrate de que el valor ingresado esté dentro del rango [min, max]
+        while (PokemonValue < min || PokemonValue > max)
         {
+            // Muestra un mensaje cuando el valor está fuera del rango
             ImpresoraDeTexto.ValorFueraDeRango();
-            PokemonValue = Convert.ToInt16(Console.ReadLine());
-
+            Console.WriteLine($"Por favor, ingresa un número entre {min} y {max}:");
+        
+            // Intentar leer la entrada y validar que sea un número entero
+            if (int.TryParse(Console.ReadLine(), out int newValue))
+            {
+                PokemonValue = newValue;  // Si la entrada es válida, lo asignamos
+            }
+            else
+            {
+                // Si la entrada no es un número válido, muestra un mensaje de error
+                Console.WriteLine("Entrada no válida. Asegúrate de ingresar un número entero.");
+            }
         }
 
-        return PokemonValue;
+        return PokemonValue; // Retorna el valor validado
     }
+
     
     /// <summary>
     /// 
@@ -24,7 +37,7 @@ public static class Calculator
     /// <param name="jugador1"></param>
     /// <param name="jugador2"></param>
     /// <returns>boolean</returns>
-    public static bool CombatValidation([NotNull] Player jugador1, [NotNull] Player jugador2)
+    public static bool CombatValidation([NotNull] IPlayer jugador1, [NotNull] IPlayer jugador2)
     {
         int inventarioCountEquipo1 = jugador1.GetInventarioCount();
         int inventarioCountEquipo2 = jugador2.GetInventarioCount();

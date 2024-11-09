@@ -1,4 +1,5 @@
 using ClassLibrary;
+using Library;
 
 namespace ClassLibrary
 {
@@ -27,6 +28,8 @@ namespace ClassLibrary
                             CrearJugador(1),
                             CrearJugador(2)
                         };
+                        
+                        Combate.Combatir(players[0],players[1]);
                     }
                     else if (inicial == 2)
                     {
@@ -93,6 +96,7 @@ namespace ClassLibrary
 
             List<IPokemon> pokemonsCreados = FabricaPokemon.InstanciarPokes(valuesForPokemons);
             ImpresoraDeTexto.ImprimirEquipoDelJugador(pokemonsCreados);
+            Console.WriteLine(pokemonsCreados.Count);
             int eleccion;
             while (true)
             {
@@ -101,8 +105,10 @@ namespace ClassLibrary
                 {
                     try
                     {
+                        
                         // Valida la elección del Pokémon inicial.
-                        eleccion = Calculator.GetValidatedNumber(1, pokemonsCreados.Count, eleccion);
+                        eleccion = Calculator.GetValidatedNumber(1, 6, eleccion);
+                        eleccion--;
                         ImpresoraDeTexto.ImprimirPokemonSeleccionado(eleccion, pokemonsCreados);
                         break;
                     }
@@ -117,7 +123,10 @@ namespace ClassLibrary
                 }
             }
 
+            IPlayer a = new Player(inputName, pokemonsCreados, eleccion);
+            Console.WriteLine(a.SelectedPokemon.Name);
             return new Player(inputName, pokemonsCreados, eleccion);
+            
         }
     }
 }

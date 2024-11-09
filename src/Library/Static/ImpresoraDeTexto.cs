@@ -108,7 +108,7 @@ public static class ImpresoraDeTexto
     /// 
     /// </summary>
     /// <param name="jugador"></param>
-    public static void MostrarPokemons(Player jugador)
+    public static void MostrarPokemons(IPlayer jugador)
     {
         int i = 1;
         foreach (IPokemon pokemon in jugador.Equipo)
@@ -179,8 +179,7 @@ public static class ImpresoraDeTexto
     public static void ImprimirPokemonSeleccionado(int index, List<IPokemon> equipo)
     {
         string pokemonName;
-        if (index == equipo.Count()){pokemonName = equipo[index].Name;}
-        else{pokemonName = equipo[index + 1].Name;}
+        pokemonName = equipo[index].Name;
         
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine($"\tHas seleccionado a {pokemonName}  ");
@@ -188,4 +187,50 @@ public static class ImpresoraDeTexto
 
         
     }
+
+    public static void TurnoJugador( string jugador)
+    {
+        Console.WriteLine($"Es el turno del jugador {jugador}\n" +
+                          $"A) Atacar" +
+                          $"B) Cambiar Pokemon" +
+                          $"C) Usar Item");
+    }
+
+    public static void ImprimirInventario(List<IItem> items)
+    {
+        // Verifica si la lista de items no está vacía
+        if (items.Count > 0)
+        {
+            // Crear un diccionario para contar la cantidad de cada tipo de item
+            var itemCounts = new Dictionary<string, int>();
+
+            // Contar los items
+            foreach (IItem item in items)
+            {
+                string itemName = item.Nombre; // Usamos el nombre del item como clave
+                if (itemCounts.ContainsKey(itemName))
+                {
+                    itemCounts[itemName]++; // Si ya existe, incrementamos la cantidad
+                }
+                else
+                {
+                    itemCounts[itemName] = 1; // Si no existe, inicializamos la cantidad
+                }
+            }
+
+            // Mostrar los items con su cantidad y su índice
+            int index = 1;
+            foreach (var kvp in itemCounts)
+            {
+                // Imprimir el índice, nombre del item y cantidad
+                Console.WriteLine($"{index}) {kvp.Key} x{kvp.Value}");
+                index++;
+            }
+        }
+        else
+        {
+            Console.WriteLine("El inventario está vacío.");
+        }
+    }
+
 }

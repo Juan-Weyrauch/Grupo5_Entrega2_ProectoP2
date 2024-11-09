@@ -4,7 +4,7 @@
         <name>Library</name>
     </assembly>
     <members>
-        <member name="M:ClassLibrary.Calculator.CombatValidation(ClassLibrary.Player,ClassLibrary.Player)">
+        <member name="M:ClassLibrary.Calculator.CombatValidation(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
             <summary>
             
             </summary>
@@ -77,7 +77,7 @@
             
             </summary>
         </member>
-        <member name="M:ClassLibrary.ImpresoraDeTexto.MostrarPokemons(ClassLibrary.Player)">
+        <member name="M:ClassLibrary.ImpresoraDeTexto.MostrarPokemons(ClassLibrary.IPlayer)">
             <summary>
             
             </summary>

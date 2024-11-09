@@ -22,7 +22,8 @@ namespace Tests
             List<int> elementos = [1];
             FabricaPokemon.CargarPokemons();
             List<IPokemon >Pokemons = FabricaPokemon.InstanciarPokes(elementos); // Asegúrate de pasar un arreglo
-            Player EjemploJugador = new Player("Pedro", Pokemons,1);
+            Player EjemploJugador = new Player("Pedro", Pokemons,0);
+           
             Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasur")); // se debe cambiar por un visitor. 
         }
 
