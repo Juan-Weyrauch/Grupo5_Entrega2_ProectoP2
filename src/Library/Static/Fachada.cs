@@ -20,7 +20,9 @@ namespace ClassLibrary
                 if (int.TryParse(Console.ReadLine(), out int inicial))
                 {
                     if (inicial == 1)
-                    {
+                    { // Crea  la tabla de tipos Pokemons y despues crea sus ataques.
+                        TablaDeTipos.CrearTabla();
+                        FabricaAtaque.Executar();
                         // Carga todos los Pokémon disponibles y crea dos jugadores.
                         FabricaPokemon.CargarPokemons();
                         List<IPlayer> players = new List<IPlayer>
