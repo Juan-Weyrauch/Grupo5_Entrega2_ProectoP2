@@ -25,7 +25,7 @@ public class Player : IPlayer
             new FullRestore()
         };
     }   
-    void UsarItem(int indiceItem, IPokemon objetivo)
+  public  void UsarItem(int indiceItem, IPokemon objetivo)
     {
         if (indiceItem >= 0 && indiceItem < Inventario.Count)
         {
@@ -40,13 +40,10 @@ public class Player : IPlayer
         
     }
 
-    public int GetInventarioCount()
+    public int GetInventarioCount() // Esto tendria que ser un visitor...
     {
         return Inventario.Count();
     }
 
-    public List<IPokemon> GetEquipo()
-    {
-        return Equipo;
-    }
+    
 }

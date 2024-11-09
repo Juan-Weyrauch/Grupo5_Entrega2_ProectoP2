@@ -8,8 +8,9 @@ public interface IPlayer
     public IPokemon SelectedPokemon { get; }
     public List<IPokemon> Cementerio { get; }
     public int GetInventarioCount();
+    public void UsarItem(int indiceItem, IPokemon objetivo);
 
-    public List<IPokemon> GetEquipo();
+
 
 
 }

@@ -33,6 +33,6 @@ public class Pokemon : IPokemon
     }
     public void EliminarEfectosDeEstado()
     {
-        Console.WriteLine($"{Name} ya no tiene efectos negativos.");
+        Estado = 0;
     }
 }
