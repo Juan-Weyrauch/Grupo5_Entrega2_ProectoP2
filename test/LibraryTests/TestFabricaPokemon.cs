@@ -19,12 +19,15 @@ namespace Tests
         public void StartTrainTest()
         {
             
+            TablaDeTipos.CrearTabla();
+            FabricaAtaque.Executar();
+            
             List<int> elementos = [1];
             FabricaPokemon.CargarPokemons();
             List<IPokemon >Pokemons = FabricaPokemon.InstanciarPokes(elementos); // Asegúrate de pasar un arreglo
             Player EjemploJugador = new Player("Pedro", Pokemons,1);
            
-            Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasur")); // se debe cambiar por un visitor. 
+            Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasaur")); // se debe cambiar por un visitor. 
         }
 
         [Test]

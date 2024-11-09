@@ -7,6 +7,7 @@ public interface  IRegistroPokemon
     int Health { get;  }
     string  Tipo { get; }
     // dic<ataques> moveset { get; set; }
+    public List<IAtaque>  Ataques {get;}
      public IPokemon CrearPokemon();
      
     public string AcceptObtenerNombre(IVisitor visitor);

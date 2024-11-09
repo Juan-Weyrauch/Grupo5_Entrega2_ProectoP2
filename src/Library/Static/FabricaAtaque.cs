@@ -92,10 +92,25 @@ public static class FabricaAtaque
             ("Terror Nocturno", 85, 95, "Oscuro", 0),
             ("Disparo Toxico", 120, 80, "Veneno", 2) // Puede envenenar
         };
-
-        // Método para seleccionar 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo
-         static List<IAtaque> GenerarAtaquesRandom(string tipo)
+        for (int i = 1; i < ataquesPokemon.Count; i++)
         {
+            // Desestructuramos la tupla para obtener el nombre, poder, precisión, tipo y efecto del ataque
+            var (nombre, poder, precision, tipo, efecto) = ataquesPokemon[i];
+
+            // Creamos un nuevo objeto Ataque
+            IAtaque ataque = new Ataque(nombre, poder, precision, tipo, efecto);
+
+            // Agregamos el ataque al diccionario con el índice i como clave
+            ataquesDiccionario.Add(i, ataque);
+        }
+
+        
+    }
+
+    // Método para seleccionar 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo
+       public  static List<IAtaque> GenerarAtaquesRandom(string tipo)
+        {
+            
             Random rand = new Random();
             // Filtrar ataques por el tipo especificado
             List<IAtaque> ataquesDelMismoTipo = ataquesDiccionario.Values
@@ -120,7 +135,7 @@ public static class FabricaAtaque
             }
 
             return ataquesSeleccionados;
-        }
+        
     }
 }
 /*
