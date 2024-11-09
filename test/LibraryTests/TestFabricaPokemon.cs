@@ -24,7 +24,7 @@ namespace Tests
             List<IPokemon >Pokemons = FabricaPokemon.InstanciarPokes(elementos); // Asegúrate de pasar un arreglo
             Player EjemploJugador = new Player("Pedro", Pokemons,1);
            
-            Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasur")); // se debe cambiar por un visitor. 
+            Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasuar")); // se debe cambiar por un visitor. 
         }
 
         [Test]
