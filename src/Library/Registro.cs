@@ -21,7 +21,7 @@ public class Registro : IRegistroPokemon
 
     public IPokemon CrearPokemon()
     {
-        return new Pokemon(this.Name, this.Damage, this.Defense, this.Health, this.Tipo, new List<IAtaque>(this.Habilidades));
+        return new Pokemon(this.Name, this.Damage, this.Defense, this.Health, this.Tipo, this.Habilidades);
     }
 
     public string AcceptObtenerNombre(IVisitor visitor)

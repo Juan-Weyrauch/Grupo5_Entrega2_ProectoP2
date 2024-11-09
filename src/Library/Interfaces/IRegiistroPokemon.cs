@@ -6,7 +6,7 @@ public interface  IRegistroPokemon
     int Damage { get;  }
     int Health { get;  }
     string  Tipo { get; }
-    // dic<ataques> moveset { get; set; }
+    public List<IAtaque> Habilidades { get; } // Nueva propiedad para las habilidades
      public IPokemon CrearPokemon();
      
     public string AcceptObtenerNombre(IVisitor visitor);

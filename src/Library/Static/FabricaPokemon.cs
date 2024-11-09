@@ -13,9 +13,9 @@ public static class FabricaPokemon
         IAtaque rayo = new Ataque("Rayo", 90, 100, "Electrico", 3);
 
         // Registro de Pokémon con habilidades específicas
-        PokedexPokemon.Add(1, new Registro("Bulbasaur", 49, 45, 49, "Planta", new List<IAtaque> { placaje, latigoCepa }));
-        PokedexPokemon.Add(2, new Registro("Charmander", 52, 43, 39, "Fuego", new List<IAtaque> { placaje, lanzallamas }));
-        PokedexPokemon.Add(3, new Registro("Pikachu", 55, 40, 35, "Electrico", new List<IAtaque> { placaje, rayo }));
+        PokedexPokemon.Add(1, new Registro("Bulbasaur", 49, 45, 49, "Planta", FabricaAtaque.GenerarAtaquesRandom("Planta")));
+        PokedexPokemon.Add(2, new Registro("Charmander", 52, 43, 39, "Fuego", FabricaAtaque.GenerarAtaquesRandom("Fuego")));
+        PokedexPokemon.Add(3, new Registro("Pikachu", 55, 40, 35, "Electrico", FabricaAtaque.GenerarAtaquesRandom("Electrico")));
     }
 
     public static List<string> DevolverNombresPokedex()
