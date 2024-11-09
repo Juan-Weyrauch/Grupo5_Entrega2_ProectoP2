@@ -18,12 +18,15 @@ namespace Tests
         [Test] // Aquí es donde debe ir el atributo [Test], en un método
         public void StartTrainTest()
         {
+            TablaDeTipos.CrearTabla();
+            FabricaAtaque.Executar();
             
             List<int> elementos = [1];
             FabricaPokemon.CargarPokemons();
+           //var a = FabricaAtaque.GenerarAtaquesRandom("Planta");
             List<IPokemon >Pokemons = FabricaPokemon.InstanciarPokes(elementos); // Asegúrate de pasar un arreglo
             Player EjemploJugador = new Player("Pedro", Pokemons,1);
-           
+           Console.WriteLine(EjemploJugador.Equipo[0].Habilidades[0]);
             Assert.That(EjemploJugador.Equipo[0].Name.Equals("Bulbasaur")); // se debe cambiar por un visitor. 
         }
 

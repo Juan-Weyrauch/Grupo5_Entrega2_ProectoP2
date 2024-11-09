@@ -11,6 +11,7 @@ public static class FabricaAtaque
     // Método para inicializar y agregar ataques al diccionario
     public static void Executar()
     {
+        
         List<(string, int, int, string, int)> ataquesPokemon = new List<(string, int, int, string, int)>
         {
             ("Placaje", 40, 100, "Normal", 0),
@@ -103,10 +104,11 @@ public static class FabricaAtaque
     }
 
     // Método para seleccionar 4 ataques aleatorios del mismo tipo
+    // Método para seleccionar 4 ataques aleatorios del mismo tipo
     public static List<IAtaque> GenerarAtaquesRandom(string tipo)
     {
         Random rand = new Random();
-        
+
         // Filtrar ataques por el tipo especificado
         List<IAtaque> ataquesFiltrados = ataquesDiccionario.Values
             .Where(ataque => ataque.Tipo == tipo)
@@ -119,7 +121,18 @@ public static class FabricaAtaque
         }
 
         // Seleccionar 4 ataques aleatorios del tipo especificado
-        return ataquesFiltrados.OrderBy(x => rand.Next()).Take(4).ToList();
+        List<IAtaque> ataquesRandom = new List<IAtaque>();
+        while (ataquesRandom.Count < 4)
+        {
+            var ataqueAleatorio = ataquesFiltrados[rand.Next(ataquesFiltrados.Count)];
+            // Evitar repetir ataques
+            if (!ataquesRandom.Contains(ataqueAleatorio))
+            {
+                ataquesRandom.Add(ataqueAleatorio);
+            }
+        }
+
+        return ataquesRandom;
     }
 }
 
