@@ -21,6 +21,8 @@ namespace ClassLibrary
                 {
                     if (inicial == 1)
                     {
+                        TablaDeTipos.CrearTabla();
+                        FabricaAtaque.Executar();
                         // Carga todos los Pokémon disponibles y crea dos jugadores.
                         FabricaPokemon.CargarPokemons();
                         List<IPlayer> players = new List<IPlayer>

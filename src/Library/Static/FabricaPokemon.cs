@@ -14,8 +14,8 @@ public static class FabricaPokemon
     public static void CargarPokemons()// Para entender mejor leer IRegistro y Registro. 
     {
         
-        PokedexPokemon.Add(1, new Registro("Bulbasur", 3, 3,4,"Planta"));
-        PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Bicho"));
+        PokedexPokemon.Add(1, new Registro("Bulbasur", 3, 3,4,"Planta",FabricaAtaque.GenerarAtaquesRandom("Planta")));
+        PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Bicho", FabricaAtaque.GenerarAtaquesRandom("Bicho")));
         //PokedexPokemon.Add(3, new Registro());
     }
 

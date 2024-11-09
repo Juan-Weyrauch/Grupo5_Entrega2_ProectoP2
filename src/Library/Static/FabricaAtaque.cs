@@ -1,19 +1,15 @@
-
 namespace ClassLibrary;
 
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 public static class FabricaAtaque
 {
-    static Dictionary<int, IAtaque> ataquesDiccionario = new Dictionary<int, IAtaque>();
+    private static Dictionary<int, IAtaque> ataquesDiccionario = new();
 
-    // Metodo estatico para ejecutar y agregar ataques al diccionario
     public static void Executar()
     {
-
-        // Lista de algunos ataques populares de Pokemon con nombres y tipos en español (formato: nombre, poder, precisión, tipo, causaEfectoEspecial)
         List<(string, int, int, string, int)> ataquesPokemon = new List<(string, int, int, string, int)>
         {
             ("Placaje", 40, 100, "Normal", 0),
@@ -96,14 +92,50 @@ public static class FabricaAtaque
             ("Terror Nocturno", 85, 95, "Oscuro", 0),
             ("Disparo Toxico", 120, 80, "Veneno", 2) // Puede envenenar
         };
-
-        // Agregamos los ataques al diccionario
         for (int i = 1; i < ataquesPokemon.Count; i++)
         {
-            var ataque = ataquesPokemon[i];
-            ataquesDiccionario.Add(i, new Ataque(ataque.Item1, ataque.Item2, ataque.Item3, ataque.Item4, ataque.Item5));
+            // Desestructuramos la tupla para obtener el nombre, poder, precisión, tipo y efecto del ataque
+            var (nombre, poder, precision, tipo, efecto) = ataquesPokemon[i];
+
+            // Creamos un nuevo objeto Ataque
+            IAtaque ataque = new Ataque(nombre, poder, precision, tipo, efecto);
+
+            // Agregamos el ataque al diccionario con el índice i como clave
+            ataquesDiccionario.Add(i, ataque);
         }
 
+        
+    }
+
+    // Método para seleccionar 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo
+       public  static List<IAtaque> GenerarAtaquesRandom(string tipo)
+        {
+            
+            Random rand = new Random();
+            // Filtrar ataques por el tipo especificado
+            List<IAtaque> ataquesDelMismoTipo = ataquesDiccionario.Values
+                .Where(ataque => ataque.Tipo == tipo)
+                .ToList();
+
+            // Obtener 3 ataques al azar del mismo tipo
+            List<IAtaque> ataquesSeleccionados = ataquesDelMismoTipo
+                .OrderBy(x => rand.Next())
+                .Take(3)
+                .ToList();
+
+            // Seleccionar un ataque al azar de cualquier tipo
+            IAtaque ataqueAleatorio = ataquesDiccionario.Values
+                .OrderBy(x => rand.Next())
+                .FirstOrDefault();
+
+            // Asegurarse de que el ataque aleatorio no sea nulo y añadirlo a la lista
+            if (ataqueAleatorio != null)
+            {
+                ataquesSeleccionados.Add(ataqueAleatorio);
+            }
+
+            return ataquesSeleccionados;
+        
     }
 }
 
