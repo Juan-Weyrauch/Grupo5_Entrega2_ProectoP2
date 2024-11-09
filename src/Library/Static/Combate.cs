@@ -107,7 +107,7 @@ public static class Combate
             if (cadena == "B")
             {
                 Console.WriteLine("Puedes cambiar a los siguentes Pokemons:");
-                ImpresoraDeTexto.ImprimirEquipoDelJugador(JugadorActual.Equipo);
+                ImpresoraDeTexto.ImprimirEquipoDelJugador(JugadorActual.Equipo); // Hay que cambiar Imprimir Equipo Del Jugador.
                 // Mostrar el equipo Pokemon del Jugador para luego permitirle cambiar en el equipo.
             }
 
