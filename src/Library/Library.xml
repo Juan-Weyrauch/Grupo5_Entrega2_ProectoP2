@@ -4,6 +4,17 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="F:ClassLibrary.FabricaPokemon.PokedexPokemon">
+            <summary>
+            Los registros son clases que tienen la informacion de la creacion de cada pokemon. Estos tienen un metodo que
+            instancia los pokemons como objetos y los envia hacia las listas, se deberia hacer con visitor.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.FabricaPokemon.CargarPokemons">
+            <summary>
+            Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Fachada">
             <summary>
             La clase <c>Fachada</c> es el punto de entrada principal para gestionar el bucle del juego y el proceso de creación de jugadores.

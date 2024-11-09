@@ -9,7 +9,6 @@ public interface IPokemon
     int Estado { get; } // 0  es normal, 1 quemado, 2 envenanado, 3 paralizar, 4 Dormido  
     string Tipo { get; }
     int InicialHealth { get; }
-    public List<IAtaque> Habilidades { get; }
 
 
 

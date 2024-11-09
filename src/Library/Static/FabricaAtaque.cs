@@ -6,30 +6,28 @@ using System.Linq;
 
 public static class FabricaAtaque
 {
-    static Dictionary<int, IAtaque> ataquesDiccionario = new Dictionary<int, IAtaque>();
+    private static Dictionary<int, IAtaque> ataquesDiccionario = new();
 
-    // Método para inicializar y agregar ataques al diccionario
     public static void Executar()
     {
-        
         List<(string, int, int, string, int)> ataquesPokemon = new List<(string, int, int, string, int)>
         {
             ("Placaje", 40, 100, "Normal", 0),
             ("Latigo Cepa", 45, 100, "Planta", 0),
-            ("Lanzallamas", 90, 100, "Fuego", 1),
-            ("Rayo", 90, 100, "Electrico", 3),
+            ("Lanzallamas", 90, 100, "Fuego", 1), // Puede causar quemadura
+            ("Rayo", 90, 100, "Electrico", 3), // Puede paralizar
             ("Pistola de Agua", 40, 100, "Agua", 0),
             ("Terremoto", 100, 100, "Tierra", 0),
             ("Hiperrayo", 150, 90, "Normal", 0),
             ("Psiquico", 90, 100, "Psiquico", 0),
             ("Rayo Hielo", 90, 100, "Hielo", 0),
-            ("Mordisco", 80, 100, "Siniestro", 0),
+            ("Mordisco", 80, 100, "Sinistro", 0),
             ("Surf", 90, 100, "Agua", 0),
             ("Garra Dragon", 80, 100, "Dragon", 0),
             ("Cola de Hierro", 100, 75, "Acero", 0),
             ("Tormenta de Hielo", 110, 70, "Hielo", 0),
-            ("Bomba Lodo", 90, 100, "Veneno", 2),
-            ("Trueno", 110, 70, "Electrico", 3),
+            ("Bomba Lodo", 90, 100, "Veneno", 2), // Puede envenenar
+            ("Trueno", 110, 70, "Electrico", 3), // Puede paralizar
             ("Rayo Solar", 120, 100, "Planta", 0),
             ("Cargallamas", 50, 100, "Fuego", 0),
             ("Cola Aqua", 90, 90, "Agua", 0),
@@ -42,17 +40,17 @@ public static class FabricaAtaque
             ("Patada Baja", 60, 100, "Lucha", 0),
             ("Esfera Aura", 80, 100, "Lucha", 0),
             ("Golpes Furiosos", 18, 80, "Normal", 0),
-            ("Zumbido", 90, 100, "Bicho", 4),
+            ("Zumbido", 90, 100, "Bicho", 4), // Puede dormir
             ("Hoja Afilada", 55, 95, "Planta", 0),
             ("Puño Hielo", 75, 100, "Hielo", 0),
             ("Puño Fuego", 75, 100, "Fuego", 0),
-            ("Puño Trueno", 75, 100, "Electrico", 3),
+            ("Puño Trueno", 75, 100, "Electrico", 3), // Puede paralizar
             ("Tormenta Floral", 130, 90, "Planta", 0),
             ("Carga Salvaje", 90, 100, "Electrico", 0),
             ("Impacto Gigante", 150, 90, "Normal", 0),
             ("Combate Cercano", 120, 100, "Lucha", 0),
             ("Cabezazo Zen", 80, 90, "Psiquico", 0),
-            ("Puya Nociva", 80, 100, "Veneno", 2),
+            ("Puya Nociva", 80, 100, "Veneno", 2), // Puede envenenar
             ("Erupcion de Vapor", 110, 95, "Agua", 0),
             ("Pulso Draco", 85, 100, "Dragon", 0),
             ("Bomba Destrozadora", 80, 100, "Hielo", 0),
@@ -92,47 +90,64 @@ public static class FabricaAtaque
             ("Tormenta Hoja", 130, 90, "Planta", 0),
             ("Colmillo Psiquico", 85, 100, "Psiquico", 0),
             ("Terror Nocturno", 85, 95, "Oscuro", 0),
-            ("Disparo Toxico", 120, 80, "Veneno", 2)
+            ("Disparo Toxico", 120, 80, "Veneno", 2) // Puede envenenar
         };
 
-        // Agregar ataques al diccionario
-        for (int i = 1; i <= ataquesPokemon.Count; i++)
+        // Método para seleccionar 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo
+         static List<IAtaque> GenerarAtaquesRandom(string tipo)
         {
-            var ataque = ataquesPokemon[i - 1];
-            ataquesDiccionario.Add(i, new Ataque(ataque.Item1, ataque.Item2, ataque.Item3, ataque.Item4, ataque.Item5));
-        }
-    }
+            Random rand = new Random();
+            // Filtrar ataques por el tipo especificado
+            List<IAtaque> ataquesDelMismoTipo = ataquesDiccionario.Values
+                .Where(ataque => ataque.Tipo == tipo)
+                .ToList();
 
-    // Método para seleccionar 4 ataques aleatorios del mismo tipo
-    // Método para seleccionar 4 ataques aleatorios del mismo tipo
-    public static List<IAtaque> GenerarAtaquesRandom(string tipo)
-    {
-        Random rand = new Random();
+            // Obtener 3 ataques al azar del mismo tipo
+            List<IAtaque> ataquesSeleccionados = ataquesDelMismoTipo
+                .OrderBy(x => rand.Next())
+                .Take(3)
+                .ToList();
 
-        // Filtrar ataques por el tipo especificado
-        List<IAtaque> ataquesFiltrados = ataquesDiccionario.Values
-            .Where(ataque => ataque.Tipo == tipo)
-            .ToList();
+            // Seleccionar un ataque al azar de cualquier tipo
+            IAtaque ataqueAleatorio = ataquesDiccionario.Values
+                .OrderBy(x => rand.Next())
+                .FirstOrDefault();
 
-        // Si hay menos de 4 habilidades del tipo, retornar las disponibles
-        if (ataquesFiltrados.Count < 4)
-        {
-            return ataquesFiltrados;
-        }
-
-        // Seleccionar 4 ataques aleatorios del tipo especificado
-        List<IAtaque> ataquesRandom = new List<IAtaque>();
-        while (ataquesRandom.Count < 4)
-        {
-            var ataqueAleatorio = ataquesFiltrados[rand.Next(ataquesFiltrados.Count)];
-            // Evitar repetir ataques
-            if (!ataquesRandom.Contains(ataqueAleatorio))
+            // Asegurarse de que el ataque aleatorio no sea nulo y añadirlo a la lista
+            if (ataqueAleatorio != null)
             {
-                ataquesRandom.Add(ataqueAleatorio);
+                ataquesSeleccionados.Add(ataqueAleatorio);
             }
-        }
 
-        return ataquesRandom;
+            return ataquesSeleccionados;
+        }
     }
 }
+/*
 
+public static List<IAtaque> GenerarAtaquesRandom()
+    {
+        Random rand = new Random(); // Inicializa el generador de números aleatorios
+        List<IAtaque> ataquesSeleccionados = new List<IAtaque>(); // Lista donde guardaremos los ataques seleccionados
+
+        // Obtener todas las claves del diccionario (los identificadores de los ataques)
+        List<int> claves = new List<int>(ataquesDiccionario.Keys);
+
+        // Seleccionar 4 ataques aleatorios
+        for (int i = 0; i < 4; i++)
+        {
+            // Seleccionar una clave aleatoria del diccionario
+            int claveAleatoria = claves[rand.Next(claves.Count)];
+
+            // Obtener el ataque correspondiente a esa clave
+            IAtaque ataque = ataquesDiccionario[claveAleatoria];
+
+
+            // Agregar el ataque a la lista de ataques seleccionados
+            ataquesSeleccionados.Add(ataque);
+        }
+
+        return ataquesSeleccionados;
+    }
+}
+*/
