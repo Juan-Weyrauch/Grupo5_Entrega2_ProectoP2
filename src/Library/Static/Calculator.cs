@@ -1,3 +1,5 @@
+using ClassLibrary;
+
 namespace Library.Static;
 
 public static class Calculator
@@ -14,5 +16,13 @@ public static class Calculator
         }
 
         return number; // si es valido el numero, lo devuelve
+    }
+
+    public static int CalcularDañoporTipo(IPokemon PokemonActual, IPokemon PokemonRival, IAtaque AtaqueActual)
+    {
+        int DañoCalculado = PokemonActual.Damage + AtaqueActual.Poder - PokemonRival.Defense;
+        double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(AtaqueActual.Tipo,PokemonRival.Tipo) * DañoCalculado;
+        int valorfinal = (int)Math.Round(valorSinRedondear);
+        return valorfinal;
     }
 }
