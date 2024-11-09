@@ -62,7 +62,7 @@ public static class ImpresoraDeTexto
     {
         
         Console.WriteLine("╔═════════════════════════════════════════╗");
-        Console.WriteLine($"║        Selecciona los pokemons de {jugador} !    ║");
+        Console.WriteLine($"║\tSelecciona los pokemons de {jugador}!  ║");
         Console.WriteLine("╚═════════════════════════════════════════╝");
         /// Aca Ahora debe mostrar los registros de la Pokedex en la factory.
         
@@ -89,9 +89,10 @@ public static class ImpresoraDeTexto
     /// <summary>
     /// 
     /// </summary>
-    public static void selectYourPokemon()
+    public static void selectYourPokemon(int posicion)
     {
-        Console.Write("Select Your Pokemon: ");
+        Console.WriteLine();
+        Console.WriteLine($"Seleccciona tu Pokemon numero {posicion + 1}: ");
     }
 
     /// <summary>
@@ -136,10 +137,10 @@ public static class ImpresoraDeTexto
     /// 
     /// </summary>
     /// <param name="numero"></param>
-    public static string InsertarNombre(int numero)
+    public static string? InsertarNombre(int numero)
     {
-        string nombre;
-        Console.WriteLine($"Enter the name of Player {numero}:");
+        string? nombre;
+        Console.Write($"Ingresa el nomber del jugador {numero}:\n> ");
         nombre = Console.ReadLine();
         return (nombre);
     }
@@ -160,8 +161,31 @@ public static class ImpresoraDeTexto
         }
     }
 
-    public static void ImprimirEquipoDelJugador(Player? player)
+    public static void ImprimirEquipoDelJugador(List<IPokemon> equipo )
     {
-        List<IPokemon> equipo = player.GetEquipo();
+        
+        int i = 1;
+        Console.WriteLine("╔═════════════════════════════════════════╗");
+        Console.WriteLine("║  Tu equipo esta listo para la batalla!  ║");
+        foreach (IPokemon pokemon in equipo)
+        {
+            Console.WriteLine($"\t{i}) {pokemon.Name}");
+            i++;
+        }
+        Console.WriteLine("╚═════════════════════════════════════════╝");
+
+    }
+
+    public static void ImprimirPokemonSeleccionado(int index, List<IPokemon> equipo)
+    {
+        string pokemonName;
+        if (index == equipo.Count()){pokemonName = equipo[index].Name;}
+        else{pokemonName = equipo[index + 1].Name;}
+        
+        Console.WriteLine("╔═════════════════════════════════════════╗");
+        Console.WriteLine($"\tHas seleccionado a {pokemonName}  ");
+        Console.WriteLine("╚═════════════════════════════════════════╝");
+
+        
     }
 }

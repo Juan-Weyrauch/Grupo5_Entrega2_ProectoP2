@@ -64,8 +64,8 @@ namespace ClassLibrary
 
             for (int j = 0; j < 6; j++)
             {
-                ImpresoraDeTexto.selectYourPokemon();
-
+                ImpresoraDeTexto.selectYourPokemon(j);
+                Console.Write("> ");
                 if (int.TryParse(Console.ReadLine(), out int numberOfPokemonSelected))
                 {
                     try
@@ -90,10 +90,11 @@ namespace ClassLibrary
                     ImpresoraDeTexto.Argumentos(1); // Mensaje de formato inválido
                     j--; // Reintenta la selección actual
                 }
+                
             }
 
             List<IPokemon> pokemonsCreados = FabricaPokemon.InstanciarPokes(valuesForPokemons);
-
+            ImpresoraDeTexto.ImprimirEquipoDelJugador(pokemonsCreados);
             int eleccion;
             while (true)
             {
@@ -104,6 +105,7 @@ namespace ClassLibrary
                     {
                         // Valida la elección del Pokémon inicial.
                         eleccion = Calculator.GetValidatedNumber(1, pokemonsCreados.Count, eleccion);
+                        ImpresoraDeTexto.ImprimirPokemonSeleccionado(eleccion, pokemonsCreados);
                         break;
                     }
                     catch (ArgumentOutOfRangeException)
