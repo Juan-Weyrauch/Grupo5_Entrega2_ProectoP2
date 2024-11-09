@@ -25,8 +25,15 @@
         </member>
         <member name="M:ClassLibrary.Fachada.selecciones">
             <summary>
+            selecciones crea una lista de dos jugadores
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Fachada.CrearJugador(System.Int32)">
+            <summary>
             
             </summary>
+            <param name="numero"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
