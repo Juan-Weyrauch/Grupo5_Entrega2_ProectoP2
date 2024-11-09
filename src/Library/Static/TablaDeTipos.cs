@@ -123,5 +123,30 @@
                     return (new List<string>(), new List<string>(), new List<string>());
                 }
             }
+
+            public static double ObtenterRelacionMatematica(string tipoAtaque, string tipoPokemon)
+            {
+                (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) listaRelaciones =
+                    ObtenerRelaciones(tipoPokemon);
+                if (listaRelaciones.inmunidades.Contains(tipoAtaque))
+                {
+                    return 0;
+                }
+
+                if (listaRelaciones.debilidades.Contains(tipoAtaque))
+                {
+                    return 2;
+                }
+
+                if (listaRelaciones.fortalezas.Contains(tipoAtaque))
+                {
+                    return 0.5;
+                }
+                else
+                {
+                    return 1;
+                }
+
+            }
         }
     }

@@ -1,6 +1,6 @@
 using ClassLibrary;
+using Library.Static;
 using Library;
-
 namespace ClassLibrary
 {
     /// <summary>

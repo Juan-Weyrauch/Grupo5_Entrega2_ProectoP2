@@ -1,10 +1,11 @@
 namespace ClassLibrary;
 
-public class IAtaque
+public interface IAtaque
 {
     string Name { get; }
     int Poder { get;  }
-    int Precsion { get;  }
+    int Precision { get;  }
+    
     string Tipo { get; }
     int Especial { get; }
 } 

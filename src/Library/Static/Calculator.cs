@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using Library;
 
-namespace ClassLibrary;
+namespace Library.Static;
 using ClassLibrary;
-
 public static class Calculator
 {
     public static int GetValidatedNumber(int min, int max, int PokemonValue)
@@ -30,6 +28,7 @@ public static class Calculator
         return PokemonValue; // Retorna el valor validado
     }
 
+       
     
     /// <summary>
     /// 
@@ -44,5 +43,13 @@ public static class Calculator
     
         if ( (inventarioCountEquipo1 > 0 )&&( inventarioCountEquipo2 > 0 ) ){ return true; } 
         else{ return false; }
+    }
+
+    public static int CalcularDañoporTipo(IPokemon PokemonActual, IPokemon PokemonRival, IAtaque AtaqueActual)
+    {
+        int DañoCalculado = PokemonActual.Damage + AtaqueActual.Poder - PokemonRival.Defense;
+        double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(AtaqueActual.Tipo,PokemonRival.Tipo) * DañoCalculado;
+        int valorfinal = (int)Math.Round(valorSinRedondear);
+        return valorfinal;
     }
 }
