@@ -5,8 +5,10 @@ public class Player : IPlayer
     public string Name { get; }
     // inventario quizas? Aca? 
     public List <IPokemon> Equipo { get; private set; }
-    public IPokemon SelectedPokemon {get; private set;} 
+    public IPokemon SelectedPokemon {get; private set;}
     public List<IItem> Inventario { get; private set; }
+    public List<IPokemon> Cementerio { get; private set; }
+
     public Player(string name, List<IPokemon> equipo, int EleccionEquipo)
     {
         Name = name;
