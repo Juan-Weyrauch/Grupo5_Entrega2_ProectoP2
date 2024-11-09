@@ -28,6 +28,7 @@ namespace ClassLibrary
                             CrearJugador(1),
                             CrearJugador(2)
                         };
+                        
                         Combate.Combatir(players[0],players[1]);
                     }
                     else if (inicial == 2)
@@ -107,7 +108,8 @@ namespace ClassLibrary
                         
                         // Valida la elección del Pokémon inicial.
                         eleccion = Calculator.GetValidatedNumber(1, 6, eleccion);
-                        ImpresoraDeTexto.ImprimirPokemonSeleccionado(eleccion-1, pokemonsCreados);
+                        eleccion--;
+                        ImpresoraDeTexto.ImprimirPokemonSeleccionado(eleccion, pokemonsCreados);
                         break;
                     }
                     catch (ArgumentOutOfRangeException)
@@ -120,8 +122,11 @@ namespace ClassLibrary
                     ImpresoraDeTexto.Argumentos(1);
                 }
             }
-    
+
+            IPlayer a = new Player(inputName, pokemonsCreados, eleccion);
+            Console.WriteLine(a.SelectedPokemon.Name);
             return new Player(inputName, pokemonsCreados, eleccion);
+            
         }
     }
 }
