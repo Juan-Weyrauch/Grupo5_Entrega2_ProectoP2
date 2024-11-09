@@ -232,5 +232,19 @@ public static class ImpresoraDeTexto
             Console.WriteLine("El inventario está vacío.");
         }
     }
+ public  static void ImprimirElegirAPokemon(List<IPokemon> equipo)
+    {
+        for (int i = 1; i < equipo.Count+1; i++)
+        {
+            Console.WriteLine($"{i}) {equipo[i].Name}");
+        }
+    }
+    public  static void ImprimirElegirAtaques(List<IAtaque> ataques)
+    {
+        for (int i = 1; i < ataques.Count+1; i++)
+        {
+            Console.WriteLine($"{i}) {ataques[i].Name}");
+        }
+    }
 
 }

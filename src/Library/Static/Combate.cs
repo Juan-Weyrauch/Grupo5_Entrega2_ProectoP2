@@ -64,8 +64,10 @@ namespace Library
 
                     if (cadena == "A")
                     {
-                        Console.WriteLine("Con qué quieres atacar?");
-                        // Lógica de ataque (agregar selección de ataque aquí)
+                        Console.WriteLine($"Con que  vas a Atacar a {PokemonRival.Name}?");
+                        
+                       int indice   = int.Parse(Console.ReadLine()); // cambiar por tryparse
+                       // ImpresoraDeTexto.ImprimirElegirAtaques(PokemonActual.A);
                     }
 
                     if (cadena == "B")
