@@ -95,6 +95,7 @@ namespace ClassLibrary
 
             List<IPokemon> pokemonsCreados = FabricaPokemon.InstanciarPokes(valuesForPokemons);
             ImpresoraDeTexto.ImprimirEquipoDelJugador(pokemonsCreados);
+            Console.WriteLine(pokemonsCreados.Count);
             int eleccion;
             while (true)
             {
@@ -103,9 +104,10 @@ namespace ClassLibrary
                 {
                     try
                     {
+                        
                         // Valida la elección del Pokémon inicial.
-                        eleccion = Calculator.GetValidatedNumber(1, pokemonsCreados.Count, eleccion);
-                        ImpresoraDeTexto.ImprimirPokemonSeleccionado(eleccion, pokemonsCreados);
+                        eleccion = Calculator.GetValidatedNumber(1, 6, eleccion);
+                        ImpresoraDeTexto.ImprimirPokemonSeleccionado(eleccion-1, pokemonsCreados);
                         break;
                     }
                     catch (ArgumentOutOfRangeException)
@@ -118,7 +120,7 @@ namespace ClassLibrary
                     ImpresoraDeTexto.Argumentos(1);
                 }
             }
-
+    
             return new Player(inputName, pokemonsCreados, eleccion);
         }
     }

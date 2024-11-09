@@ -179,8 +179,7 @@ public static class ImpresoraDeTexto
     public static void ImprimirPokemonSeleccionado(int index, List<IPokemon> equipo)
     {
         string pokemonName;
-        if (index == equipo.Count()){pokemonName = equipo[index].Name;}
-        else{pokemonName = equipo[index + 1].Name;}
+        pokemonName = equipo[index].Name;
         
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine($"\tHas seleccionado a {pokemonName}  ");
