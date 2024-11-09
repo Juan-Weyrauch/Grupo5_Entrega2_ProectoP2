@@ -11,7 +11,7 @@ public class Player : IPlayer
     {
         Name = name;
         Equipo = equipo;
-        SelectedPokemon = Equipo[EleccionEquipo]; // Esto permite elegir a el pokemon de una manera que tenga sentido.
+        SelectedPokemon = Equipo[EleccionEquipo-1]; // Esto permite elegir a el pokemon de una manera que tenga sentido.
         Inventario = new List<IItem>
         {
             new SuperPotion(),
