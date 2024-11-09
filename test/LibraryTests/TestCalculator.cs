@@ -1,9 +1,1 @@
-using NUnit.Framework;
-
-namespace Tests;
-
-[TestFixture]
-public class TestCalculator
-{
-    
-}
+// Va  el test de la  calculadora aca.
