@@ -1,3 +1,4 @@
+#nullable enable
 namespace ClassLibrary;
 
 
@@ -157,5 +158,10 @@ public static class ImpresoraDeTexto
         {
             Console.WriteLine("Invalid input. Please enter a valid integer.");
         }
+    }
+
+    public static void ImprimirEquipoDelJugador(Player? player)
+    {
+        List<IPokemon> equipo = player.GetEquipo();
     }
 }
