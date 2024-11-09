@@ -23,17 +23,83 @@
             Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Fachada.selecciones">
+        <member name="T:ClassLibrary.Fachada">
             <summary>
-            selecciones crea una lista de dos jugadores
+            La clase <c>Fachada</c> es el punto de entrada principal para gestionar el bucle del juego y el proceso de creación de jugadores.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Fachada.Start">
+            <summary>
+            Inicia el bucle principal del juego. Pide al usuario que inicie un nuevo juego creando jugadores o que salga.
             </summary>
         </member>
         <member name="M:ClassLibrary.Fachada.CrearJugador(System.Int32)">
             <summary>
+            Crea un jugador con un número especificado, solicitando su nombre y permitiéndole seleccionar Pokémon.
+            </summary>
+            <param name="playerNumber">El número del jugador (1 o 2) que se está creando.</param>
+            <returns>Un objeto <c>Player</c> que representa al jugador creado.</returns>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.StartPrint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.EndPrint">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.FinDelJuego">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.PlayerName(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="num"></param>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.mostrarListaPokemons(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="jugador"></param>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.selectYourPokemon(System.Int32)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.ValorFueraDeRango">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.MostrarPokemons(ClassLibrary.Player)">
+            <summary>
+            
+            </summary>
+            <param name="jugador"></param>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.EligePokemonInicial(System.Collections.Generic.List{ClassLibrary.IPokemon})">
+            <summary>
+            
+            </summary>
+            <param name="Equipo"></param>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.InsertarNombre(System.Int32)">
+            <summary>
             
             </summary>
             <param name="numero"></param>
-            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.Argumentos(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="argument"></param>
         </member>
     </members>
 </doc>
