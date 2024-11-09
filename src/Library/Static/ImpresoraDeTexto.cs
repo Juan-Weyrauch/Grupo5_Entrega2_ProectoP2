@@ -1,6 +1,6 @@
-using ClassLibrary;
+namespace ClassLibrary;
 
-namespace Library;
+
 
 public static class ImpresoraDeTexto
 {
@@ -49,7 +49,7 @@ public static class ImpresoraDeTexto
         /// Aca Ahora debe mostrar los registros de la Pokedex en la factory.
         
         
-        FabricaPokemon.CargarPokemons();
+        
 
         int columnas = 3;  // Define cuántos nombres por fila
         int contador = 0;
@@ -75,7 +75,8 @@ public static class ImpresoraDeTexto
 
     public static void ValorFueraDeRango()
     {
-        Console.WriteLine("");
+        Console.WriteLine("El valor ingresado esta fuera del rango. ");
+        Console.Write("Ingrese un numero valido: ");
     }
 
     public static void MostrarPokemons(Player jugador)
@@ -86,6 +87,16 @@ public static class ImpresoraDeTexto
             string pokemonNameForDisplay = pokemon.Name;  // Access Name directly
             Console.WriteLine($"{i}) {pokemonNameForDisplay}\n");
             i++;
+        }
+    }
+    
+    public static void EligePokemonInicial(List<IPokemon> Equipo)
+    {
+        for (int i = 0; i < Equipo.Count; i++)
+        {
+            
+            Console.WriteLine($"{i}) {Equipo[i].Name}");
+            
         }
     }
 }

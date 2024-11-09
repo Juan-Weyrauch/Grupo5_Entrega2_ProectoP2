@@ -11,6 +11,8 @@ public static class Calculator
         while (PokemonValue > max || PokemonValue < min)
         {
             ImpresoraDeTexto.ValorFueraDeRango();
+            PokemonValue = Convert.ToInt16(Console.ReadLine());
+
         }
 
         return PokemonValue;
@@ -24,10 +26,10 @@ public static class Calculator
     /// <returns>boolean</returns>
     public static bool CombatValidation([NotNull] Player jugador1, [NotNull] Player jugador2)
     {
-        int equipo1 = jugador1.getInventarioCount();
-        int equipo2 = jugador2.getInventarioCount();
+        int inventarioCountEquipo1 = jugador1.getInventarioCount();
+        int inventarioCountEquipo2 = jugador2.getInventarioCount();
     
-        if ( (equipo1 > 0 )&&( equipo2 > 0 ) ){ return true; } 
+        if ( (inventarioCountEquipo1 > 0 )&&( inventarioCountEquipo2 > 0 ) ){ return true; } 
         else{ return false; }
     }
 }
