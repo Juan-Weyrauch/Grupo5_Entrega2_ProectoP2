@@ -49,7 +49,7 @@ public static class ImpresoraDeTexto
         /// Aca Ahora debe mostrar los registros de la Pokedex en la factory.
         
         
-        FabricaPokemon.CargarPokemons();
+        
 
         int columnas = 3;  // Define cuántos nombres por fila
         int contador = 0;
