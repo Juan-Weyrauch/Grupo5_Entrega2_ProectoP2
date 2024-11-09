@@ -6,7 +6,10 @@ public static class ImpresoraDeTexto
 {
     //PokemonsYHablidades pokemonsYHablidades = new PokemonsYHablidades();
 
-    public static void startPrint() // Imprimir cuando se inicia el Juego.
+    /// <summary>
+    /// 
+    /// </summary>
+    public static void StartPrint() // Imprimir cuando se inicia el Juego.
     {
         Console.Clear();
         Console.WriteLine("╔═════════════════════╗");
@@ -17,7 +20,10 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚═════════════════════╝");
     }
 
-    public static void endPrint() // Imprimir cuando se elige la segunda opcion el Juego.
+    /// <summary>
+    /// 
+    /// </summary>
+    public static void EndPrint() // Imprimir cuando se elige la segunda opcion el Juego.
     {
         Console.Clear();
         Console.WriteLine("╔══════════════════════╗");
@@ -25,7 +31,10 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚══════════════════════╝");
     }
 
-    public static void finDelJuego() // Imprmir cuando se termina el juego
+    /// <summary>
+    /// 
+    /// </summary>
+    public static void FinDelJuego() // Imprmir cuando se termina el juego
     {
         Console.Clear();
         Console.WriteLine("╔══════════════════════════╗");
@@ -33,13 +42,21 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╚══════════════════════════╝");
     }
 
-    public static void playerName(int num) // Imprmir a la hora de elegir el nombre el jugador
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="num"></param>
+    public static void PlayerName(int num) // Imprmir a la hora de elegir el nombre el jugador
     {
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine($"║ Ingrese el nombre del Jugador {num}:    ║");
         Console.WriteLine("╚═════════════════════════════════════════╝");
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="jugador"></param>
     public static void mostrarListaPokemons(string jugador) // Se muestra lo mismo para el rival que para el jugador.
     {
         
@@ -68,17 +85,27 @@ public static class ImpresoraDeTexto
         
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static void selectYourPokemon()
     {
         Console.Write("Select Your Pokemon: ");
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static void ValorFueraDeRango()
     {
         Console.WriteLine("El valor ingresado esta fuera del rango. ");
         Console.Write("Ingrese un numero valido: ");
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="jugador"></param>
     public static void MostrarPokemons(Player jugador)
     {
         int i = 1;
@@ -90,6 +117,10 @@ public static class ImpresoraDeTexto
         }
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Equipo"></param>
     public static void EligePokemonInicial(List<IPokemon> Equipo)
     {
         for (int i = 0; i < Equipo.Count; i++)
@@ -97,6 +128,34 @@ public static class ImpresoraDeTexto
             
             Console.WriteLine($"{i}) {Equipo[i].Name}");
             
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="numero"></param>
+    public static string InsertarNombre(int numero)
+    {
+        string nombre;
+        Console.WriteLine($"Enter the name of Player {numero}:");
+        nombre = Console.ReadLine();
+        return (nombre);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="argument"></param>
+    public static void Argumentos(int argument)
+    {
+        if (argument == 0)
+        {
+            Console.WriteLine("Selection out of range. Please choose a valid Pokémon.");
+        }
+        else if (argument == 1)
+        {
+            Console.WriteLine("Invalid input. Please enter a valid integer.");
         }
     }
 }
