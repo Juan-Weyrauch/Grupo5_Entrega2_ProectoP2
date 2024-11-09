@@ -1,22 +1,21 @@
 namespace ClassLibrary;
 
 public static class FabricaPokemon
-{   /// <summary>
-    /// Los registros son clases que tienen la informacion de la creacion de cada pokemon. Estos tienen un metodo que
-    /// instancia los pokemons como objetos y los envia hacia las listas, se deberia hacer con visitor.
-    /// </summary>
-    
-    private  static Dictionary<int, IRegistroPokemon> PokedexPokemon =  new() ;
-    
-    /// <summary>
-    /// Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
-    /// </summary>
-    public static void CargarPokemons()// Para entender mejor leer IRegistro y Registro. 
+{
+    private static Dictionary<int, IRegistroPokemon> PokedexPokemon = new();
+
+    public static void CargarPokemons()
     {
-        
-        PokedexPokemon.Add(1, new Registro("Bulbasur", 3, 3,4,"Planta"));
-        PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Bicho"));
-        //PokedexPokemon.Add(3, new Registro());
+        // Definición de algunas habilidades (IAtaque)
+        IAtaque placaje = new Ataque("Placaje", 40, 100, "Normal", 0);
+        IAtaque lanzallamas = new Ataque("Lanzallamas", 90, 100, "Fuego", 1);
+        IAtaque latigoCepa = new Ataque("Latigo Cepa", 45, 100, "Planta", 0);
+        IAtaque rayo = new Ataque("Rayo", 90, 100, "Electrico", 3);
+
+        // Registro de Pokémon con habilidades específicas
+        PokedexPokemon.Add(1, new Registro("Bulbasaur", 49, 45, 49, "Planta", new List<IAtaque> { placaje, latigoCepa }));
+        PokedexPokemon.Add(2, new Registro("Charmander", 52, 43, 39, "Fuego", new List<IAtaque> { placaje, lanzallamas }));
+        PokedexPokemon.Add(3, new Registro("Pikachu", 55, 40, 35, "Electrico", new List<IAtaque> { placaje, rayo }));
     }
 
     public static List<string> DevolverNombresPokedex()
@@ -25,34 +24,31 @@ public static class FabricaPokemon
         InfoVisitor infoVisitor = new();  // Usamos el visitor para obtener la información
     
         // Recorremos la Pokedex y extraemos los nombres usando el visitor
-        for (int i = 1; i <= PokedexPokemon.Count; i++)  // Cambié el bucle para incluir el último índice
+        for (int i = 1; i <= PokedexPokemon.Count; i++)
         {
-            string num = i.ToString();
-            // Aquí el visitor extrae solo el nombre del registro
-            string nombre = PokedexPokemon[i].AcceptObtenerNombre(infoVisitor); // esto tiene que de alguna manera dar los nombres.
-            PokemonsTotales.Add($"{num}) {nombre}");
+            string nombre = PokedexPokemon[i].AcceptObtenerNombre(infoVisitor);
+            PokemonsTotales.Add($"{i}) {nombre}");
         }
 
         return PokemonsTotales;
     }
 
-    public static List<IPokemon> InstanciarPokes(List<int> entrada) // Tiene que llegarle los valores del player.
-    {// Falta traer la info desde jugador hacia aca. 
-        List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
-        InfoVisitor InfoVisitor = new();
+    public static List<IPokemon> InstanciarPokes(List<int> entrada)
+    {
+        List<IPokemon> PokemonsTemporal = new List<IPokemon>();
+        InfoVisitor infoVisitor = new();
         foreach (int numero in entrada)
         {
-            IPokemon pokemontemp = PokedexPokemon[numero].AcceptCrearPokemon(InfoVisitor); // Esto tiene que ir creando los Pokemons.
-            PokemonsTemporal.Add(pokemontemp); // Son muchos puntos probablemente aplicar visitor
+            IPokemon pokemonTemp = PokedexPokemon[numero].AcceptCrearPokemon(infoVisitor);
+            PokemonsTemporal.Add(pokemonTemp);
         }
 
         return PokemonsTemporal;
-
     }
-    
+
     public static int DevolverTotal()
     {
-        return (PokedexPokemon.Count);
+        return PokedexPokemon.Count;
     }
 }
 // Bulbasur.
