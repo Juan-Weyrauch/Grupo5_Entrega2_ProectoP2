@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+using Library;
 
-namespace Library.Static;
+namespace ClassLibrary;
 using ClassLibrary;
+
 public static class Calculator
 {
     public static int GetValidatedNumber(int min, int max, int PokemonValue)
@@ -28,7 +30,6 @@ public static class Calculator
         return PokemonValue; // Retorna el valor validado
     }
 
-       
     
     /// <summary>
     /// 
@@ -45,11 +46,34 @@ public static class Calculator
         else{ return false; }
     }
 
-    public static int CalcularDañoporTipo(IPokemon PokemonActual, IPokemon PokemonRival, IAtaque AtaqueActual)
+    public static double Efectividad(string tipoAtaque, string tipoPokemon)
     {
-        int DañoCalculado = PokemonActual.Damage + AtaqueActual.Poder - PokemonRival.Defense;
-        double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(AtaqueActual.Tipo,PokemonRival.Tipo) * DañoCalculado;
-        int valorfinal = (int)Math.Round(valorSinRedondear);
-        return valorfinal;
+        {
+            // Obtener las relaciones del tipo de Pokémon atacado
+            var relaciones = TablaDeTipos.ObtenerRelaciones(tipoPokemon);
+
+            // Determinar el multiplicador de efectividad
+            if (relaciones.inmunidades.Contains(tipoAtaque))
+            {
+                return 0.0; // Inmune
+            }
+            else if (relaciones.fortalezas.Contains(tipoAtaque))
+            {
+                return 0.5; // Débil
+            }
+            else if (relaciones.debilidades.Contains(tipoAtaque))
+            {
+                return 2.0; // Efectivo
+            }
+            else
+            {
+                return 1.0; // Neutro
+            }
+        }
+    }
+
+    public static double CalcularDaño(double poderAtaque, double defensaPokemon)
+    {
+        
     }
 }
