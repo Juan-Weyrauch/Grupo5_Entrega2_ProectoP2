@@ -8,6 +8,7 @@ public interface  IRegistroPokemon
     string  Tipo { get; }
     // dic<ataques> moveset { get; set; }
      public IPokemon CrearPokemon();
+     List<IAtaque> Ataques { get; }
      
     public string AcceptObtenerNombre(IVisitor visitor);
     

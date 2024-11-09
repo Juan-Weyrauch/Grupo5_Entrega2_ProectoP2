@@ -105,8 +105,7 @@ public static class FabricaAtaque
         }
 
     }
-}
-/*
+
 
 public static List<IAtaque> GenerarAtaquesRandom()
     {
@@ -133,4 +132,4 @@ public static List<IAtaque> GenerarAtaquesRandom()
         return ataquesSeleccionados;
     }
 }
-*/
+

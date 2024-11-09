@@ -22,6 +22,8 @@ namespace ClassLibrary
                     {
                         // Carga todos los Pokémon disponibles y crea dos jugadores.
                         FabricaPokemon.CargarPokemons();
+                        //Crea todos los ataques posibles.
+                        FabricaAtaque.Executar();
                         List<IPlayer> players = new List<IPlayer>
                         {
                             CrearJugador(1),

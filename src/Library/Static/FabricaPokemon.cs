@@ -12,7 +12,7 @@ public static class FabricaPokemon
     /// Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
     /// </summary>
     public static void CargarPokemons()// Para entender mejor leer IRegistro y Registro. 
-    {
+    { 
         
         PokedexPokemon.Add(1, new Registro("Bulbasur", 3, 3,4,"Planta"));
         PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Bicho"));
