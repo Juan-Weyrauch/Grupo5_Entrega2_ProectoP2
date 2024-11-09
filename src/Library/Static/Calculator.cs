@@ -72,8 +72,14 @@ public static class Calculator
         }
     }
 
-    public static double CalcularDaño(double poderAtaque, double defensaPokemon)
+    public static double CalcularDaño(Ataque poderAtaque, IPokemon defensaPokemon,IPokemon ataquePokemon, string tipoAtaque, string tipoPokemon)
     {
+        var relaciones = TablaDeTipos.ObtenerRelaciones(tipoPokemon);
         
+        var parte1 = (0.01 * Calculator.Efectividad(tipoAtaque, tipoPokemon));
+        var parte2 = (0.2 * poderAtaque.Poder * ataquePokemon.Damage);
+        var parte25 = ((parte2/(25 * defensaPokemon.Defense)+2));
+        var parteFinal = (parte25*parte1);
+        return parteFinal;
     }
 }
