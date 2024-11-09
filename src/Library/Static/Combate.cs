@@ -45,21 +45,30 @@ public  static class Combate
        pokemon.DecreaseHealth(damage);
    }
 
-   public static void Combatir(Player Jugador1, Player Jugador2)
+   public static void Combatir(IPlayer Jugador1, IPlayer Jugador2)
    {
        int turno = 0;
+       IPlayer JugadorActual;
+       IPlayer JugadorRival;
+       
        while (Calculator.CombatValidation(Jugador1, Jugador2)){
-           if ( turno == 0 )
+           if (turno % 2 == 0) // Sistema sencillo que permite detectar cuando es el turno de cada jugador.
            {
-                ImpresoraDeTexto.MostrarPokemons(Jugador1);
-                turno = 1;
-                
+                JugadorActual = Jugador1;
+                JugadorRival = Jugador2;
            }
            else
            {
-               ImpresoraDeTexto.MostrarPokemons(Jugador2);
-               turno = 0;
+                JugadorActual = Jugador2;
+                JugadorRival = Jugador1;
            }
-       }
+
+           if (turno < 2)
+           {
+               ImpresoraDeTexto.MostrarPokemons(JugadorActual);
+           }
+
+           turno++; }
+       
    }
 }

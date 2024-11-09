@@ -24,7 +24,7 @@ public static class Calculator
     /// <param name="jugador1"></param>
     /// <param name="jugador2"></param>
     /// <returns>boolean</returns>
-    public static bool CombatValidation([NotNull] Player jugador1, [NotNull] Player jugador2)
+    public static bool CombatValidation([NotNull] IPlayer jugador1, [NotNull] IPlayer jugador2)
     {
         int inventarioCountEquipo1 = jugador1.getInventarioCount();
         int inventarioCountEquipo2 = jugador2.getInventarioCount();

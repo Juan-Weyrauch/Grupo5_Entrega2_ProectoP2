@@ -1,4 +1,5 @@
 using ClassLibrary;
+using Library;
 
 namespace ClassLibrary
 {
@@ -27,6 +28,7 @@ namespace ClassLibrary
                             CrearJugador(1),
                             CrearJugador(2)
                         };
+                        Combate.Combatir(players[0],players[1]);
                     }
                     else if (inicial == 2)
                     {

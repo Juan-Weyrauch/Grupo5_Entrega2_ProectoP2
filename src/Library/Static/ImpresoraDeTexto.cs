@@ -106,7 +106,7 @@ public static class ImpresoraDeTexto
     /// 
     /// </summary>
     /// <param name="jugador"></param>
-    public static void MostrarPokemons(Player jugador)
+    public static void MostrarPokemons(IPlayer jugador)
     {
         int i = 1;
         foreach (IPokemon pokemon in jugador.Equipo)
