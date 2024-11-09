@@ -1,6 +1,6 @@
-using ClassLibrary;
+namespace ClassLibrary;
 
-namespace Library;
+
 
 public static class ImpresoraDeTexto
 {
@@ -92,7 +92,7 @@ public static class ImpresoraDeTexto
     
     public static void EligePokemonInicial(List<IPokemon> Equipo)
     {
-        for (int i = 1; i < Equipo.Count+1; i++)
+        for (int i = 0; i < Equipo.Count; i++)
         {
             
             Console.WriteLine($"{i}) {Equipo[i].Name}");

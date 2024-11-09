@@ -1,5 +1,4 @@
-using Library;
-using ClassLibrary;
+
 
 namespace ClassLibrary;
 
@@ -38,23 +37,23 @@ namespace ClassLibrary;
     /// </summary>
     public static void selecciones()
     {
-        List <IPokemon> pokemonsForPlayers = new List<IPokemon>();
-        string inputName = Console.ReadLine();
+        
+        string inputName = "";
         List<int> valuesForPokemons = new List<int>();
         List<IPlayer> players = new List<IPlayer>(); // maybe it's better to send a list index
         
         //para poder llamar a 'GetValidatedNumber(1, n)'
         int n = FabricaPokemon.DevolverTotal(); // debe ser la cantidad de pokemons que mostremos en la matriz
 
-        for (int i = 1; i <= 2; i++)
+        for (int g = 1; g <= 2; g++)
         {
-            Console.WriteLine($"Enter the name of Player {i}:");
+            Console.WriteLine($"Enter the name of Player {g}:");
             inputName = Console.ReadLine();
             
-            if (i == 1)
+           // if (g == 1)
             {
                 ImpresoraDeTexto.mostrarListaPokemons(inputName);
-                for (int j = 0; j <= 6; j++)
+                for (int j = 0; j < 6; j++)
                 {
                     ImpresoraDeTexto.selectYourPokemon();
                     try
@@ -67,19 +66,20 @@ namespace ClassLibrary;
                     catch (FormatException)
                     {
                         Console.WriteLine("Invalid format. Please enter a valid integer.");
-                        i--;
+                        g--;
                     }
                     catch (ArgumentOutOfRangeException)
                     {
                         Console.WriteLine("Number out of range. Please enter a number within the allowed range.");
-                        i--;
+                        g--;
                     }
                 }
 
                 List < IPokemon> PokemonsCreados = FabricaPokemon.InstanciarPokes(valuesForPokemons);
                 ImpresoraDeTexto.EligePokemonInicial(PokemonsCreados);
-                int Eleccion = Convert.ToInt32(Console.ReadLine());
-                players.Add(new Player(inputName, pokemonsForPlayers, /*TODO revise this attribute*/ Eleccion));
+                Console.WriteLine("Elige el pokemon inicial// no es definitivo.");
+                int eleccion = Convert.ToInt32(Console.ReadLine());
+                players.Add(new Player(inputName, PokemonsCreados, /*TODO revise this attribute*/ eleccion));
 
             }
         }
