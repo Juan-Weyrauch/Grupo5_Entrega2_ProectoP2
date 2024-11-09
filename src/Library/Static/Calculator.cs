@@ -26,8 +26,8 @@ public static class Calculator
     /// <returns>boolean</returns>
     public static bool CombatValidation([NotNull] Player jugador1, [NotNull] Player jugador2)
     {
-        int inventarioCountEquipo1 = jugador1.getInventarioCount();
-        int inventarioCountEquipo2 = jugador2.getInventarioCount();
+        int inventarioCountEquipo1 = jugador1.GetInventarioCount();
+        int inventarioCountEquipo2 = jugador2.GetInventarioCount();
     
         if ( (inventarioCountEquipo1 > 0 )&&( inventarioCountEquipo2 > 0 ) ){ return true; } 
         else{ return false; }

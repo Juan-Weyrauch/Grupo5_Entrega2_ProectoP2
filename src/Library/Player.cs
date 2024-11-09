@@ -38,8 +38,13 @@ public class Player : IPlayer
         
     }
 
-    public int getInventarioCount()
+    public int GetInventarioCount()
     {
         return Inventario.Count();
+    }
+
+    public List<IPokemon> GetEquipo()
+    {
+        return Equipo;
     }
 }
