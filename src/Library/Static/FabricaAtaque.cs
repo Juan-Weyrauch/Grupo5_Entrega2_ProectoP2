@@ -106,31 +106,4 @@ public static class FabricaAtaque
 
     }
 }
-/*
 
-public static List<IAtaque> GenerarAtaquesRandom()
-    {
-        Random rand = new Random(); // Inicializa el generador de números aleatorios
-        List<IAtaque> ataquesSeleccionados = new List<IAtaque>(); // Lista donde guardaremos los ataques seleccionados
-
-        // Obtener todas las claves del diccionario (los identificadores de los ataques)
-        List<int> claves = new List<int>(ataquesDiccionario.Keys);
-
-        // Seleccionar 4 ataques aleatorios
-        for (int i = 0; i < 4; i++)
-        {
-            // Seleccionar una clave aleatoria del diccionario
-            int claveAleatoria = claves[rand.Next(claves.Count)];
-
-            // Obtener el ataque correspondiente a esa clave
-            IAtaque ataque = ataquesDiccionario[claveAleatoria];
-
-
-            // Agregar el ataque a la lista de ataques seleccionados
-            ataquesSeleccionados.Add(ataque);
-        }
-
-        return ataquesSeleccionados;
-    }
-}
-*/
