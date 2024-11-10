@@ -5,7 +5,7 @@ public class Player : IPlayer
     public string Name { get; }
     // inventario quizas? Aca? 
     public List <IPokemon> Equipo { get; private set; }
-    public IPokemon SelectedPokemon {get; private set;}
+    public IPokemon SelectedPokemon {get; set;}
     public List<IItem> Inventario { get; private set; }
     public List<IPokemon> Cementerio { get; private set; }
 
