@@ -1,0 +1,5 @@
+<map id="ClassLibrary.Registro" name="ClassLibrary.Registro">
+<area shape="rect" id="Node000001" title="Representa un registro de un Pokémon, que contiene los atributos y ataques necesarios para crear un P..." alt="" coords="5,251,189,491"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IRegistroPokemon.html" title="Define la interfaz para los registros de Pokémon, proporcionando propiedades para sus atributos básic..." alt="" coords="5,5,189,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,218,100,251,95,251,95,218"/>
+</map>

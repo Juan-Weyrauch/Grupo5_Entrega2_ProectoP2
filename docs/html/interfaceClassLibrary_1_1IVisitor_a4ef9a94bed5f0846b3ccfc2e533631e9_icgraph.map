@@ -1,0 +1,5 @@
+<map id="ClassLibrary.IVisitor.visitNombreRegistro" name="ClassLibrary.IVisitor.visitNombreRegistro">
+<area shape="rect" id="Node000001" title="Visita un registro de Pokémon y obtiene el nombre del mismo." alt="" coords="259,5,439,50"/>
+<area shape="rect" id="Node000002" href="$classClassLibrary_1_1Registro.html#a1137cbb01d8b8d233b64297e5ea5d845" title="Acepta un visitante que obtiene el nombre del registro de Pokémon." alt="" coords="5,5,211,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,30,211,30,211,25,243,25"/>
+</map>

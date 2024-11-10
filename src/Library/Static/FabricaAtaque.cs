@@ -108,34 +108,35 @@ public static class FabricaAtaque
     }
 
     // Método para seleccionar 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo
-       public  static List<IAtaque> GenerarAtaquesRandom(string tipo)
+    public static List<IAtaque> GenerarAtaquesRandom(string tipo)
+    {
+        Random rand = new Random();
+
+        // Filtrar ataques por el tipo especificado
+        List<IAtaque> ataquesDelMismoTipo = ataquesDiccionario.Values
+            .Where(ataque => ataque.Tipo == tipo)
+            .ToList();
+
+        // Obtener 3 ataques al azar del mismo tipo y clonarlos
+        List<IAtaque> ataquesSeleccionados = ataquesDelMismoTipo
+            .OrderBy(x => rand.Next())
+            .Take(3)
+            .Select(ataque => (IAtaque)((Ataque)ataque).Clonar()) // Clonación explícita
+            .ToList();
+
+        // Seleccionar un ataque aleatorio de cualquier tipo y clonarlo
+        IAtaque ataqueAleatorio = ataquesDiccionario.Values
+            .OrderBy(x => rand.Next())
+            .FirstOrDefault();
+
+        // Asegurarse de que el ataque aleatorio no sea nulo y añadirlo a la lista
+        if (ataqueAleatorio != null)
         {
-            
-            Random rand = new Random();
-            // Filtrar ataques por el tipo especificado
-            List<IAtaque> ataquesDelMismoTipo = ataquesDiccionario.Values
-                .Where(ataque => ataque.Tipo == tipo)
-                .ToList();
+            ataquesSeleccionados.Add((IAtaque)((Ataque)ataqueAleatorio).Clonar()); // Clonación explícita
+        }
 
-            // Obtener 3 ataques al azar del mismo tipo
-            List<IAtaque> ataquesSeleccionados = ataquesDelMismoTipo
-                .OrderBy(x => rand.Next())
-                .Take(3)
-                .ToList();
-
-            // Seleccionar un ataque al azar de cualquier tipo
-            IAtaque ataqueAleatorio = ataquesDiccionario.Values
-                .OrderBy(x => rand.Next())
-                .FirstOrDefault();
-
-            // Asegurarse de que el ataque aleatorio no sea nulo y añadirlo a la lista
-            if (ataqueAleatorio != null)
-            {
-                ataquesSeleccionados.Add(ataqueAleatorio);
-            }
-
-            return ataquesSeleccionados;
-        
+        return ataquesSeleccionados;
     }
+
 }
 

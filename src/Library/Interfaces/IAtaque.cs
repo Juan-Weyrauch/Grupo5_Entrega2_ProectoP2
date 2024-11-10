@@ -8,4 +8,5 @@ public interface IAtaque
     
     string Tipo { get; }
     int Especial { get; }
+    public  IAtaque Clonar();
 } 

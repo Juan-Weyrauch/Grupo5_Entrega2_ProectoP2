@@ -1,0 +1,5 @@
+<map id="ClassLibrary.IPlayer" name="ClassLibrary.IPlayer">
+<area shape="rect" id="Node000001" title="Define la interfaz para representar a un jugador en el juego de Pokémon, proporcionando propiedades y..." alt="" coords="5,5,168,181"/>
+<area shape="rect" id="Node000002" href="$classClassLibrary_1_1Player.html" title="Representa un jugador en el juego, con un nombre, equipo de Pokémon, Pokémon seleccionado,..." alt="" coords="5,229,168,427"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,196,89,230,84,230,84,196"/>
+</map>

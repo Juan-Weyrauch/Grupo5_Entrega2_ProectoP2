@@ -1,0 +1,5 @@
+<map id="ClassLibrary.Registro.AcceptCrearPokemon" name="ClassLibrary.Registro.AcceptCrearPokemon">
+<area shape="rect" id="Node000001" title="Acepta un visitante que crea un Pokémon basado en el registro de Pokémon." alt="" coords="5,5,211,50"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IVisitor.html#a10fccfa5323d2e2de4d8aa6c1d292972" title="Visita un registro de Pokémon para crear un nuevo objeto IPokemon." alt="" coords="259,5,439,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,25,243,25,243,30,211,30"/>
+</map>

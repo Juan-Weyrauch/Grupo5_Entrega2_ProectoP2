@@ -1,0 +1,5 @@
+<map id="ClassLibrary.FullRestore.Usar" name="ClassLibrary.FullRestore.Usar">
+<area shape="rect" id="Node000001" title="Utiliza el FullRestore para restaurar completamente la salud del Pokémon y eliminar cualquier efecto ..." alt="" coords="5,14,216,42"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IPokemon.html#a4412d76b6b29684392fa0e98ab50e59f" title="Elimina los efectos de estado actuales del Pokémon, restaurando su estado a normal (0)." alt="" coords="264,5,489,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,25,248,25,248,30,216,30"/>
+</map>

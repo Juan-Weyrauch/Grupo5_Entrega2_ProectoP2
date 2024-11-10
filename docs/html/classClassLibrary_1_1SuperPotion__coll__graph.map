@@ -1,0 +1,5 @@
+<map id="ClassLibrary.SuperPotion" name="ClassLibrary.SuperPotion">
+<area shape="rect" id="Node000001" title="Representa un objeto de tipo SuperPotion, que es un ítem que puede ser usado para curar a un Pokémon." alt="" coords="5,123,179,192"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IItem.html" title="Define la interfaz para representar un item en el juego de Pokémon, proporcionando propiedades y méto..." alt="" coords="53,5,131,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,90,95,123,89,123,89,90"/>
+</map>

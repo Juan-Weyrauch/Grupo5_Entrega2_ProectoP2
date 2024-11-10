@@ -17,4 +17,8 @@ public class Ataque : IAtaque
         Especial = especial;
         
     }
+    public IAtaque Clonar()
+    {
+        return new Ataque(Name, Poder, Precision, Tipo, Especial);
+    }
 }

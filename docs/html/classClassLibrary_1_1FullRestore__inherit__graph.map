@@ -1,0 +1,5 @@
+<map id="ClassLibrary.FullRestore" name="ClassLibrary.FullRestore">
+<area shape="rect" id="Node000001" title="Representa un objeto de tipo FullRestore, que es un ítem utilizado para restaurar completamente la sa..." alt="" coords="5,123,173,192"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IItem.html" title="Define la interfaz para representar un item en el juego de Pokémon, proporcionando propiedades y méto..." alt="" coords="50,5,129,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,90,92,123,87,123,87,90"/>
+</map>

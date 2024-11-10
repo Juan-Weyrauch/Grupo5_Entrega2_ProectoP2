@@ -1,0 +1,5 @@
+<map id="ClassLibrary.InfoVisitor.visitCrearPokemon" name="ClassLibrary.InfoVisitor.visitCrearPokemon">
+<area shape="rect" id="Node000001" title="Crea un Pokémon basado en el registro proporcionado." alt="" coords="5,5,207,50"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IRegistroPokemon.html#ac78bfc30e3cc4b620a29b119c7bb4f6a" title="Crea un nuevo objeto IPokemon basado en los atributos del registro actual." alt="" coords="255,5,480,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,25,239,25,239,30,207,30"/>
+</map>

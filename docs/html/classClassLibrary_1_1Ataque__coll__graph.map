@@ -1,0 +1,5 @@
+<map id="ClassLibrary.Ataque" name="ClassLibrary.Ataque">
+<area shape="rect" id="Node000001" title="Representa un ataque en el juego, con propiedades que definen su nombre, poder, precisión,..." alt="" coords="5,208,147,363"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IAtaque.html" title="Define la interfaz para representar un ataque en el juego de Pokémon, proporcionando propiedades para..." alt="" coords="33,5,119,160"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,175,79,208,73,208,73,175"/>
+</map>

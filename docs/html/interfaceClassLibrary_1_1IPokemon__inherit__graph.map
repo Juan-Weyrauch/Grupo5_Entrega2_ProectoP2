@@ -1,0 +1,5 @@
+<map id="ClassLibrary.IPokemon" name="ClassLibrary.IPokemon">
+<area shape="rect" id="Node000001" title="Define la interfaz para representar un Pokémon, proporcionando propiedades para sus atributos básicos..." alt="" coords="5,5,205,267"/>
+<area shape="rect" id="Node000002" href="$classClassLibrary_1_1Pokemon.html" title="Representa un Pokémon en el juego, con atributos como su nombre, daño, defensa, salud,..." alt="" coords="5,315,205,597"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,281,108,315,103,315,103,281"/>
+</map>

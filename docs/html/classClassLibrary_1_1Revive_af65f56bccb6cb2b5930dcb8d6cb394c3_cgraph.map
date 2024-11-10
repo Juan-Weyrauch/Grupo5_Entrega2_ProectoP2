@@ -1,0 +1,5 @@
+<map id="ClassLibrary.Revive.Usar" name="ClassLibrary.Revive.Usar">
+<area shape="rect" id="Node000001" title="Utiliza el Revive para revivir al pokemon &#160;si está debilitado (salud = 0). El Pokémon es revivido con..." alt="" coords="5,5,188,33"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IPokemon.html#a0d921be614211f5155b8468526461b6d" title="Cura al Pokémon, restaurando su salud hasta un máximo de su salud inicial." alt="" coords="236,5,442,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,17,220,17,220,22,188,22"/>
+</map>

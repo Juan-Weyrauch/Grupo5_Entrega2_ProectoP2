@@ -1,0 +1,9 @@
+<map id="ClassLibrary.IItem" name="ClassLibrary.IItem">
+<area shape="rect" id="Node000001" title="Define la interfaz para representar un item en el juego de Pokémon, proporcionando propiedades y méto..." alt="" coords="203,5,333,75"/>
+<area shape="rect" id="Node000002" href="$classClassLibrary_1_1FullRestore.html" title="Representa un objeto de tipo FullRestore, que es un ítem utilizado para restaurar completamente la sa..." alt="" coords="5,123,173,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,85,142,125,139,121,202,80"/>
+<area shape="rect" id="Node000003" href="$classClassLibrary_1_1Revive.html" title="Representa un objeto de tipo Revive, que es un ítem que puede ser usado para revivir a un Pokémon deb..." alt="" coords="198,123,338,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="271,90,271,123,265,123,265,90"/>
+<area shape="rect" id="Node000004" href="$classClassLibrary_1_1SuperPotion.html" title="Representa un objeto de tipo SuperPotion, que es un ítem que puede ser usado para curar a un Pokémon." alt="" coords="363,123,536,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="335,80,398,121,396,125,332,85"/>
+</map>

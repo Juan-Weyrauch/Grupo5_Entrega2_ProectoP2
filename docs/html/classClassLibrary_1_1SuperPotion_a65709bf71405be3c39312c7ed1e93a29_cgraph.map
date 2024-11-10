@@ -1,0 +1,5 @@
+<map id="ClassLibrary.SuperPotion.Usar" name="ClassLibrary.SuperPotion.Usar">
+<area shape="rect" id="Node000001" title="Utiliza la SuperPotion para curar al pokemon , aumentando su salud sin exceder el máximo...." alt="" coords="5,5,221,33"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IPokemon.html#a0d921be614211f5155b8468526461b6d" title="Cura al Pokémon, restaurando su salud hasta un máximo de su salud inicial." alt="" coords="269,5,475,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,17,253,17,253,22,221,22"/>
+</map>

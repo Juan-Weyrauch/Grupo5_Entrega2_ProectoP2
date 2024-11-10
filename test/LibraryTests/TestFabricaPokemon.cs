@@ -20,7 +20,7 @@ namespace Tests
         {
             
             TablaDeTipos.CrearTabla();
-            FabricaAtaque.Executar();
+            FabricaAtaque.Ejecutar();
             
             List<int> elementos = [1];
             FabricaPokemon.CargarPokemons();

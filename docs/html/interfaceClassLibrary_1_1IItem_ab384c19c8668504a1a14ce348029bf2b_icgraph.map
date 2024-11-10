@@ -1,0 +1,5 @@
+<map id="ClassLibrary.IItem.Usar" name="ClassLibrary.IItem.Usar">
+<area shape="rect" id="Node000001" title="Aplica el efecto del item en un Pokémon objetivo." alt="" coords="261,5,432,33"/>
+<area shape="rect" id="Node000002" href="$classClassLibrary_1_1Player.html#a1f3ec6c72034ace393d7cae42b938dc7" title="Permite al jugador usar un ítem de su inventario en un Pokémon objetivo. El ítem es eliminado del inv..." alt="" coords="5,5,213,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,22,213,22,213,17,245,17"/>
+</map>

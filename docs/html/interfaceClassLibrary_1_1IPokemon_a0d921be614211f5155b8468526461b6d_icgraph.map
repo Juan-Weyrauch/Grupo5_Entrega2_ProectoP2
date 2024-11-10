@@ -1,0 +1,7 @@
+<map id="ClassLibrary.IPokemon.Curar" name="ClassLibrary.IPokemon.Curar">
+<area shape="rect" id="Node000001" title="Cura al Pokémon, restaurando su salud hasta un máximo de su salud inicial." alt="" coords="269,32,475,60"/>
+<area shape="rect" id="Node000002" href="$classClassLibrary_1_1Revive.html#af65f56bccb6cb2b5930dcb8d6cb394c3" title="Utiliza el Revive para revivir al pokemon &#160;si está debilitado (salud = 0). El Pokémon es revivido con..." alt="" coords="22,5,204,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,36,204,31,205,26,254,31"/>
+<area shape="rect" id="Node000003" href="$classClassLibrary_1_1SuperPotion.html#a65709bf71405be3c39312c7ed1e93a29" title="Utiliza la SuperPotion para curar al pokemon , aumentando su salud sin exceder el máximo...." alt="" coords="5,57,221,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,60,221,63,221,58,253,55"/>
+</map>

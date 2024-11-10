@@ -46,7 +46,7 @@ public static class FabricaPokemon
             100, 
             3, 
             "Eléctrico", 
-            FabricaAtaque.GenerarAtaquesRandom("Eléctrico")
+            FabricaAtaque.GenerarAtaquesRandom("Electrico")
         ));
 
         PokedexPokemon.Add(5, new Registro(

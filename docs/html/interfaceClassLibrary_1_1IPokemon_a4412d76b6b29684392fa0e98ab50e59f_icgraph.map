@@ -1,0 +1,5 @@
+<map id="ClassLibrary.IPokemon.EliminarEfectosDeEstado" name="ClassLibrary.IPokemon.EliminarEfectosDeEstado">
+<area shape="rect" id="Node000001" title="Elimina los efectos de estado actuales del Pokémon, restaurando su estado a normal (0)." alt="" coords="264,5,489,50"/>
+<area shape="rect" id="Node000002" href="$classClassLibrary_1_1FullRestore.html#ae78c820df38cb2567bd556605a288b1a" title="Utiliza el FullRestore para restaurar completamente la salud del Pokémon y eliminar cualquier efecto ..." alt="" coords="5,14,216,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,30,216,30,216,25,248,25"/>
+</map>

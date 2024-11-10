@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$interfaceClassLibrary_1_1IRegistroPokemon.html" title="Define la interfaz para los registros de Pokémon, proporcionando propiedades para sus atributos básic..." alt="" coords="5,5,227,33"/>
+<area shape="rect" id="Node000001" href="$classClassLibrary_1_1Registro.html" title="Representa un registro de un Pokémon, que contiene los atributos y ataques necesarios para crear un P..." alt="" coords="275,5,432,33"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="242,17,274,17,274,22,242,22"/>
+</map>

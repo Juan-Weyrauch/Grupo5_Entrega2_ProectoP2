@@ -1,0 +1,5 @@
+<map id="ClassLibrary.Registro.AcceptObtenerNombre" name="ClassLibrary.Registro.AcceptObtenerNombre">
+<area shape="rect" id="Node000001" title="Acepta un visitante que obtiene el nombre del registro de Pokémon." alt="" coords="5,5,211,50"/>
+<area shape="rect" id="Node000002" href="$interfaceClassLibrary_1_1IVisitor.html#a4ef9a94bed5f0846b3ccfc2e533631e9" title="Visita un registro de Pokémon y obtiene el nombre del mismo." alt="" coords="259,5,439,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,25,243,25,243,30,211,30"/>
+</map>

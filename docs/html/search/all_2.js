@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['dónde_20encontrar_20información_20sobre_20los_20errores_20avisos_20al_20compilar_0',['Dónde encontrar información sobre los errores/avisos al compilar',['../md__2home_2j_2Notebooks_2Grupo5__Entrega2__ProectoP2_2README.html#autotoc_md2',1,'']]],
+  ['damage_1',['Damage',['../interfaceClassLibrary_1_1IPokemon.html#aa4ef7cf841d904a786ce91db4c07e970',1,'ClassLibrary.IPokemon.Damage'],['../interfaceClassLibrary_1_1IRegistroPokemon.html#a2c55735c0d9851b4cf6b240f8f5c2de3',1,'ClassLibrary.IRegistroPokemon.Damage'],['../classClassLibrary_1_1Pokemon.html#a77a8b7ceb3ff7281e31569f9f786fa63',1,'ClassLibrary.Pokemon.Damage'],['../classClassLibrary_1_1Registro.html#a5de7cead191e1fbc2bdf86d95175e832',1,'ClassLibrary.Registro.Damage']]],
+  ['decreasehealth_2',['DecreaseHealth',['../interfaceClassLibrary_1_1IPokemon.html#a914818d5a8dd5a2397b850f544b602a2',1,'ClassLibrary.IPokemon.DecreaseHealth()'],['../classClassLibrary_1_1Pokemon.html#a85065e0fdf71d93d6d760dfe60a7462f',1,'ClassLibrary.Pokemon.DecreaseHealth()']]],
+  ['defense_3',['Defense',['../interfaceClassLibrary_1_1IPokemon.html#a8fda814ab3d5057ae8ab23dc9b368add',1,'ClassLibrary.IPokemon.Defense'],['../classClassLibrary_1_1Pokemon.html#a15edacc4160e361b74f7387d1c4efb5b',1,'ClassLibrary.Pokemon.Defense'],['../classClassLibrary_1_1Registro.html#a35cf008cc85fdd1e2cb529499838f891',1,'ClassLibrary.Registro.Defense']]],
+  ['deshabilitar_20temporalmente_20los_20avisos_20al_20compilar_4',['Cómo deshabilitar temporalmente los avisos al compilar',['../md__2home_2j_2Notebooks_2Grupo5__Entrega2__ProectoP2_2README.html#autotoc_md3',1,'']]]
+];
