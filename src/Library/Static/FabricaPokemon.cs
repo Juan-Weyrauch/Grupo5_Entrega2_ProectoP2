@@ -15,7 +15,7 @@ public static class FabricaPokemon
     {
         
         PokedexPokemon.Add(1, new Registro("Bulbasur", 3, 3,4,"Planta",FabricaAtaque.GenerarAtaquesRandom("Planta")));
-        PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Bicho", FabricaAtaque.GenerarAtaquesRandom("Bicho")));
+        PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Agua", FabricaAtaque.GenerarAtaquesRandom("Bicho")));
         //PokedexPokemon.Add(3, new Registro());
     }
 

@@ -104,38 +104,64 @@ public static class FabricaAtaque
             ataquesDiccionario.Add(i, ataque);
         }
 
-        
+
     }
 
-    // Método para seleccionar 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo
-       public  static List<IAtaque> GenerarAtaquesRandom(string tipo)
+    public static List<IAtaque> GenerarAtaquesRandom(string tipo)
+    {
+        Random rand = new Random();
+
+        // Filtrar ataques por el tipo especificado
+        List<IAtaque> ataquesDelMismoTipo = ataquesDiccionario.Values
+            .Where(ataque => ataque.Tipo == tipo)
+            .ToList();
+
+        // Si hay menos de 3 ataques del mismo tipo, devolvemos todos los disponibles
+        List<IAtaque> ataquesSeleccionados = ataquesDelMismoTipo
+            .OrderBy(x => rand.Next())
+            .Take(3)  // Tomamos hasta 3 ataques aleatorios del mismo tipo
+            .ToList();
+
+        // Si no hay suficientes ataques del mismo tipo, no tomamos más de lo disponible
+        if (ataquesSeleccionados.Count < 3)
         {
-            
-            Random rand = new Random();
-            // Filtrar ataques por el tipo especificado
-            List<IAtaque> ataquesDelMismoTipo = ataquesDiccionario.Values
-                .Where(ataque => ataque.Tipo == tipo)
-                .ToList();
-
-            // Obtener 3 ataques al azar del mismo tipo
-            List<IAtaque> ataquesSeleccionados = ataquesDelMismoTipo
+            // Si faltan ataques para llegar a 3, podemos añadir más ataques aleatorios del mismo tipo
+            var ataquesFaltantes = ataquesDelMismoTipo
+                .Where(ataque => !ataquesSeleccionados.Contains(ataque)) // Evitar duplicados
                 .OrderBy(x => rand.Next())
-                .Take(3)
+                .Take(3 - ataquesSeleccionados.Count)
                 .ToList();
 
-            // Seleccionar un ataque al azar de cualquier tipo
-            IAtaque ataqueAleatorio = ataquesDiccionario.Values
+            ataquesSeleccionados.AddRange(ataquesFaltantes);
+        }
+
+        // Seleccionar un ataque aleatorio de cualquier tipo
+        IAtaque ataqueAleatorio = ataquesDiccionario.Values
+            .OrderBy(x => rand.Next())
+            .FirstOrDefault();
+
+        // Añadir el ataque aleatorio si no es null
+        if (ataqueAleatorio != null)
+        {
+            ataquesSeleccionados.Add(ataqueAleatorio);
+        }
+
+        // Si por alguna razón la cantidad de ataques es menos de 4, completar con aleatorios
+        while (ataquesSeleccionados.Count < 4)
+        {
+            IAtaque ataqueAleatorioDeNuevo = ataquesDiccionario.Values
                 .OrderBy(x => rand.Next())
                 .FirstOrDefault();
 
-            // Asegurarse de que el ataque aleatorio no sea nulo y añadirlo a la lista
-            if (ataqueAleatorio != null)
+            if (ataqueAleatorioDeNuevo != null)
             {
-                ataquesSeleccionados.Add(ataqueAleatorio);
+                ataquesSeleccionados.Add(ataqueAleatorioDeNuevo);
             }
+        }
 
-            return ataquesSeleccionados;
-        
+        return ataquesSeleccionados;
     }
+
 }
+
 

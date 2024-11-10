@@ -7,4 +7,5 @@ public class IAtaque
     public int Precsion { get;  }
     public string Tipo { get; }
     public int Especial { get; }
+    
 } 

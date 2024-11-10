@@ -5,12 +5,13 @@ namespace Library
 {
     public static class Combate
     {
-        static IVisitor InfoVisitor = new InfoVisitor();
+       public static IVisitor InfoVisitor = new InfoVisitor();
 
         static IPlayer JugadorActual;
         static IPlayer JugadorRival;
         static IPokemon PokemonActual;
         static IPokemon PokemonRival;
+         static List<IAtaque> ataquesDisponibles;
 
         public static void Recibir(IPokemon pokemon, int damage)
         {
@@ -49,11 +50,13 @@ namespace Library
         {
             IPokemon pokemonActual = JugadorActual.SelectedPokemon;
             IPokemon pokemonRival = JugadorRival.SelectedPokemon;
+            IVisitor vistor = new InfoVisitor();
+             
 
-            if (CheckVida(pokemonActual))  // Comprobamos si el Pokémon está vivo
+          //  if (CheckVida(pokemonActual))  // Comprobamos si el Pokémon está vivo
             {
                 // Aplicar efectos de estado (Dormido, Paralizado, Quemado, Envenenado) al principio del turno
-                EfectuarEfecto(pokemonActual);
+                //EfectuarEfecto(pokemonActual);
 
                 // Si el Pokémon está en un estado que le permite actuar
                 if (pokemonActual.Estado == 0)  // Si no está dormido ni paralizado
@@ -61,13 +64,17 @@ namespace Library
                     string nombrePlayer = JugadorActual.Name;
                     ImpresoraDeTexto.TurnoJugador(nombrePlayer);
                     string cadena = Console.ReadLine().ToUpper();
+                    ataquesDisponibles =  pokemonActual.Ataques;
 
+                  
                     if (cadena == "A")
                     {
-                        Console.WriteLine($"Con que  vas a Atacar a {PokemonRival.Name}?");
-                        
+                        Console.WriteLine($"Con que  vas a Atacar a {pokemonRival.Name}?");
+                        ImpresoraDeTexto.ImprimirElegirAtaques(ataquesDisponibles);
                        int indice   = int.Parse(Console.ReadLine()); // cambiar por tryparse
-                       // ImpresoraDeTexto.ImprimirElegirAtaques(PokemonActual.A);
+                       var AtaqueElegido = ataquesDisponibles[indice-1];
+                       Atacar(pokemonActual, pokemonRival,  AtaqueElegido);
+                       
                     }
 
                     if (cadena == "B")
@@ -93,7 +100,14 @@ namespace Library
 
         public static bool CheckVida(IPokemon pokemonActual)
         {
-            return pokemonActual.Health > 0;
+            if (pokemonActual.Health <=0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public static void EfectuarEfecto(IPokemon pokemon)
@@ -210,7 +224,7 @@ namespace Library
             return pokemonSeleccionado;
         }
 
-        public static void Atacar(IPokemon atacante, IPokemon defensor, Ataque ataque)
+        public static void Atacar(IPokemon atacante, IPokemon defensor, IAtaque ataque)
         {
             // Obtener el tipo del ataque y el tipo del defensor
             string tipoAtaque = ataque.Tipo;
@@ -239,7 +253,7 @@ namespace Library
 
             // Reducir la salud del defensor
             Recibir(defensor, dañoFinal);
-            Console.WriteLine($"{defensor.Name} ahora tiene {defensor.Health} puntos de vida.");
+            Console.WriteLine($"Recibio  {defensor.Name} recibio {dañoFinal} ahora tiene {defensor.Health} puntos de vida.");
         }
 
     }

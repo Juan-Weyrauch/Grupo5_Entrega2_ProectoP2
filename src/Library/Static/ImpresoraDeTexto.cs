@@ -1,4 +1,4 @@
-#nullable enable
+
 namespace ClassLibrary;
 
 
@@ -241,9 +241,9 @@ public static class ImpresoraDeTexto
     }
     public  static void ImprimirElegirAtaques(List<IAtaque> ataques)
     {
-        for (int i = 1; i < ataques.Count+1; i++)
+        for (int i = 0; i < ataques.Count; i++)
         {
-            Console.WriteLine($"{i}) {ataques[i].Name}");
+            Console.WriteLine($"{i+1}) + {ataques[i].Name}");
         }
     }
 

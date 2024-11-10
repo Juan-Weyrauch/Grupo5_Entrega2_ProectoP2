@@ -4,6 +4,14 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="M:ClassLibrary.Calculator.CombatValidation(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
+            <summary>
+            
+            </summary>
+            <param name="jugador1"></param>
+            <param name="jugador2"></param>
+            <returns>boolean</returns>
+        </member>
         <member name="F:ClassLibrary.FabricaPokemon.PokedexPokemon">
             <summary>
             Los registros son clases que tienen la informacion de la creacion de cada pokemon. Estos tienen un metodo que
@@ -92,14 +100,6 @@
             
             </summary>
             <param name="argument"></param>
-        </member>
-        <member name="M:Library.Static.Calculator.CombatValidation(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
-            <summary>
-            
-            </summary>
-            <param name="jugador1"></param>
-            <param name="jugador2"></param>
-            <returns>boolean</returns>
         </member>
     </members>
 </doc>

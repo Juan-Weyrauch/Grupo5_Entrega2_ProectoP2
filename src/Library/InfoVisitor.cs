@@ -14,7 +14,10 @@ public class InfoVisitor : IVisitor
         return registroPokemon.Name;
     }
 
-   
+   public  IList<IAtaque> DevolverAtaques  (IPlayer Jugador)
+   {
+       return Jugador.SelectedPokemon.Ataques;
+   }
 
     // esta sin crear.
 }
