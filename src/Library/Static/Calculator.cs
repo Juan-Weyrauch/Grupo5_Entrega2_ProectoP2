@@ -88,17 +88,28 @@ public static class Calculator
 
     public static int ValidAtackSelection(int ataque, IPokemon pokemon)
     {
-
+        // Ajustar el valor si el ataque es igual al número total de ataques
         if (ataque == pokemon.Ataques.Count)
         {
             ataque--;
         }
 
-        while (ataque < pokemon.Ataques.Count || ataque > pokemon.Ataques.Count)
+        // Verificar si el ataque está fuera del rango válido
+        while (ataque < 0 || ataque >= pokemon.Ataques.Count)
         {
-            Console.WriteLine("Ingrese un numero valido!.");
-            ataque = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine("Ingrese un número válido!.");
+        
+            // Intentar convertir la entrada del usuario a un número entero
+            if (int.TryParse(Console.ReadLine(), out int nuevoAtaque))
+            {
+                ataque = nuevoAtaque;
+            }
+            else
+            {
+                Console.WriteLine("Entrada no válida. Por favor, ingrese un número.");
+            }
         }
         return ataque;
     }
+
 }

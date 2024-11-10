@@ -11,13 +11,99 @@ public static class FabricaPokemon
     /// <summary>
     /// Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
     /// </summary>
-    public static void CargarPokemons()// Para entender mejor leer IRegistro y Registro. 
+    public static void CargarPokemons()
     {
-        
-        PokedexPokemon.Add(1, new Registro("Bulbasur", 3, 3,4,"Planta",FabricaAtaque.GenerarAtaquesRandom("Planta")));
-        PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Bicho", FabricaAtaque.GenerarAtaquesRandom("Bicho")));
-        //PokedexPokemon.Add(3, new Registro());
+        PokedexPokemon.Add(1, new Registro(
+            "Bulbasaur", 
+            3, 
+            3, 
+            4, 
+            "Planta", 
+            FabricaAtaque.GenerarAtaquesRandom("Planta")
+        ));
+    
+        PokedexPokemon.Add(2, new Registro(
+            "Charmander", 
+            4, 
+            3, 
+            3, 
+            "Fuego", 
+            FabricaAtaque.GenerarAtaquesRandom("Fuego")
+        ));
+    
+        PokedexPokemon.Add(3, new Registro(
+            "Squirtle", 
+            3, 
+            4, 
+            5, 
+            "Agua", 
+            FabricaAtaque.GenerarAtaquesRandom("Agua")
+        ));
+    
+        PokedexPokemon.Add(4, new Registro(
+            "Pikachu", 
+            5, 
+            3, 
+            3, 
+            "Eléctrico", 
+            FabricaAtaque.GenerarAtaquesRandom("Eléctrico")
+        ));
+    
+        PokedexPokemon.Add(5, new Registro(
+            "Jigglypuff", 
+            2, 
+            5, 
+            2, 
+            "Normal", 
+            FabricaAtaque.GenerarAtaquesRandom("Normal")
+        ));
+    
+        PokedexPokemon.Add(6, new Registro(
+            "Geodude", 
+            4, 
+            5, 
+            5, 
+            "Roca", 
+            FabricaAtaque.GenerarAtaquesRandom("Roca")
+        ));
+    
+        PokedexPokemon.Add(7, new Registro(
+            "Gastly", 
+            6, 
+            2, 
+            3, 
+            "Fantasma", 
+            FabricaAtaque.GenerarAtaquesRandom("Fantasma")
+        ));
+    
+        PokedexPokemon.Add(8, new Registro(
+            "Onix", 
+            3, 
+            6, 
+            7, 
+            "Tierra", 
+            FabricaAtaque.GenerarAtaquesRandom("Tierra")
+        ));
+    
+        PokedexPokemon.Add(9, new Registro(
+            "Gengar", 
+            7, 
+            4, 
+            5, 
+            "Fantasma", 
+            FabricaAtaque.GenerarAtaquesRandom("Fantasma")
+        ));
+    
+        PokedexPokemon.Add(10, new Registro(
+            "Eevee", 
+            3, 
+            4, 
+            3, 
+            "Normal", 
+            FabricaAtaque.GenerarAtaquesRandom("Normal")
+        ));
     }
+
 
     public static List<string> DevolverNombresPokedex()
     {
