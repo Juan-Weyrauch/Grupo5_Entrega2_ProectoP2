@@ -8,7 +8,7 @@ public static class FabricaAtaque
 {
     private static Dictionary<int, IAtaque> ataquesDiccionario = new();
 
-    public static void Executar()
+    public static void Ejecutar()
     {
         List<(string, int, int, string, int)> ataquesPokemon = new List<(string, int, int, string, int)>
         {

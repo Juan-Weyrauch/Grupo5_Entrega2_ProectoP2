@@ -33,14 +33,18 @@ public static class ImpresoraDeTexto
     }
 
     /// <summary>
-    /// 
+    ///  Imprmir cuando se termina el juego con el ganador
     /// </summary>
-    public static void FinDelJuego() // Imprmir cuando se termina el juego
+    public static void FinDelJuego(string nombreJugador) //
     {
         Console.Clear();
-        Console.WriteLine("╔══════════════════════════╗");
-        Console.WriteLine("║  El juego ha terminado!  ║");
-        Console.WriteLine("╚══════════════════════════╝");
+        Console.WriteLine("╔═════════════════════════════╗");
+        Console.WriteLine("║    El juego ha terminado!   ║");
+        Console.WriteLine("╚═════════════════════════════╝");
+        
+        Console.WriteLine("╔═════════════════════════════╗");
+        Console.WriteLine($"║  El ganador es {nombreJugador}!  ║");
+        Console.WriteLine("╚═════════════════════════════╝");
     }
 
     /// <summary>
@@ -120,16 +124,14 @@ public static class ImpresoraDeTexto
     }
     
     /// <summary>
-    /// 
+    /// Muestra en consola el equipo actual del Jugador
     /// </summary>
     /// <param name="Equipo"></param>
-    public static void EligePokemonInicial(List<IPokemon> Equipo)
+    public static void ImprimirEquipo(List<IPokemon> Equipo)
     {
         for (int i = 0; i < Equipo.Count; i++)
         {
-            
             Console.WriteLine($"{i}) {Equipo[i].Name}");
-            
         }
     }
 
@@ -188,15 +190,23 @@ public static class ImpresoraDeTexto
         
     }
 
-    public static void TurnoJugador( string jugador)
+    /// <summary>
+    /// Devuelve la eleccion del jugador como cadena de texto.
+    /// </summary>
+    /// <param name="jugador"></param>
+    /// <returns></returns>
+    public static string? TurnoJugador( string jugador)
     {
         Console.WriteLine($"Es el turno del jugador {jugador}\n" +
-                          $"A) Atacar" +
-                          $"B) Cambiar Pokemon" +
-                          $"C) Usar Item");
+                          $"Selecciona lo que desees hacer" + 
+                          $"A) Atacar \n" +
+                          $"B) Cambiar Pokemon \n" +
+                          $"C) Usar Item \n");
+        string cadena = Console.ReadLine().ToUpper();
+        return cadena;
     }
 
-    public static void ImprimirInventario(List<IItem> items)
+    public static void ImprimirItems(List<IItem> items)
     {
         // Verifica si la lista de items no está vacía
         if (items.Count > 0)

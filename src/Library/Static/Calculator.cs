@@ -2,6 +2,12 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Library.Static;
 using ClassLibrary;
+
+/// <summary>
+/// El objetivo de esta calse es realizar cualquier tipo de calculo y devolver el valor adecuado.
+/// Esto nos sirve para simplificar la lectura del codigo, ya sea de la calse Combate o Fachada,
+/// que son las clases que mas se fenefician de Calculator. 
+/// </summary>
 public static class Calculator
 {
     public static int GetValidatedNumber(int min, int max, int PokemonValue)
@@ -31,7 +37,7 @@ public static class Calculator
        
     
     /// <summary>
-    /// 
+    /// Valida que los jugadores aun tengan pokemones vivios para seguir jugando
     /// </summary>
     /// <param name="jugador1"></param>
     /// <param name="jugador2"></param>
@@ -45,11 +51,39 @@ public static class Calculator
         else{ return false; }
     }
 
-    public static int CalcularDañoporTipo(IPokemon PokemonActual, IPokemon PokemonRival, IAtaque AtaqueActual)
+    public static int IndividualcombatValidation(List<IPokemon> jugador)
     {
-        int DañoCalculado = PokemonActual.Damage + AtaqueActual.Poder - PokemonRival.Defense;
-        double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(AtaqueActual.Tipo,PokemonRival.Tipo) * DañoCalculado;
+        if (jugador.Count == 0){ return 0; }
+        else { return 1; }
+    }
+
+    /// <summary>
+    /// Calcula el daño total de un ataque. 
+    /// </summary>
+    /// <param name="pokemonActual"></param>
+    /// <param name="pokemonRival"></param>
+    /// <param name="ataqueActual"></param>
+    /// <returns></returns>
+    public static int CalcularDañoporTipo(IPokemon pokemonActual, IPokemon pokemonRival, IAtaque ataqueActual)
+    {
+        int dañoCalculado = pokemonActual.Damage + ataqueActual.Poder - pokemonRival.Defense;
+        double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(ataqueActual.Tipo,pokemonRival.Tipo) * dañoCalculado;
         int valorfinal = (int)Math.Round(valorSinRedondear);
         return valorfinal;
     }
+    
+    /// <summary>
+    /// Calcula y devuelve si el pokeom aun sigue con vida.
+    /// </summary>
+    /// <param name="pokemonActual"></param>
+    /// <returns></returns>
+    public static int CheckVida(int vidaDelPokemon, IPokemon pokemonActual)
+    {
+        if (vidaDelPokemon == 0)
+        {
+            return 0;
+        }
+        return 0;
+    }
+    
 }

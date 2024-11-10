@@ -22,7 +22,7 @@ namespace ClassLibrary
                     if (inicial == 1)
                     {
                         TablaDeTipos.CrearTabla();
-                        FabricaAtaque.Executar();
+                        FabricaAtaque.Ejecutar();
                         // Carga todos los Pokémon disponibles y crea dos jugadores.
                         FabricaPokemon.CargarPokemons();
                         List<IPlayer> players = new List<IPlayer>
@@ -31,7 +31,7 @@ namespace ClassLibrary
                             CrearJugador(2)
                         };
                         
-                        Combate.Combatir(players[0],players[1]);
+                        Combate.DeterminarTurno(players[0],players[1]);
                     }
                     else if (inicial == 2)
                     {
@@ -98,7 +98,7 @@ namespace ClassLibrary
 
             List<IPokemon> pokemonsCreados = FabricaPokemon.InstanciarPokes(valuesForPokemons);
             ImpresoraDeTexto.ImprimirEquipoDelJugador(pokemonsCreados);
-            Console.WriteLine(pokemonsCreados.Count);
+            
             int eleccion;
             while (true)
             {
