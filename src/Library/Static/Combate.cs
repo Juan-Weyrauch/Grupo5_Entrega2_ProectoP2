@@ -49,7 +49,7 @@ public static class Combate
     }
 
     /// <summary>
-    /// 
+    /// Verifica el estado del pokemon y da la opcion a elegir otro en caso de estar muerto
     /// </summary>
     /// <param name="jugadorActual"></param>
     /// <param name="jugadorRival"></param>
@@ -94,16 +94,78 @@ public static class Combate
             }
 
             //Continua el juego con normalidad
-            string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name);
-            Combate.InicarAccion(seleccion);
+            
+            Combate.InicarAccion(jugadorActual, jugadorRival);
         }
     }
-
-    private static void InicarAccion(string seleccion)
-    {
+    
+    //debe recibir la seleccion del jugador y al jugador con sus pokemons, eso incluye
+    //al pokemon seleccionado
+    private static void InicarAccion(IPlayer jugadorActual, IPlayer jugadorRival)
+    { 
+        //pregunta al usuario su movimiento siguiente
+        string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name);
+        
+        // A = Atacar, B = Cambiar, C = Usar Item
         if (seleccion == "A")
         {
+            Console.WriteLine("Con que deseas atacar?");
             
+            ImpresoraDeTexto.MostrarAtaques(jugadorActual);
+            int ataqueSeleccionado = Convert.ToInt16(Console.ReadLine());
+            ataqueSeleccionado = Calculator.ValidAtackSelection(ataqueSeleccionado, jugadorActual.SelectedPokemon);
+            
+            IPokemon pokemonActualJugador = jugadorActual.SelectedPokemon;
+            IPokemon pokemonActualRival = jugadorActual.SelectedPokemon;
+            IAtaque ataquePokemon = pokemonActualJugador.Ataques[ataqueSeleccionado];
+            
+            int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon);
+            //realiza el daño deseado
+            pokemonActualRival.DecreaseHealth(damage);
+            if (pokemonActualRival.Health == 0)
+            {
+                ImpresoraDeTexto.MuerteDelPokemon(pokemonActualRival);
+                jugadorRival.Equipo.Remove(pokemonActualRival);
+            }
+            //regresa a calcular el turno
         }
+        
+        //B = Cambiar de Pokemon
+        else if (seleccion == "B")
+        {
+            Console.WriteLine("A que pokemon deseas cambiar?");
+            ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
+            int pokemonSeleccionado = Convert.ToInt16(Console.ReadLine());
+            //actualiza el pokemonn seleccionado
+            jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
+            //vuelve a preguntarle que quiere hacer
+            seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name);
+            Combate.InicarAccion(jugadorActual, jugadorRival);
+        }
+        
+        //C = Usar Item
+        else if (seleccion == "C")
+        {
+            Console.WriteLine("Que item deseas usar?");
+            int inventoryStatus = ImpresoraDeTexto.ImprimirItems(jugadorActual.Inventario);
+            if (inventoryStatus == 0) // si no tiene items para usar
+            {
+                //regresa a la selccion
+                Combate.InicarAccion(jugadorActual, jugadorRival);
+            }
+            // sino, utiliza el item seleccionado
+            else if (inventoryStatus == 1)
+            {
+                //primero lee la seleccion del usuario
+                int itemSeleccionado = Convert.ToInt16(Console.ReadLine());
+                //lugo utilia el item en el pokemon seleccionado
+                jugadorActual.UsarItem(itemSeleccionado, jugadorActual.SelectedPokemon);
+            }
+        }
+        
+        //ps: dejo 'Combate.' para mejorar legibilidad
+        Combate.DeterminarTurno(jugadorActual, jugadorRival);
+        
     }
+    
 }

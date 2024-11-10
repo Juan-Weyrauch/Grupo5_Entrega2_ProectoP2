@@ -129,7 +129,7 @@ public static class ImpresoraDeTexto
     /// <param name="Equipo"></param>
     public static void ImprimirEquipo(List<IPokemon> Equipo)
     {
-        for (int i = 0; i < Equipo.Count; i++)
+        for (int i = 1; i < Equipo.Count; i++)
         {
             Console.WriteLine($"{i}) {Equipo[i].Name}");
         }
@@ -198,7 +198,7 @@ public static class ImpresoraDeTexto
     public static string? TurnoJugador( string jugador)
     {
         Console.WriteLine($"Es el turno del jugador {jugador}\n" +
-                          $"Selecciona lo que desees hacer" + 
+                          $"Selecciona lo que desees hacer\n" + 
                           $"A) Atacar \n" +
                           $"B) Cambiar Pokemon \n" +
                           $"C) Usar Item \n");
@@ -206,7 +206,7 @@ public static class ImpresoraDeTexto
         return cadena;
     }
 
-    public static void ImprimirItems(List<IItem> items)
+    public static int ImprimirItems(List<IItem> items)
     {
         // Verifica si la lista de items no está vacía
         if (items.Count > 0)
@@ -240,7 +240,31 @@ public static class ImpresoraDeTexto
         else
         {
             Console.WriteLine("El inventario está vacío.");
+            return 0;
+        }
+
+        return 1;
+    }
+
+    public static void MostrarAtaques(IPlayer jugador)
+    {
+        int index = 1;
+        IPokemon pokemon = jugador.SelectedPokemon;
+        List<IAtaque> ataques = pokemon.Ataques;
+        
+        foreach (IAtaque ataque in ataques)
+        {
+            Console.WriteLine($"{index}) {ataque.Name}");
+            index++;
         }
     }
+
+    public static void MuerteDelPokemon(IPokemon pokemon)
+    {
+        Console.WriteLine("╔════════════════════════════════════════════╗");
+        Console.WriteLine($"║ El pokemon {pokemon.Name} ha sido eliminado. ║");
+        Console.WriteLine("╚════════════════════════════════════════════╝");
+    }
+    
 
 }

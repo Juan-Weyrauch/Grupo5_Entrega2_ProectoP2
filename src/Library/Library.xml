@@ -42,9 +42,9 @@
             
             </summary>
         </member>
-        <member name="M:ClassLibrary.ImpresoraDeTexto.FinDelJuego">
+        <member name="M:ClassLibrary.ImpresoraDeTexto.FinDelJuego(System.String)">
             <summary>
-            
+             Imprmir cuando se termina el juego con el ganador
             </summary>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.PlayerName(System.Int32)">
@@ -75,9 +75,9 @@
             </summary>
             <param name="jugador"></param>
         </member>
-        <member name="M:ClassLibrary.ImpresoraDeTexto.EligePokemonInicial(System.Collections.Generic.List{ClassLibrary.IPokemon})">
+        <member name="M:ClassLibrary.ImpresoraDeTexto.ImprimirEquipo(System.Collections.Generic.List{ClassLibrary.IPokemon})">
             <summary>
-            
+            Muestra en consola el equipo actual del Jugador
             </summary>
             <param name="Equipo"></param>
         </member>
@@ -93,13 +93,55 @@
             </summary>
             <param name="argument"></param>
         </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.TurnoJugador(System.String)">
+            <summary>
+            Devuelve la eleccion del jugador como cadena de texto.
+            </summary>
+            <param name="jugador"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Static.Calculator">
+            <summary>
+            El objetivo de esta calse es realizar cualquier tipo de calculo y devolver el valor adecuado.
+            Esto nos sirve para simplificar la lectura del codigo, ya sea de la calse Combate o Fachada,
+            que son las clases que mas se fenefician de Calculator. 
+            </summary>
+        </member>
         <member name="M:Library.Static.Calculator.CombatValidation(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
             <summary>
-            
+            Valida que los jugadores aun tengan pokemones vivios para seguir jugando
             </summary>
             <param name="jugador1"></param>
             <param name="jugador2"></param>
             <returns>boolean</returns>
+        </member>
+        <member name="M:Library.Static.Calculator.CalcularDañoPorTipo(ClassLibrary.IPokemon,ClassLibrary.IPokemon,ClassLibrary.IAtaque)">
+            <summary>
+            Calcula el daño total de un ataque. 
+            </summary>
+            <param name="pokemonActual"></param>
+            <param name="pokemonRival"></param>
+            <param name="ataqueActual"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Static.Calculator.CheckVida(System.Int32,ClassLibrary.IPokemon)">
+            <summary>
+            Calcula y devuelve si el pokeom aun sigue con vida.
+            </summary>
+            <param name="pokemonActual"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Combate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Combate.Combatir(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
+            <summary>
+            Verifica el estado del pokemon y da la opcion a elegir otro en caso de estar muerto
+            </summary>
+            <param name="jugadorActual"></param>
+            <param name="jugadorRival"></param>
         </member>
     </members>
 </doc>
