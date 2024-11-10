@@ -78,7 +78,7 @@ public static class Combate
                     if (int.TryParse(Console.ReadLine(), out pokemonSeleccionado) &&
                         pokemonSeleccionado >= 0 && pokemonSeleccionado < jugadorActual.Equipo.Count &&
                         jugadorActual.Equipo[pokemonSeleccionado].Health > 0
-                        && estadoDelPokemon)
+                        && estadoDelPokemon == 0)
                     {
                         jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
                         break;
