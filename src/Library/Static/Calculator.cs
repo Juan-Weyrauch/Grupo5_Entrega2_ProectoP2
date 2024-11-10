@@ -66,7 +66,7 @@ public static class Calculator
     /// <returns></returns>
     public static int CalcularDañoPorTipo(IPokemon pokemonActual, IPokemon pokemonRival, IAtaque ataqueActual)
     {
-        int dañoCalculado = pokemonActual.Damage + ataqueActual.Poder - pokemonRival.Defense;
+        int dañoCalculado = (pokemonActual.Damage + ataqueActual.Poder - pokemonRival.Defense)/2;
         double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(ataqueActual.Tipo,pokemonRival.Tipo) * dañoCalculado;
         int valorfinal = (int)Math.Round(valorSinRedondear);
         return valorfinal;

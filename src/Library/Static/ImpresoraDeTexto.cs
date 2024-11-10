@@ -195,9 +195,10 @@ public static class ImpresoraDeTexto
     /// </summary>
     /// <param name="jugador"></param>
     /// <returns></returns>
-    public static string? TurnoJugador( string jugador)
+    public static string? TurnoJugador( string jugador, string pokemon, int health, int intialhealth)
     {
-        Console.WriteLine($"Es el turno del jugador {jugador}\n" +
+        
+        Console.WriteLine($"Es el turno del jugador {jugador }\n" + $"Tu pokemon {pokemon} {health} / {intialhealth}."+
                           $"Selecciona lo que desees hacer\n" + 
                           $"A) Atacar \n" +
                           $"B) Cambiar Pokemon \n" +

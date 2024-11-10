@@ -11,7 +11,7 @@ public class Registro: IRegistroPokemon
     
     // dic<ataques> moveset { get; set; }
 
-    public Registro(string name, int damage, int health, int defense,string tipo, List<IAtaque>  ataques)
+    public Registro(string name, int damage,int defense ,int health ,string tipo, List<IAtaque>  ataques)
     {
         Name = name;
         Defense = defense;
@@ -25,7 +25,7 @@ public class Registro: IRegistroPokemon
 
     public IPokemon CrearPokemon()
     {
-        return new Pokemon(this.Name, this.Damage, this.Health, this.Defense, this.Tipo, this.Ataques);
+        return new Pokemon(this.Name, this.Damage,this.Defense, this.Health,  this.Tipo, this.Ataques);
     }
     // public DevolverMoves();
 

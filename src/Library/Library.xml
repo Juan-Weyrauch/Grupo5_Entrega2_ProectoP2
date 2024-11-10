@@ -93,7 +93,7 @@
             </summary>
             <param name="argument"></param>
         </member>
-        <member name="M:ClassLibrary.ImpresoraDeTexto.TurnoJugador(System.String)">
+        <member name="M:ClassLibrary.ImpresoraDeTexto.TurnoJugador(System.String,System.String,System.Int32,System.Int32)">
             <summary>
             Devuelve la eleccion del jugador como cadena de texto.
             </summary>
@@ -131,17 +131,13 @@
             <param name="pokemonActual"></param>
             <returns></returns>
         </member>
-        <member name="T:Library.Combate">
+        <member name="M:Library.Combate.EfectuarAtaqueEspecial(ClassLibrary.IPlayer,ClassLibrary.IPlayer,ClassLibrary.IAtaque)">
             <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Library.Combate.Combatir(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
-            <summary>
-            Verifica el estado del pokemon y da la opcion a elegir otro en caso de estar muerto
+            Este método setea el estado del Pokémon rival solamente si el ataque utilizado es 'especial'
             </summary>
             <param name="jugadorActual"></param>
             <param name="jugadorRival"></param>
+            <param name="ataque"></param>
         </member>
     </members>
 </doc>
