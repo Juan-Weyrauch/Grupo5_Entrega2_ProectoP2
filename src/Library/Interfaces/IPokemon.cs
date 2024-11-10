@@ -8,8 +8,11 @@ public interface IPokemon
     int Health { get;  }
     int Estado { get; } // 0  es normal, 1 quemado, 2 envenanado, 3 paralizar, 4 Dormido  
     string Tipo { get; }
+    int ContadorEspecial { get; set; }
     int InicialHealth { get; }
     public List<IAtaque> Ataques { get;  }
+    void DecrementarContadorEspecial();
+
 
 
 
@@ -17,4 +20,5 @@ public interface IPokemon
     // void Accept(IVisitor visitor);
     void Curar(int cantidad);
     void EliminarEfectosDeEstado();
+    public void CambiarEstado(int estado);
 }

@@ -64,7 +64,7 @@ public static class Calculator
     /// <param name="pokemonRival"></param>
     /// <param name="ataqueActual"></param>
     /// <returns></returns>
-    public static int CalcularDañoPorTipo(IPokemon pokemonActual, IPokemon pokemonRival, IAtaque ataqueActual)
+    public static int CalcularDañoPorTipo(IPokemon pokemonActual, IPokemon pokemonRival, IAtaque ataqueActual, int estado)
     {
         int dañoCalculado = pokemonActual.Damage + ataqueActual.Poder - pokemonRival.Defense;
         double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(ataqueActual.Tipo,pokemonRival.Tipo) * dañoCalculado;
@@ -109,7 +109,21 @@ public static class Calculator
                 Console.WriteLine("Entrada no válida. Por favor, ingrese un número.");
             }
         }
+        
         return ataque;
+    }
+
+    public static int ChequearEstado(IPokemon pokemon)
+    {
+        int estado = pokemon.Estado;
+        if (estado == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
     }
 
 }

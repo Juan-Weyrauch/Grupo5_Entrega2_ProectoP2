@@ -15,94 +15,96 @@ public static class FabricaPokemon
     {
         PokedexPokemon.Add(1, new Registro(
             "Bulbasaur", 
-            3, 
-            3, 
+            15, 
+            100, 
             4, 
             "Planta", 
             FabricaAtaque.GenerarAtaquesRandom("Planta")
         ));
-    
+
         PokedexPokemon.Add(2, new Registro(
             "Charmander", 
-            4, 
-            3, 
+            20, 
+            100, 
             3, 
             "Fuego", 
             FabricaAtaque.GenerarAtaquesRandom("Fuego")
         ));
-    
+
         PokedexPokemon.Add(3, new Registro(
             "Squirtle", 
-            3, 
-            4, 
+            10, 
+            100, 
             5, 
             "Agua", 
             FabricaAtaque.GenerarAtaquesRandom("Agua")
         ));
-    
+
         PokedexPokemon.Add(4, new Registro(
             "Pikachu", 
-            5, 
-            3, 
+            18, 
+            100, 
             3, 
             "Eléctrico", 
             FabricaAtaque.GenerarAtaquesRandom("Eléctrico")
         ));
-    
+
         PokedexPokemon.Add(5, new Registro(
             "Jigglypuff", 
-            2, 
-            5, 
+            8, 
+            100, 
             2, 
             "Normal", 
             FabricaAtaque.GenerarAtaquesRandom("Normal")
         ));
-    
+
         PokedexPokemon.Add(6, new Registro(
             "Geodude", 
-            4, 
-            5, 
+            22, 
+            100, 
             5, 
             "Roca", 
             FabricaAtaque.GenerarAtaquesRandom("Roca")
         ));
-    
+
         PokedexPokemon.Add(7, new Registro(
             "Gastly", 
-            6, 
-            2, 
+            14, 
+            100, 
             3, 
             "Fantasma", 
             FabricaAtaque.GenerarAtaquesRandom("Fantasma")
         ));
-    
+
         PokedexPokemon.Add(8, new Registro(
             "Onix", 
-            3, 
-            6, 
+            25, 
+            100, 
             7, 
             "Tierra", 
             FabricaAtaque.GenerarAtaquesRandom("Tierra")
         ));
-    
+
         PokedexPokemon.Add(9, new Registro(
             "Gengar", 
-            7, 
-            4, 
+            23, 
+            100, 
             5, 
             "Fantasma", 
             FabricaAtaque.GenerarAtaquesRandom("Fantasma")
         ));
-    
+
         PokedexPokemon.Add(10, new Registro(
             "Eevee", 
-            3, 
-            4, 
+            12, 
+            100, 
             3, 
             "Normal", 
             FabricaAtaque.GenerarAtaquesRandom("Normal")
         ));
     }
+
+
 
 
     public static List<string> DevolverNombresPokedex()

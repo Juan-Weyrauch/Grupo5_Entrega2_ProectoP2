@@ -14,8 +14,8 @@ public static class FabricaAtaque
         {
             ("Placaje", 40, 100, "Normal", 0),
             ("Latigo Cepa", 45, 100, "Planta", 0),
-            ("Lanzallamas", 90, 100, "Fuego", 1), // Puede causar quemadura
-            ("Rayo", 90, 100, "Electrico", 3), // Puede paralizar
+            ("Lanzallamas (Especial Quemadura)", 90, 100, "Fuego", 1), // Puede causar quemadura
+            ("Rayo (Especial Paraliza)", 90, 100, "Electrico", 3), // Puede paralizar
             ("Pistola de Agua", 40, 100, "Agua", 0),
             ("Terremoto", 100, 100, "Tierra", 0),
             ("Hiperrayo", 150, 90, "Normal", 0),
@@ -26,8 +26,8 @@ public static class FabricaAtaque
             ("Garra Dragon", 80, 100, "Dragon", 0),
             ("Cola de Hierro", 100, 75, "Acero", 0),
             ("Tormenta de Hielo", 110, 70, "Hielo", 0),
-            ("Bomba Lodo", 90, 100, "Veneno", 2), // Puede envenenar
-            ("Trueno", 110, 70, "Electrico", 3), // Puede paralizar
+            ("Bomba Lodo (Especial Veneno)", 90, 100, "Veneno", 2), // Puede envenenar
+            ("Trueno (Especial Paraliza)", 110, 70, "Electrico", 3), // Puede paralizar
             ("Rayo Solar", 120, 100, "Planta", 0),
             ("Cargallamas", 50, 100, "Fuego", 0),
             ("Cola Aqua", 90, 90, "Agua", 0),
@@ -40,17 +40,17 @@ public static class FabricaAtaque
             ("Patada Baja", 60, 100, "Lucha", 0),
             ("Esfera Aura", 80, 100, "Lucha", 0),
             ("Golpes Furiosos", 18, 80, "Normal", 0),
-            ("Zumbido", 90, 100, "Bicho", 4), // Puede dormir
+            ("Zumbido (Especial Dormir)", 90, 100, "Bicho", 4), // Puede dormir
             ("Hoja Afilada", 55, 95, "Planta", 0),
             ("Puño Hielo", 75, 100, "Hielo", 0),
             ("Puño Fuego", 75, 100, "Fuego", 0),
-            ("Puño Trueno", 75, 100, "Electrico", 3), // Puede paralizar
+            ("Puño Trueno (Especial Paraliza)", 75, 100, "Electrico", 3), // Puede paralizar
             ("Tormenta Floral", 130, 90, "Planta", 0),
             ("Carga Salvaje", 90, 100, "Electrico", 0),
             ("Impacto Gigante", 150, 90, "Normal", 0),
             ("Combate Cercano", 120, 100, "Lucha", 0),
             ("Cabezazo Zen", 80, 90, "Psiquico", 0),
-            ("Puya Nociva", 80, 100, "Veneno", 2), // Puede envenenar
+            ("Puya Nociva (Especial Veneno)", 80, 100, "Veneno", 2), // Puede envenenar
             ("Erupcion de Vapor", 110, 95, "Agua", 0),
             ("Pulso Draco", 85, 100, "Dragon", 0),
             ("Bomba Destrozadora", 80, 100, "Hielo", 0),
@@ -90,7 +90,7 @@ public static class FabricaAtaque
             ("Tormenta Hoja", 130, 90, "Planta", 0),
             ("Colmillo Psiquico", 85, 100, "Psiquico", 0),
             ("Terror Nocturno", 85, 95, "Oscuro", 0),
-            ("Disparo Toxico", 120, 80, "Veneno", 2) // Puede envenenar
+            ("Disparo Toxico (Especial Veneno)", 120, 80, "Veneno", 2) // Puede envenenar
         };
         for (int i = 1; i < ataquesPokemon.Count; i++)
         {

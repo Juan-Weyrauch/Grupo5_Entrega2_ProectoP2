@@ -15,31 +15,20 @@ public static class Combate
     public static IPokemon _pokemonActual;
     public static IPokemon _pokemonRival;
 
-    public static void Recibir(IPokemon pokemon, int damage)
-    {
-        pokemon.DecreaseHealth(damage);
-    }
-
-    public static void DeterminarTurno(IPlayer Jugador1, IPlayer Jugador2)
+    public static void DeterminarTurno(IPlayer jugador1, IPlayer jugador2)
     {
         int turno = 0;
-
-        while (Calculator.CombatValidation(Jugador1, Jugador2))
+        while (Calculator.CombatValidation(jugador1, jugador2))
         {
             if (turno % 2 == 0) // Sistema sencillo que permite detectar cuando es el turno de cada jugador.
             {
-                _jugadorActual = Jugador1;
-                _jugadorRival = Jugador2;
+                _jugadorActual = jugador1;
+                _jugadorRival = jugador2;
             }
             else
             {
-                _jugadorActual = Jugador2;
-                _jugadorRival = Jugador1;
-            }
-
-            if (turno < 2)
-            {
-                ImpresoraDeTexto.MostrarPokemons(_jugadorActual);
+                _jugadorActual = jugador2;
+                _jugadorRival = jugador1;
             }
 
             Combatir(_jugadorActual, _jugadorRival);
@@ -55,8 +44,10 @@ public static class Combate
     /// <param name="jugadorRival"></param>
     private static void Combatir(IPlayer jugadorActual, IPlayer jugadorRival)
     {
+        int contadorEAtaquesEspeciales;
         IPokemon pokemonActual = jugadorActual.SelectedPokemon;
         IPokemon pokemonRival = jugadorRival.SelectedPokemon;
+        int estadoDelPokemon = Calculator.ChequearEstado(pokemonActual);
 
         // Chequeo si aun tiene pokemons
         int estadoDelEquipo = Calculator.IndividualcombatValidation(jugadorActual.Equipo);
@@ -66,21 +57,28 @@ public static class Combate
             ImpresoraDeTexto.FinDelJuego(jugadorRival.Name);
         }
         else if
-            (pokemonActual.Health > 0 ||
-             estadoDelEquipo > 0) // Si tiene salud o hay otros Pokémon en el equipo, continúa el juego.
+            
+            ((pokemonActual.Health > 0 ||   // Si tiene salud 
+             estadoDelEquipo > 0)           // o hay otros Pokémon en el equipo
+             && estadoDelPokemon == 0) // y el estado es normal
+            // Continúa el juego.
         {
+            
             if (pokemonActual.Health == 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
             {
                 Console.WriteLine($"Tu Pokémon {pokemonActual.Name} ha sido derrotado.");
                 Console.WriteLine("Debes seleccionar otro Pokémon: ");
                 ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
-                int pokemonSeleccionado;
+                
 
                 while (true)
                 {
+                    
+                    Console.WriteLine("Por favor seleccione una pokemon: ");
                     if (int.TryParse(Console.ReadLine(), out pokemonSeleccionado) &&
                         pokemonSeleccionado >= 0 && pokemonSeleccionado < jugadorActual.Equipo.Count &&
-                        jugadorActual.Equipo[pokemonSeleccionado].Health > 0)
+                        jugadorActual.Equipo[pokemonSeleccionado].Health > 0
+                        && estadoDelPokemon)
                     {
                         jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
                         break;
@@ -92,9 +90,14 @@ public static class Combate
                     }
                 }
             }
+            else if (estadoDelPokemon != 0)
+            {
+                
+            }
 
             //Continua el juego con normalidad
-            
+            //TODO
+            //!!!Debe chequear el estado del pokemon y mostrarlo antes de darle las opciones
             Combate.InicarAccion(jugadorActual, jugadorRival);
         }
     }
@@ -102,7 +105,10 @@ public static class Combate
     //debe recibir la seleccion del jugador y al jugador con sus pokemons, eso incluye
     //al pokemon seleccionado
     private static void InicarAccion(IPlayer jugadorActual, IPlayer jugadorRival)
-    { 
+    {
+        int contadorAtaquesEspeciales;
+        IPokemon pokemonActualJugador = jugadorActual.SelectedPokemon;
+        IPokemon pokemonActualRival = jugadorActual.SelectedPokemon;
         //pregunta al usuario su movimiento siguiente
         string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name);
         
@@ -113,24 +119,36 @@ public static class Combate
             
             ImpresoraDeTexto.MostrarAtaques(jugadorActual);
             int ataqueSeleccionado = Convert.ToInt16(Console.ReadLine());
+            //Validar que sea posible seleccionar ese ataque
             ataqueSeleccionado = Calculator.ValidAtackSelection(ataqueSeleccionado, jugadorActual.SelectedPokemon);
+            //Validar que el ataque, de ser especial, este disponible
             
-            IPokemon pokemonActualJugador = jugadorActual.SelectedPokemon;
-            IPokemon pokemonActualRival = jugadorActual.SelectedPokemon;
             IAtaque ataquePokemon = pokemonActualJugador.Ataques[ataqueSeleccionado];
             
-            int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon);
-            //realiza el daño deseado
-            pokemonActualRival.DecreaseHealth(damage);
-            if (pokemonActualRival.Health == 0)
+            //si no es especial ataca directamente
+            if (ataquePokemon.Especial == 0)
             {
-                ImpresoraDeTexto.MuerteDelPokemon(pokemonActualRival);
-                jugadorRival.EliminarPokemon(pokemonActualRival);
+                int estado = 0;
+                int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon, estado);
+                //realiza el daño deseado
+                pokemonActualRival.DecreaseHealth(damage);
+                if (pokemonActualRival.Health == 0)
+                {
+                    ImpresoraDeTexto.MuerteDelPokemon(pokemonActualRival);
+                    jugadorRival.EliminarPokemon(pokemonActualRival);
+                }
+            }
+            //sino, efectua el ataque especial
+            else
+            {
+                Combate.EfectuarAtaqueEspecial(jugadorActual, jugadorRival, ataquePokemon);
+                int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon, estado);
+
             }
             //regresa a calcular el turno
         }
         
-        //B = Cambiar de Pokemon
+        //B = Cambiar de Pokemon !!!Debe chequear el estado del pokemon antes de atacar
         else if (seleccion == "B")
         {
             Console.WriteLine("A que pokemon deseas cambiar?");
@@ -166,6 +184,66 @@ public static class Combate
         //ps: dejo 'Combate.' para mejorar legibilidad
         Combate.DeterminarTurno(jugadorActual, jugadorRival);
         
+    }
+
+    /// <summary>
+    /// Este metodo setea el estado del pokemon rival solamente si el ataque utilizado es 'especial'
+    /// </summary>
+    /// <param name="jugadorActual"></param>
+    /// <param name="jugadorRival"></param>
+    /// <param name="ataque"></param>
+    private static void EfectuarAtaqueEspecial(IPlayer jugadorActual, IPlayer jugadorRival, IAtaque ataque)
+    {
+        // 1 = Quemar, 2 = Envenenar, 3 = Paralizar, 4 = Dormir
+        IAtaque ataqueActual = ataque;
+        int tipo = ataqueActual.Especial;
+        //determinar el random
+        Random rnd = new Random();
+        int randomTiming = rnd.Next(1, 10);
+        
+        if (tipo == 1)
+        {
+            //ataca con veneno (pierde 10% de hp en cada turno)
+            int damage = (int)Math.Round(_pokemonRival.Health * 0.90);
+            _pokemonRival.DecreaseHealth(damage);
+        }
+        else if (tipo == 2)
+        {
+            //ataca con veneno (pierde 5% de hp en cada turno)
+            int damage = (int)Math.Round(_pokemonRival.Health * 0.95);
+            _pokemonRival.DecreaseHealth(damage);
+            
+        }
+        else if (tipo == 3)
+        {
+            //paraliza al enemigo (puede atacar o no aleatorio)
+            if (randomTiming == 3 || randomTiming == 7)
+            {
+                _pokemonRival.CambiarEstado(0);
+            }
+            else
+            {
+                Console.WriteLine("El pokemon ha sido paralizado");
+                _pokemonRival.CambiarEstado(3);
+            }
+            
+        }
+        else if (tipo == 4)
+        {
+            //duerme al enemigo (entre 1 y 4 turnos) 
+            randomTiming = rnd.Next(1, 4);
+            if (randomTiming == 2 || randomTiming == 4)
+            {
+                Console.WriteLine($"El pokemon {_pokemonRival.Name} esta despierto!");
+                _pokemonRival.CambiarEstado(0);
+            }
+            else
+            {
+                Console.WriteLine($"El pokemon {_pokemonRival.Name} esta dormido!");
+                _pokemonRival.CambiarEstado(4);
+            }
+            
+        }
     }
     
 }

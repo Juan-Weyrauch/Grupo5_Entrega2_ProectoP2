@@ -10,6 +10,7 @@ public class Pokemon : IPokemon
     public int InicialHealth { get; private set; }
     public List<IAtaque> Ataques { get; private set; }
     public string Tipo { get; private set; }
+    public int ContadorEspecial { get; set; }
 
    
     
@@ -23,6 +24,7 @@ public class Pokemon : IPokemon
         Ataques = ataques;
         InicialHealth = health;
         Estado = 0; // Por defecto el Estado es normal.
+        ContadorEspecial = 2;
     }
     public void DecreaseHealth(int valueAfterCalculation) // Resta de vida despues del calculo de daño. 
     {
@@ -36,5 +38,15 @@ public class Pokemon : IPokemon
     public void EliminarEfectosDeEstado()
     {
         Estado = 0;
+    }
+
+    public void DecrementarContadorEspecial()
+    {
+        ContadorEspecial--;
+    }
+
+    public void CambiarEstado(int estado)
+    {
+        Estado = estado;
     }
 }
