@@ -272,4 +272,11 @@ public static class ImpresoraDeTexto
         Console.WriteLine(
             $"El pokemon {pokemonActual} fue Atacado por {PokemonRival} con {AtaqueNombre}");
     }
-}
+
+    public static void CambiarPokemon(string pokemonActual, string pokemonPosterior)
+    {
+        Console.WriteLine($"El pokemon {pokemonActual} ha sido cambiado por {pokemonPosterior}!!!");
+        
+    }
+    
+    }

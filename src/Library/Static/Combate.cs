@@ -42,6 +42,8 @@ namespace Library
             int contadorEAtaquesEspeciales;
             IPokemon pokemonActual = jugadorActual.SelectedPokemon;
             IPokemon pokemonRival = jugadorRival.SelectedPokemon;
+            _pokemonActual = jugadorActual.SelectedPokemon;
+            _pokemonRival = jugadorRival.SelectedPokemon;
             int estadoDelPokemon = Calculator.ChequearEstado(pokemonActual);
 
             // Chequeo si aun tiene pokemons
@@ -88,6 +90,7 @@ namespace Library
             IPokemon pokemonActualRival = jugadorRival.SelectedPokemon;
 
             // Solicita al jugador su movimiento
+            // Esto permite imprimir que pokemon tiene el jugador ahora mismo.
             string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name,pokemonActualJugador.Name,pokemonActualJugador.Health,pokemonActualJugador.InicialHealth);
 
             // A = Atacar, B = Cambiar Pokémon, C = Usar Item
@@ -128,9 +131,11 @@ namespace Library
                 Console.WriteLine("¿A qué Pokémon deseas cambiar?");
                 ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
                 int pokemonSeleccionado = Convert.ToInt16(Console.ReadLine());
-
+                // Imprime el pokemon  a que ha sido cambiado el juego:
+                
                 // Actualiza el Pokémon seleccionado
                 jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
+                ImpresoraDeTexto.CambiarPokemon(pokemonActualJugador.Name, jugadorActual.SelectedPokemon.Name); // Hay que cambiarlo por un visitor
             }
             // C = Usar Item
             else if (seleccion == "C")
@@ -177,7 +182,7 @@ namespace Library
             {
                 // Ataca con veneno (pierde 5% de HP en cada turno)
                 int damage = (int)Math.Round(_pokemonRival.Health * 0.95);
-                _pokemonRival.DecreaseHealth(damage);
+                _pokemonRival.DecreaseHealth(damage);   
             }
             else if (tipo == 3) // Paralizar
             {
