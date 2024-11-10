@@ -96,7 +96,7 @@ namespace Library
                 Console.WriteLine("¿Con qué deseas atacar?");
                 ImpresoraDeTexto.MostrarAtaques(jugadorActual);
 
-                int ataqueSeleccionado = Convert.ToInt16(Console.ReadLine());
+                int ataqueSeleccionado = Convert.ToInt16(Console.ReadLine()) -1 ; // Para desbugear los ataques.
 
                 // Validar que la selección de ataque sea válida
                 ataqueSeleccionado = Calculator.ValidAtackSelection(ataqueSeleccionado, jugadorActual.SelectedPokemon);
@@ -108,6 +108,8 @@ namespace Library
                 {
                     int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon);
                     pokemonActualRival.DecreaseHealth(damage);
+                    ImpresoraDeTexto.MostrarAtaques(jugadorActual);
+                    ImpresoraDeTexto.PokemonAtacado(pokemonActualRival.Name,pokemonActualJugador.Name,ataquePokemon.Name);
                     if (pokemonActualRival.Health == 0)
                     {
                         ImpresoraDeTexto.MuerteDelPokemon(pokemonActualRival);

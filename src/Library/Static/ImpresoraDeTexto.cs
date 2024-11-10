@@ -266,6 +266,10 @@ public static class ImpresoraDeTexto
         Console.WriteLine($"║ El pokemon {pokemon.Name} ha sido eliminado. ║");
         Console.WriteLine("╚════════════════════════════════════════════╝");
     }
-    
 
+    public static void PokemonAtacado(string pokemonActual, string PokemonRival, string AtaqueNombre)
+    {
+        Console.WriteLine(
+            $"El pokemon {pokemonActual} fue Atacado por {PokemonRival} con {AtaqueNombre}");
+    }
 }
