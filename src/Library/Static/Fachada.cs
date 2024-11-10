@@ -5,11 +5,13 @@ namespace ClassLibrary
 {
     /// <summary>
     /// La clase <c>Fachada</c> es el punto de entrada principal para gestionar el bucle del juego y el proceso de creación de jugadores.
+    /// Su función es coordinar las diferentes etapas del juego, como iniciar el juego, crear jugadores, y gestionar el combate.
     /// </summary>
     public static class Fachada
     {
         /// <summary>
         /// Inicia el bucle principal del juego. Pide al usuario que inicie un nuevo juego creando jugadores o que salga.
+        /// El juego sigue hasta que el usuario decida salir, eligiendo la opción para crear jugadores y jugar, o salir.
         /// </summary>
         public static void Start()
         {
@@ -52,10 +54,11 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Crea un jugador con un número especificado, solicitando su nombre y permitiéndole seleccionar Pokémon.
+        /// Crea un jugador con un número especificado, solicitando su nombre y permitiéndole seleccionar Pokémon para su equipo.
+        /// El jugador puede elegir hasta 6 Pokémon, y se le pide que seleccione un Pokémon inicial para comenzar el juego.
         /// </summary>
         /// <param name="playerNumber">El número del jugador (1 o 2) que se está creando.</param>
-        /// <returns>Un objeto <c>Player</c> que representa al jugador creado.</returns>
+        /// <returns>Un objeto <c>Player</c> que representa al jugador creado, con su nombre y equipo de Pokémon.</returns>
         public static Player CrearJugador(int playerNumber)
         {
 

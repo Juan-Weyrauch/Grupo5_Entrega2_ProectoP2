@@ -9,7 +9,8 @@ public static class FabricaPokemon
     private  static Dictionary<int, IRegistroPokemon> PokedexPokemon =  new() ;
     
     /// <summary>
-    /// Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
+    /// Carga los Pokémon en la Pokedex. Este método crea los registros de Pokémon y los almacena
+    /// en el diccionario <c>PokedexPokemon</c> utilizando el <see cref="Registro"/> y el <see cref="FabricaAtaque"/>.
     /// </summary>
     public static void CargarPokemons()// Para entender mejor leer IRegistro y Registro. 
     {
@@ -18,7 +19,11 @@ public static class FabricaPokemon
         PokedexPokemon.Add(2, new Registro("ABC", 333, 333,3,"Bicho", FabricaAtaque.GenerarAtaquesRandom("Bicho")));
         //PokedexPokemon.Add(3, new Registro());
     }
-
+    /// <summary>
+    /// Devuelve una lista de nombres de Pokémon desde la Pokedex.
+    /// Utiliza el patrón Visitor para obtener el nombre de cada Pokémon sin modificar sus clases individuales.
+    /// </summary>
+    /// <returns>Una lista de nombres de Pokémon en formato "número) nombre".</returns>
     public static List<string> DevolverNombresPokedex()
     {
         List<string> PokemonsTotales = new List<string>();
@@ -35,7 +40,12 @@ public static class FabricaPokemon
 
         return PokemonsTotales;
     }
-
+    /// <summary>
+    /// Instancia una lista de Pokémon para un jugador específico utilizando los números de la Pokedex.
+    /// Cada número de Pokémon se corresponde con un registro de la Pokedex que se instanciará como un objeto <see cref="IPokemon"/>.
+    /// </summary>
+    /// <param name="entrada">Lista de números de Pokémon seleccionados por el jugador.</param>
+    /// <returns>Lista de objetos <see cref="IPokemon"/> correspondientes a los números proporcionados.</returns>
     public static List<IPokemon> InstanciarPokes(List<int> entrada) // Tiene que llegarle los valores del player.
     {// Falta traer la info desde jugador hacia aca. 
         List<IPokemon> PokemonsTemporal  = new List<IPokemon>();
@@ -49,7 +59,10 @@ public static class FabricaPokemon
         return PokemonsTemporal;
 
     }
-    
+    /// <summary>
+    /// Devuelve el número total de Pokémon en la Pokedex.
+    /// </summary>
+    /// <returns>El número total de Pokémon en la Pokedex.</returns>
     public static int DevolverTotal()
     {
         return (PokedexPokemon.Count);

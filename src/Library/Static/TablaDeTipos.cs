@@ -4,14 +4,25 @@
 
     namespace ClassLibrary
     {
+        /// <summary>
+        /// La clase <c>TablaDeTipos</c> gestiona las relaciones de fortalezas, debilidades e inmunidades
+        /// entre los tipos de Pokémon. Su función es proporcionar los datos sobre las interacciones de los tipos
+        /// y calcular la efectividad de un ataque según el tipo del Pokémon atacado.
+        /// </summary>
+
         public class TablaDeTipos
         {
             // Diccionario que almacena las relaciones de fortalezas, debilidades e inmunidades para cada tipo
-            static private
-                Dictionary<string, (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)>
-                TablaTiposPokemon;
+            /// <summary>
+            /// Diccionario que almacena las relaciones de fortalezas, debilidades e inmunidades de cada tipo de Pokémon.
+            /// </summary>
+            static private Dictionary<string, (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)> TablaTiposPokemon;
 
             // Método para inicializar los datos de la tabla
+            /// <summary>
+            /// Inicializa el diccionario <c>TablaTiposPokemon</c> con las relaciones de fortalezas, debilidades e inmunidades
+            /// de los tipos de Pokémon.
+            /// </summary>
             public static void CrearTabla()
             {
                 // Inicializa el diccionario
@@ -110,8 +121,12 @@
             }
 
             // Método para obtener las relaciones de un tipo específico
-            public static (List<string> fortalezas, List<string> debilidades, List<string> inmunidades)
-                ObtenerRelaciones(string tipo)
+            /// <summary>
+            /// Obtiene las relaciones de un tipo específico de Pokémon, incluyendo sus fortalezas, debilidades e inmunidades.
+            /// </summary>
+            /// <param name="tipo">El tipo de Pokémon cuya relación se desea obtener.</param>
+            /// <returns>Una tupla con tres listas: fortalezas, debilidades e inmunidades del tipo.</returns>
+            public static (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) ObtenerRelaciones(string tipo)
             {
                 if (TablaTiposPokemon.ContainsKey(tipo))
                 {
@@ -123,7 +138,14 @@
                     return (new List<string>(), new List<string>(), new List<string>());
                 }
             }
-
+            /// <summary>
+            /// Calcula la efectividad de un ataque basado en las relaciones de tipos. La efectividad
+            /// se devuelve como un valor numérico: 0 para inmunidad, 0.5 para debilidad, 2 para fortaleza,
+            /// y 1 para una relación neutral.
+            /// </summary>
+            /// <param name="tipoAtaque">El tipo del ataque que se está utilizando.</param>
+            /// <param name="tipoPokemon">El tipo del Pokémon que está siendo atacado.</param>
+            /// <returns>Devuelve un valor numérico que representa la efectividad del ataque.</returns>
             public static double ObtenterRelacionMatematica(string tipoAtaque, string tipoPokemon)
             {
                 (List<string> fortalezas, List<string> debilidades, List<string> inmunidades) listaRelaciones =

@@ -4,7 +4,7 @@ using Library.Static;
 namespace Library;
 
 /// <summary>
-/// 
+/// Esta clase maneja la lógica del combate entre dos jugadores, gestionando el turno de los jugadores, la selección de Pokémon y la ejecución de ataques.
 /// </summary>
 public static class Combate
 {
@@ -15,11 +15,22 @@ public static class Combate
     public static IPokemon _pokemonActual;
     public static IPokemon _pokemonRival;
 
+    /// <summary>
+    /// Recibe el daño que un Pokémon debe restar a su salud.
+    /// </summary>
+    /// <param name="pokemon">El Pokémon al que se le aplica el daño.</param>
+    /// <param name="damage">El daño que el Pokémon recibirá.</param>
     public static void Recibir(IPokemon pokemon, int damage)
     {
         pokemon.DecreaseHealth(damage);
     }
 
+    /// <summary>
+    /// Determina el turno entre los dos jugadores y maneja la lógica del combate entre ellos.
+    /// Se alterna entre el jugador 1 y el jugador 2, realizando el combate hasta que uno de los jugadores no tenga Pokémon disponibles.
+    /// </summary>
+    /// <param name="Jugador1">El primer jugador del combate.</param>
+    /// <param name="Jugador2">El segundo jugador del combate.</param>
     public static void DeterminarTurno(IPlayer Jugador1, IPlayer Jugador2)
     {
         int turno = 0;
@@ -49,10 +60,12 @@ public static class Combate
     }
 
     /// <summary>
-    /// 
+    /// Ejecuta la lógica de combate entre los Pokémon seleccionados de los jugadores actuales.
+    /// Si un Pokémon es derrotado, se le permite al jugador seleccionar otro Pokémon si tiene disponible.
+    /// Si un jugador pierde todos sus Pokémon, termina el juego.
     /// </summary>
-    /// <param name="jugadorActual"></param>
-    /// <param name="jugadorRival"></param>
+    /// <param name="jugadorActual">El jugador cuyo Pokémon está en combate.</param>
+    /// <param name="jugadorRival">El jugador rival cuyo Pokémon está en combate.</param>
     private static void Combatir(IPlayer jugadorActual, IPlayer jugadorRival)
     {
         IPokemon pokemonActual = jugadorActual.SelectedPokemon;
@@ -65,9 +78,7 @@ public static class Combate
         {
             ImpresoraDeTexto.FinDelJuego(jugadorRival.Name);
         }
-        else if
-            (pokemonActual.Health > 0 ||
-             estadoDelEquipo > 0) // Si tiene salud o hay otros Pokémon en el equipo, continúa el juego.
+        else if (pokemonActual.Health > 0 || estadoDelEquipo > 0) // Si tiene salud o hay otros Pokémon en el equipo, continúa el juego.
         {
             if (pokemonActual.Health == 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
             {
@@ -93,17 +104,21 @@ public static class Combate
                 }
             }
 
-            //Continua el juego con normalidad
+            // Continúa el juego con normalidad
             string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name);
             Combate.InicarAccion(seleccion);
         }
     }
 
+    /// <summary>
+    /// Inicia la acción seleccionada por el jugador durante su turno.
+    /// </summary>
+    /// <param name="seleccion">La opción seleccionada por el jugador, como "A" para atacar.</param>
     private static void InicarAccion(string seleccion)
     {
         if (seleccion == "A")
         {
-            
+            // Aquí se gestionaría la acción de ataque
         }
     }
 }
