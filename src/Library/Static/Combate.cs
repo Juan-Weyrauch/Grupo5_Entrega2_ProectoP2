@@ -243,7 +243,43 @@ public static class Combate
                 _pokemonRival.CambiarEstado(4);
             }
             
+            
         }
+        /* Clase con la funcionalidad el ataque Pokemon.
+        public static void Atacar(IPokemon atacante, IPokemon defensor, IAtaque ataque)
+        {
+            // Obtener el tipo del ataque y el tipo del defensor
+            string tipoAtaque = ataque.Tipo;
+            string tipoDefensor = defensor.Tipo;
+
+            // Calcular la efectividad del ataque
+            double multiplicador = Calculator.Efectividad(tipoAtaque, tipoDefensor);
+
+            // Calcular el daño final
+            int dañoFinal = (int)Math.Round(ataque.Poder * multiplicador);
+
+            // Mostrar mensajes sobre el ataque
+            Console.WriteLine($"{atacante.Name} usa {ataque.Name} sobre {defensor.Name}.");
+            if (multiplicador == 0.0)
+            {
+                Console.WriteLine("¡No tuvo efecto!");
+            }
+            else if (multiplicador == 2.0)
+            {
+                Console.WriteLine("¡Es muy efectivo!");
+            }
+            else if (multiplicador == 0.5)
+            {
+                Console.WriteLine("No es muy efectivo...");
+            }
+
+            // Reducir la salud del defensor
+            Recibir(defensor, dañoFinal);
+            Console.WriteLine($"Recibio  {defensor.Name} recibio {dañoFinal} ahora tiene {defensor.Health} puntos de vida.");
+        }*/
+        
     }
+    
+    
     
 }
