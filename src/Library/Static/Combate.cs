@@ -180,14 +180,15 @@ namespace Library
                 int damage = (int)Math.Round(_pokemonRival.Health * 0.90);
                 
                 _pokemonRival.DecreaseHealth(damage);
-                
+                _pokemonRival.CambiarEstado(1);
             }
             else if (tipo == 2) // Envenenar
             {
                 // Ataca con veneno (pierde 5% de HP en cada turno)
                 ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,2);
                 int damage = (int)Math.Round(_pokemonRival.Health * 0.95);
-                _pokemonRival.DecreaseHealth(damage);   
+                _pokemonRival.DecreaseHealth(damage);
+                _pokemonRival.CambiarEstado(2);
             }
             else if (tipo == 3) // Paralizar
             {

@@ -7,11 +7,12 @@ public class Registro: IRegistroPokemon
     public int Health {get; private set;}
     public int Defense { get; private set; }
     public string Tipo { get; private set;}
+    public int Estado { get; private set; }
     public List<IAtaque>  Ataques {get; private set;}
     
     // dic<ataques> moveset { get; set; }
 
-    public Registro(string name, int damage,int defense ,int health ,string tipo, List<IAtaque>  ataques)
+    public Registro(string name, int damage,int defense ,int health ,string tipo, int estado, List<IAtaque>  ataques)
     {
         Name = name;
         Defense = defense;
@@ -19,8 +20,9 @@ public class Registro: IRegistroPokemon
         Health = health;
         Tipo = tipo;
         Ataques = ataques;
-        
-       // TipoPokemon = tipoPokemon; No esta creado tipo todavia
+        Estado = estado;
+
+        // TipoPokemon = tipoPokemon; No esta creado tipo todavia
     }
 
     public IPokemon CrearPokemon()
