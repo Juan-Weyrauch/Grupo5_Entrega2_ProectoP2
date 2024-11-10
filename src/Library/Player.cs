@@ -45,5 +45,10 @@ public class Player : IPlayer
         return Inventario.Count();
     }
 
+    public void EliminarPokemon(IPokemon objetivo)
+    {
+        Equipo.Remove(objetivo);
+    }
+
     
 }

@@ -125,7 +125,7 @@ public static class Combate
             if (pokemonActualRival.Health == 0)
             {
                 ImpresoraDeTexto.MuerteDelPokemon(pokemonActualRival);
-                jugadorRival.Equipo.Remove(pokemonActualRival);
+                jugadorRival.EliminarPokemon(pokemonActualRival);
             }
             //regresa a calcular el turno
         }
