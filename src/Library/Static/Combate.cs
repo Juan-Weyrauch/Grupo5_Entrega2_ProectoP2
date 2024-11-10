@@ -73,7 +73,8 @@ public static class Combate
 
                 while (true)
                 {
-                    
+                     // No sé como resolver eso gigante, avisame cuando puedas terminar esta parte porque 
+                     // Lo quiero intentar refactorizar con un visitor. 
                     Console.WriteLine("Por favor seleccione una pokemon: ");
                     if (int.TryParse(Console.ReadLine(), out pokemonSeleccionado) &&
                         pokemonSeleccionado >= 0 && pokemonSeleccionado < jugadorActual.Equipo.Count &&
@@ -128,9 +129,9 @@ public static class Combate
             //si no es especial ataca directamente
             if (ataquePokemon.Especial == 0)
             {
-                int estado = 0;
-                int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon, estado);
-                //realiza el daño deseado
+                //int estado = 0; Borre estado de CalcularDañoPorTipo, estaba mal el parametro.
+                int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon);
+                
                 pokemonActualRival.DecreaseHealth(damage);
                 if (pokemonActualRival.Health == 0)
                 {
@@ -142,7 +143,7 @@ public static class Combate
             else
             {
                 Combate.EfectuarAtaqueEspecial(jugadorActual, jugadorRival, ataquePokemon);
-                int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon, estado);
+                int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon);
 
             }
             //regresa a calcular el turno
@@ -245,38 +246,8 @@ public static class Combate
             
             
         }
-        /* Clase con la funcionalidad el ataque Pokemon.
-        public static void Atacar(IPokemon atacante, IPokemon defensor, IAtaque ataque)
-        {
-            // Obtener el tipo del ataque y el tipo del defensor
-            string tipoAtaque = ataque.Tipo;
-            string tipoDefensor = defensor.Tipo;
 
-            // Calcular la efectividad del ataque
-            double multiplicador = Calculator.Efectividad(tipoAtaque, tipoDefensor);
-
-            // Calcular el daño final
-            int dañoFinal = (int)Math.Round(ataque.Poder * multiplicador);
-
-            // Mostrar mensajes sobre el ataque
-            Console.WriteLine($"{atacante.Name} usa {ataque.Name} sobre {defensor.Name}.");
-            if (multiplicador == 0.0)
-            {
-                Console.WriteLine("¡No tuvo efecto!");
-            }
-            else if (multiplicador == 2.0)
-            {
-                Console.WriteLine("¡Es muy efectivo!");
-            }
-            else if (multiplicador == 0.5)
-            {
-                Console.WriteLine("No es muy efectivo...");
-            }
-
-            // Reducir la salud del defensor
-            Recibir(defensor, dañoFinal);
-            Console.WriteLine($"Recibio  {defensor.Name} recibio {dañoFinal} ahora tiene {defensor.Health} puntos de vida.");
-        }*/
+        
         
     }
     
