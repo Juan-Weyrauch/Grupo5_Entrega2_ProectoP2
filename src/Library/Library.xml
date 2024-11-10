@@ -95,20 +95,11 @@
         </member>
         <member name="M:Library.Static.Calculator.CombatValidation(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
             <summary>
-            Método para validar el combate entre dos jugadores
+            
             </summary>
             <param name="jugador1"></param>
             <param name="jugador2"></param>
             <returns>boolean</returns>
-        </member>
-        <member name="M:Library.Static.Calculator.CalcularDañoporTipo(ClassLibrary.IPokemon,ClassLibrary.IPokemon,ClassLibrary.IAtaque)">
-            <summary>
-            Calcula el daño de un ataque dependiendo de los tipos de los Pokémon
-            </summary>
-            <param name="PokemonActual"></param>
-            <param name="PokemonRival"></param>
-            <param name="AtaqueActual"></param>
-            <returns>Daño calculado</returns>
         </member>
     </members>
 </doc>
