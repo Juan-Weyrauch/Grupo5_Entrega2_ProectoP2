@@ -14,6 +14,7 @@ public class Player : IPlayer
         Name = name;
         Equipo = equipo;
         SelectedPokemon = Equipo[EleccionEquipo]; // Esto permite elegir a el pokemon de una manera que tenga sentido.
+        Cementerio = new List<IPokemon>();
         Inventario = new List<IItem>
         {
             new SuperPotion(),
@@ -47,8 +48,14 @@ public class Player : IPlayer
 
     public void EliminarPokemon(IPokemon objetivo)
     {
-        Equipo.Remove(objetivo);
+        if (objetivo == null || Equipo == null || Cementerio == null)
+            return; // Evitar la excepción si alguno es nulo
+
+        if (Equipo.Contains(objetivo))
+        {
+            Equipo.Remove(objetivo);
+            Cementerio.Add(objetivo); // Agregar al Cementerio
+        }
     }
 
-    
 }

@@ -41,7 +41,7 @@ public static class ImpresoraDeTexto
         Console.WriteLine("╔═════════════════════════════╗");
         Console.WriteLine("║    El juego ha terminado!   ║");
         Console.WriteLine("╚═════════════════════════════╝");
-        
+
         Console.WriteLine("╔═════════════════════════════╗");
         Console.WriteLine($"║  El ganador es {nombreJugador}!  ║");
         Console.WriteLine("╚═════════════════════════════╝");
@@ -64,16 +64,16 @@ public static class ImpresoraDeTexto
     /// <param name="jugador"></param>
     public static void mostrarListaPokemons(string jugador) // Se muestra lo mismo para el rival que para el jugador.
     {
-        
+
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine($"║\tSelecciona los pokemons de {jugador}!  ║");
         Console.WriteLine("╚═════════════════════════════════════════╝");
         /// Aca Ahora debe mostrar los registros de la Pokedex en la factory.
-        
-        
-        
 
-        int columnas = 3;  // Define cuántos nombres por fila
+
+
+
+        int columnas = 3; // Define cuántos nombres por fila
         int contador = 0;
 
         foreach (string cadena in FabricaPokemon.DevolverNombresPokedex())
@@ -87,7 +87,7 @@ public static class ImpresoraDeTexto
                 Console.WriteLine();
             }
         }
-        
+
     }
 
     /// <summary>
@@ -117,12 +117,12 @@ public static class ImpresoraDeTexto
         int i = 1;
         foreach (IPokemon pokemon in jugador.Equipo)
         {
-            string pokemonNameForDisplay = pokemon.Name;  // Access Name directly
+            string pokemonNameForDisplay = pokemon.Name; // Access Name directly
             Console.WriteLine($"{i}) {pokemonNameForDisplay}\n");
             i++;
         }
     }
-    
+
     /// <summary>
     /// Muestra en consola el equipo actual del Jugador
     /// </summary>
@@ -163,9 +163,9 @@ public static class ImpresoraDeTexto
         }
     }
 
-    public static void ImprimirEquipoDelJugador(List<IPokemon> equipo )
+    public static void ImprimirEquipoDelJugador(List<IPokemon> equipo)
     {
-        
+
         int i = 1;
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine("║  Tu equipo esta listo para la batalla!  ║");
@@ -174,6 +174,7 @@ public static class ImpresoraDeTexto
             Console.WriteLine($"\t{i}) {pokemon.Name}");
             i++;
         }
+
         Console.WriteLine("╚═════════════════════════════════════════╝");
 
     }
@@ -182,12 +183,12 @@ public static class ImpresoraDeTexto
     {
         string pokemonName;
         pokemonName = equipo[index].Name;
-        
+
         Console.WriteLine("╔═════════════════════════════════════════╗");
         Console.WriteLine($"\tHas seleccionado a {pokemonName}  ");
         Console.WriteLine("╚═════════════════════════════════════════╝");
 
-        
+
     }
 
     /// <summary>
@@ -195,11 +196,11 @@ public static class ImpresoraDeTexto
     /// </summary>
     /// <param name="jugador"></param>
     /// <returns></returns>
-    public static string? TurnoJugador( string jugador, string pokemon, int health, int intialhealth)
+    public static string? TurnoJugador(string jugador, string pokemon, int health, int intialhealth)
     {
-        
-        Console.WriteLine($"Es el turno del jugador {jugador }\n" + $"Tu pokemon {pokemon} {health} / {intialhealth}."+
-                          $"Selecciona lo que desees hacer\n" + 
+
+        Console.WriteLine($"Es el turno del jugador {jugador}\n" + $"Tu pokemon {pokemon} {health} / {intialhealth}." +
+                          $"Selecciona lo que desees hacer\n" +
                           $"A) Atacar \n" +
                           $"B) Cambiar Pokemon \n" +
                           $"C) Usar Item \n");
@@ -252,7 +253,7 @@ public static class ImpresoraDeTexto
         int index = 1;
         IPokemon pokemon = jugador.SelectedPokemon;
         List<IAtaque> ataques = pokemon.Ataques;
-        
+
         foreach (IAtaque ataque in ataques)
         {
             Console.WriteLine($"{index}) {ataque.Name}");
@@ -276,7 +277,7 @@ public static class ImpresoraDeTexto
     public static void CambiarPokemon(string pokemonActual, string pokemonPosterior)
     {
         Console.WriteLine($"El pokemon {pokemonActual} ha sido cambiado por {pokemonPosterior}!!!");
-        
+
     }
 
     public static void ImprimirCambioEstado(string nombrePokemon, string nombreAtaque, int estado)
@@ -301,9 +302,32 @@ public static class ImpresoraDeTexto
             case 4:
                 Console.WriteLine($"{nombrePokemon} está dormido por {nombreAtaque}.");
                 break;
-            
-            
+
+
         }
 
+    }
+
+    public static IPokemon SeleccionarPokemonParaRevivir(Player player)
+    {
+        if (player.Cementerio.Count == 0)
+        {
+            Console.WriteLine("No hay Pokémon debilitados para revivir.");
+            return null;
+        }
+
+        Console.WriteLine("Selecciona un Pokémon para revivir:");
+        for (int i = 0; i < player.Cementerio.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}) {player.Cementerio[i].Name}");
+        }
+
+        int opcion;
+        while (!int.TryParse(Console.ReadLine(), out opcion) || opcion < 1 || opcion > player.Cementerio.Count)
+        {
+            Console.WriteLine("Opción no válida. Seleccione un número de la lista.");
+        }
+
+        return player.Cementerio[opcion - 1];
     }
 }
