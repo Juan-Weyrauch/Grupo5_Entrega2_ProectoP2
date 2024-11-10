@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<documentation>
+    <class name="Fachada" namespace="ClassLibrary">
+        <summary>
+            La clase <c>Fachada</c> es el punto de entrada principal para gestionar el bucle del juego y el proceso de creación de jugadores.
+            Contiene métodos para iniciar el juego, crear jugadores y gestionar la interacción principal entre los jugadores y el combate.
+        </summary>
+
+        <methods>
+            <method name="Start">
+                <summary>
+                    Inicia el bucle principal del juego. Pide al usuario que inicie un nuevo juego creando jugadores o que salga.
+                </summary>
+                <parameters>
+                    <parameter name="None" type="None"/>
+                </parameters>
+                <returns>None</returns>
+                <description>
+                    El método presenta un menú de inicio, permite al usuario elegir entre comenzar un nuevo juego o salir.
+                    Si elige comenzar un nuevo juego, se cargan los Pokémon disponibles, se crean dos jugadores y se inicia un combate.
+                </description>
+            </method>
+
+            <method name="CrearJugador">
+                <summary>
+                    Crea un jugador con un número especificado, solicitando su nombre y permitiéndole seleccionar Pokémon.
+                </summary>
+                <parameters>
+                    <parameter name="playerNumber" type="int">
+                        El número del jugador (1 o 2) que se está creando.
+                    </parameter>
+                </parameters>
+                <returns>
+                    <type>Player</type>
+                    <description>Un objeto <c>Player</c> que representa al jugador creado.</description>
+                </returns>
+                <description>
+                    Este método solicita el nombre del jugador, presenta una lista de Pokémon disponibles y permite al jugador seleccionar
+                    los Pokémon para su equipo. Además, permite seleccionar el Pokémon inicial y devuelve un objeto <c>Player</c> con
+                    la selección realizada.
+                </description>
+            </method>
+        </methods>
+
+        <properties>
+            <property name="None" type="None">
+                <summary>No se especifican propiedades en esta clase.</summary>
+            </property>
+        </properties>
+
+        <examples>
+            <example>
+                <code language="C#">
+                    Fachada.Start();
+                </code>
+                <description>
+                    Este fragmento de código inicia el bucle principal del juego, donde el jugador puede seleccionar entre
+                    iniciar un nuevo juego o salir.
+                </description>
+            </example>
+        </examples>
+    </class>
+</documentation>

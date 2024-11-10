@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<documentation>
+    <class name="FabricaAtaque" namespace="ClassLibrary">
+        <summary>
+            Clase estática que gestiona la creación y ejecución de ataques Pokémon.
+            Contiene un diccionario de ataques y métodos para ejecutar acciones relacionadas con los ataques.
+        </summary>
+        <methods>
+            <method name="Executar">
+                <summary>
+                    Método que ejecuta la creación de ataques Pokémon y los almacena en un diccionario.
+                </summary>
+                <parameters>
+                    <parameter name="None" type="None" />
+                </parameters>
+                <returns>None</returns>
+            </method>
+
+            <method name="GenerarAtaquesRandom">
+                <summary>
+                    Método que genera una lista de 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo.
+                </summary>
+                <parameters>
+                    <parameter name="tipo" type="string">
+                        Tipo de ataque para filtrar (por ejemplo, "Fuego", "Agua").
+                    </parameter>
+                </parameters>
+                <returns>List&lt;IAtaque&gt;</returns>
+            </method>
+        </methods>
+        <fields>
+            <field name="ataquesDiccionario" type="Dictionary&lt;int, IAtaque&gt;">
+                <summary>
+                    Diccionario que almacena los ataques Pokémon por índice.
+                </summary>
+            </field>
+        </fields>
+        <properties>
+            <property name="ataquesDiccionario" type="Dictionary&lt;int, IAtaque&gt;">
+                <summary>
+                    Diccionario que mantiene los ataques disponibles para ser utilizados.
+                </summary>
+            </property>
+        </properties>
+    </class>
+</documentation>

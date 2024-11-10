@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<documentation>
+    <class name="FabricaPokemon" namespace="ClassLibrary">
+        <summary>
+            Clase estática que gestiona la creación y manejo de los registros de Pokémon en la Pokédex.
+            Utiliza el patrón de diseño Visitor para instanciar los Pokémon y extraer información de ellos.
+        </summary>
+
+        <methods>
+            <method name="CargarPokemons">
+                <summary>
+                    Método que carga los registros de los Pokémon en la Pokédex, creando instancias de los mismos
+                    utilizando la fábrica de ataques para asignarles movimientos.
+                </summary>
+                <parameters>
+                    <parameter name="None" type="None" />
+                </parameters>
+                <returns>None</returns>
+            </method>
+
+            <method name="DevolverNombresPokedex">
+                <summary>
+                    Método que devuelve una lista de nombres de Pokémon en la Pokédex, utilizando el patrón Visitor
+                    para obtener los nombres sin modificar las clases individuales de los Pokémon.
+                </summary>
+                <parameters>
+                    <parameter name="None" type="None" />
+                </parameters>
+                <returns>List&lt;string&gt;</returns>
+            </method>
+
+            <method name="InstanciarPokes">
+                <summary>
+                    Método que instancia los Pokémon a partir de una lista de índices proporcionada por el jugador.
+                    Utiliza el patrón Visitor para crear las instancias de los Pokémon.
+                </summary>
+                <parameters>
+                    <parameter name="entrada" type="List&lt;int&gt;">
+                        Lista de índices de Pokémon a instanciar.
+                    </parameter>
+                </parameters>
+                <returns>List&lt;IPokemon&gt;</returns>
+            </method>
+
+            <method name="DevolverTotal">
+                <summary>
+                    Método que devuelve el total de registros de Pokémon en la Pokédex.
+                </summary>
+                <parameters>
+                    <parameter name="None" type="None" />
+                </parameters>
+                <returns>int</returns>
+            </method>
+        </methods>
+
+        <fields>
+            <field name="PokedexPokemon" type="Dictionary&lt;int, IRegistroPokemon&gt;">
+                <summary>
+                    Diccionario que almacena los registros de Pokémon, donde cada clave es el índice del Pokémon
+                    y el valor es su respectivo registro.
+                </summary>
+            </field>
+        </fields>
+
+        <properties>
+            <property name="PokedexPokemon" type="Dictionary&lt;int, IRegistroPokemon&gt;">
+                <summary>
+                    Diccionario que contiene los registros de los Pokémon en la Pokédex.
+                </summary>
+            </property>
+        </properties>
+    </class>
+</documentation>
