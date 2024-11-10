@@ -125,5 +125,30 @@ public static class Calculator
             return 1;
         }
     }
+    public static double Efectividad(string tipoAtaque, string tipoPokemon)
+    {
+        {
+            // Obtener las relaciones del tipo de Pokémon atacado
+            var relaciones = TablaDeTipos.ObtenerRelaciones(tipoPokemon);
+
+            // Determinar el multiplicador de efectividad
+            if (relaciones.inmunidades.Contains(tipoAtaque))
+            {
+                return 0.0; // Inmune
+            }
+            else if (relaciones.fortalezas.Contains(tipoAtaque))
+            {
+                return 0.5; // Débil
+            }
+            else if (relaciones.debilidades.Contains(tipoAtaque))
+            {
+                return 2.0; // Efectivo
+            }
+            else
+            {
+                return 1.0; // Neutro
+            }
+        }
+    }
 
 }
