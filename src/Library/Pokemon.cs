@@ -24,11 +24,14 @@ public class Pokemon : IPokemon
         InicialHealth = health;
         Estado = 0; // Por defecto el Estado es normal.
     }
-    public void DecreaseHealth(int valueAfterCalculation) // Resta de vida despues del calculo de daño. 
+    public void DecreaseHealth(int valueAfterCalculation)
     {
         Health -= valueAfterCalculation;
         if (Health < 0) Health = 0;
+    
+        // Si el Pokémon ha sido debilitado, podrías notificar de alguna manera al jugador o gestor de equipo.
     }
+
     public void Curar(int cantidad)
     {
         Health = Math.Min(Health + cantidad, InicialHealth);
@@ -37,4 +40,5 @@ public class Pokemon : IPokemon
     {
         Estado = 0;
     }
+    
 }

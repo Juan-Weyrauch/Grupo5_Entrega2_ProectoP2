@@ -25,21 +25,74 @@ public class Player : IPlayer
             new FullRestore()
         };
     }   
-  public  void UsarItem(int indiceItem, IPokemon objetivo)
+    public void UsarItem(int indiceItem, IPokemon objetivo)
     {
         if (indiceItem >= 0 && indiceItem < Inventario.Count)
         {
             IItem item = Inventario[indiceItem];
-            item.Usar(objetivo);
-            Inventario.RemoveAt(indiceItem); // Elimina el ítem después de usarlo
+
+            if (item is Revive && objetivo.Health == 0)
+            {
+                // Usa Revive en un Pokémon debilitado
+                item.Usar(objetivo);
+                Inventario.RemoveAt(indiceItem);
+            }
+            else if (item is FullRestore && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
+            {
+                // Usa FullRestore en un Pokémon vivo pero no completamente curado
+                item.Usar(objetivo);
+                Inventario.RemoveAt(indiceItem);
+            }
+            else if (item is SuperPotion && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
+            {
+                // Usa SuperPotion en un Pokémon vivo pero no completamente curado
+                item.Usar(objetivo);
+                Inventario.RemoveAt(indiceItem);
+            }
+            else
+            {
+                // Si las condiciones no se cumplen, muestra un mensaje
+                Console.WriteLine("No puedes usar ese ítem en este Pokémon.");
+            }
         }
         else
         {
-            Console.WriteLine("Ítem no válido.");
+            Console.WriteLine("Índice de ítem no válido.");
         }
-        
     }
 
+    public void ActualizarEquipo()
+    {
+        foreach (var pokemon in Equipo.ToList()) // Usar ToList() para evitar modificar la lista mientras se itera
+        {
+            if (pokemon.Health == 0)
+            {
+                Cementerio.Add(pokemon);
+                Equipo.Remove(pokemon);
+                Console.WriteLine($"{pokemon.Name} ha sido movido al cementerio.");
+            }
+        }
+    }
+    public void SeleccionarProximoPokemon()
+    {
+        // Busca el primer Pokémon en el equipo que aún esté con vida
+        SelectedPokemon = Equipo.FirstOrDefault(pokemon => pokemon.Health > 0);
+
+        if (SelectedPokemon == null)
+        {
+            Console.WriteLine("Todos los Pokémon han sido debilitados.");
+            // Aquí se podría manejar la lógica de derrota
+        }
+        else
+        {
+            Console.WriteLine($"Ahora está en combate {SelectedPokemon.Name}.");
+        }
+    }
+    public bool TienePokemonVivos()
+    {
+        return Equipo.Any(pokemon => pokemon.Health > 0);
+    }
+    
     public int GetInventarioCount() // Esto tendria que ser un visitor...
     {
         return Inventario.Count();
