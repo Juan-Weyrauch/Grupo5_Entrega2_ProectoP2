@@ -278,5 +278,32 @@ public static class ImpresoraDeTexto
         Console.WriteLine($"El pokemon {pokemonActual} ha sido cambiado por {pokemonPosterior}!!!");
         
     }
-    
+
+    public static void ImprimirCambioEstado(string nombrePokemon, string nombreAtaque, int estado)
+    {
+        switch (estado)
+        {
+            case 0:
+                Console.WriteLine($"{nombrePokemon} ha cambiado su estado a normal.");
+                break;
+            case 1:
+                Console.WriteLine($"{nombrePokemon} ha sido quemado por {nombreAtaque} .");
+                break;
+
+            case 2:
+                Console.WriteLine($"{nombrePokemon} ha sido envenenado por {nombreAtaque}.");
+                break;
+
+            case 3:
+                Console.WriteLine($"{nombrePokemon} ha sido paralizado por {nombreAtaque}.");
+                break;
+
+            case 4:
+                Console.WriteLine($"{nombrePokemon} está dormido por {nombreAtaque}.");
+                break;
+            
+            
+        }
+
     }
+}

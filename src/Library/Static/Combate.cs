@@ -45,15 +45,14 @@ namespace Library
             _pokemonActual = jugadorActual.SelectedPokemon;
             _pokemonRival = jugadorRival.SelectedPokemon;
             int estadoDelPokemon = Calculator.ChequearEstado(pokemonActual);
-
+    
             // Chequeo si aun tiene pokemons
             int estadoDelEquipo = Calculator.IndividualcombatValidation(jugadorActual.Equipo);
-
             if (pokemonActual.Health == 0 && estadoDelEquipo == 0) // Si no puede seguir jugando, termina el juego.
             {
                 ImpresoraDeTexto.FinDelJuego(jugadorRival.Name);
             }
-            else if ((pokemonActual.Health > 0 || estadoDelEquipo > 0) && estadoDelPokemon == 0) // Si sigue con pokemons en estado normal
+            else if ((pokemonActual.Health > 0 || estadoDelEquipo > 0) && estadoDelPokemon == 0 ) // Si sigue con pokemons en estado normal
             {
                 if (pokemonActual.Health == 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
                 {
@@ -92,7 +91,7 @@ namespace Library
             // Solicita al jugador su movimiento
             // Esto permite imprimir que pokemon tiene el jugador ahora mismo.
             string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name,pokemonActualJugador.Name,pokemonActualJugador.Health,pokemonActualJugador.InicialHealth);
-
+            
             // A = Atacar, B = Cambiar Pokémon, C = Usar Item
             if (seleccion == "A")
             {
@@ -168,6 +167,8 @@ namespace Library
             // 1 = Quemar, 2 = Envenenar, 3 = Paralizar, 4 = Dormir
             IAtaque ataqueActual = ataque;
             int tipo = ataqueActual.Especial;
+            string nombreAtaque = ataqueActual.Name;
+            string nombrePoke = _pokemonRival.Name;
             // Determinar el random
             Random rnd = new Random();
             int randomTiming = rnd.Next(1, 10);
@@ -175,12 +176,16 @@ namespace Library
             if (tipo == 1) // Quemar
             {
                 // Ataca con veneno (pierde 10% de HP en cada turno)
+                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,1);
                 int damage = (int)Math.Round(_pokemonRival.Health * 0.90);
+                
                 _pokemonRival.DecreaseHealth(damage);
+                
             }
             else if (tipo == 2) // Envenenar
             {
                 // Ataca con veneno (pierde 5% de HP en cada turno)
+                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,2);
                 int damage = (int)Math.Round(_pokemonRival.Health * 0.95);
                 _pokemonRival.DecreaseHealth(damage);   
             }
@@ -190,10 +195,12 @@ namespace Library
                 if (randomTiming == 3 || randomTiming == 7)
                 {
                     _pokemonRival.CambiarEstado(0); // Estado normal
+                    
                 }
                 else
                 {
-                    Console.WriteLine("El Pokémon ha sido paralizado");
+                    ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,3);
+                    
                     _pokemonRival.CambiarEstado(3); // Estado paralizado
                 }
             }
@@ -208,7 +215,7 @@ namespace Library
                 }
                 else
                 {
-                    Console.WriteLine($"El Pokémon {_pokemonRival.Name} está dormido!");
+                    ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,4);
                     _pokemonRival.CambiarEstado(4); // Estado dormido
                 }
             }
