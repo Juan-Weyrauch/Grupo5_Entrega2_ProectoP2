@@ -1,211 +1,124 @@
 using ClassLibrary;
 using Library.Static;
 
-namespace Library
+namespace Library;
+
+/// <summary>
+/// Esta clase maneja la lógica del combate entre dos jugadores, gestionando el turno de los jugadores, la selección de Pokémon y la ejecución de ataques.
+/// </summary>
+public static class Combate
 {
-    public static class Combate
+    static IVisitor _infoVisitor = new InfoVisitor();
+
+    public static IPlayer _jugadorActual;
+    public static IPlayer _jugadorRival;
+    public static IPokemon _pokemonActual;
+    public static IPokemon _pokemonRival;
+
+    /// <summary>
+    /// Recibe el daño que un Pokémon debe restar a su salud.
+    /// </summary>
+    /// <param name="pokemon">El Pokémon al que se le aplica el daño.</param>
+    /// <param name="damage">El daño que el Pokémon recibirá.</param>
+    public static void Recibir(IPokemon pokemon, int damage)
     {
-        static IVisitor InfoVisitor = new InfoVisitor();
+        pokemon.DecreaseHealth(damage);
+    }
 
-        static IPlayer JugadorActual;
-        static IPlayer JugadorRival;
-        static IPokemon PokemonActual;
-        static IPokemon PokemonRival;
+    /// <summary>
+    /// Determina el turno entre los dos jugadores y maneja la lógica del combate entre ellos.
+    /// Se alterna entre el jugador 1 y el jugador 2, realizando el combate hasta que uno de los jugadores no tenga Pokémon disponibles.
+    /// </summary>
+    /// <param name="Jugador1">El primer jugador del combate.</param>
+    /// <param name="Jugador2">El segundo jugador del combate.</param>
+    public static void DeterminarTurno(IPlayer Jugador1, IPlayer Jugador2)
+    {
+        int turno = 0;
 
-        public static void Recibir(IPokemon pokemon, int damage)
+        while (Calculator.CombatValidation(Jugador1, Jugador2))
         {
-            pokemon.DecreaseHealth(damage);
-        }
-
-        public static void Combatir(IPlayer Jugador1, IPlayer Jugador2)
-        {
-            int turno = 0;
-
-            while (Calculator.CombatValidation(Jugador1, Jugador2))
+            if (turno % 2 == 0) // Sistema sencillo que permite detectar cuando es el turno de cada jugador.
             {
-                if (turno % 2 == 0) // Sistema sencillo que permite detectar cuando es el turno de cada jugador.
-                {
-                    JugadorActual = Jugador1;
-                    JugadorRival = Jugador2;
-                }
-                else
-                {
-                    JugadorActual = Jugador2;
-                    JugadorRival = Jugador1;
-                }
-
-                if (turno < 2)
-                {
-                    ImpresoraDeTexto.MostrarPokemons(JugadorActual);
-                }
-
-                Turno(JugadorActual, JugadorRival);
-
-                turno++;
+                _jugadorActual = Jugador1;
+                _jugadorRival = Jugador2;
             }
-        }
-
-        public static void Turno(IPlayer JugadorActual, IPlayer JugadorRival)
-        {
-            IPokemon pokemonActual = JugadorActual.SelectedPokemon;
-            IPokemon pokemonRival = JugadorRival.SelectedPokemon;
-
-            if (CheckVida(pokemonActual))  // Comprobamos si el Pokémon está vivo
+            else
             {
-                // Aplicar efectos de estado (Dormido, Paralizado, Quemado, Envenenado) al principio del turno
-                EfectuarEfecto(pokemonActual);
-
-                // Si el Pokémon está en un estado que le permite actuar
-                if (pokemonActual.Estado == 0)  // Si no está dormido ni paralizado
-                {
-                    string nombrePlayer = JugadorActual.Name;
-                    ImpresoraDeTexto.TurnoJugador(nombrePlayer);
-                    string cadena = Console.ReadLine().ToUpper();
-
-                    if (cadena == "A")
-                    {
-                        Console.WriteLine("Con qué quieres atacar?");
-                        // Lógica de ataque (agregar selección de ataque aquí)
-                    }
-
-                    if (cadena == "B")
-                    {
-                        Console.WriteLine("Puedes cambiar a los siguientes Pokemons:");
-                        ImpresoraDeTexto.ImprimirEquipoDelJugador(JugadorActual.Equipo);
-                        // Mostrar el equipo y permitir el cambio de Pokémon
-                    }
-
-                    if (cadena == "C")
-                    {
-                        Console.WriteLine("Puedes utilizar los siguientes Items:");
-                        ImpresoraDeTexto.ImprimirInventario(JugadorActual.Inventario);
-                        SeleccionarItem(JugadorActual);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"{pokemonActual.Name} no puede actuar este turno debido a su estado.");
-                }
+                _jugadorActual = Jugador2;
+                _jugadorRival = Jugador1;
             }
-        }
 
-        public static bool CheckVida(IPokemon pokemonActual)
-        {
-            return pokemonActual.Health > 0;
-        }
-
-        public static void EfectuarEfecto(IPokemon pokemon)
-        {
-            int estadoPokemon = pokemon.Estado;
-            int calculoDaño = 0;
-            Random random = new Random();
-
-            switch (estadoPokemon)
+            if (turno < 2)
             {
-                case 0:
-                    break; // Sin efectos
-                case 1: // Quemado
-                    calculoDaño = (int)Math.Round(0.15 * pokemon.Health);
-                    Console.WriteLine($"{pokemon.Name} está quemado y recibe {calculoDaño} de daño.");
-                    pokemon.DecreaseHealth(calculoDaño);
-                    break;
+                ImpresoraDeTexto.MostrarPokemons(_jugadorActual);
+            }
 
-                case 2: // Envenenado
-                    calculoDaño = (int)Math.Round(0.10 * pokemon.Health);
-                    Console.WriteLine($"{pokemon.Name} está envenenado y recibe {calculoDaño} de daño.");
-                    pokemon.DecreaseHealth(calculoDaño);
-                    break;
+            Combatir(_jugadorActual, _jugadorRival);
 
-                case 3: // Parálisis
-                    // 25% de probabilidad de no poder actuar (no atacar)
-                    if (random.NextDouble() < 0.25)
+            turno++;
+        }
+    }
+
+    /// <summary>
+    /// Ejecuta la lógica de combate entre los Pokémon seleccionados de los jugadores actuales.
+    /// Si un Pokémon es derrotado, se le permite al jugador seleccionar otro Pokémon si tiene disponible.
+    /// Si un jugador pierde todos sus Pokémon, termina el juego.
+    /// </summary>
+    /// <param name="jugadorActual">El jugador cuyo Pokémon está en combate.</param>
+    /// <param name="jugadorRival">El jugador rival cuyo Pokémon está en combate.</param>
+    private static void Combatir(IPlayer jugadorActual, IPlayer jugadorRival)
+    {
+        IPokemon pokemonActual = jugadorActual.SelectedPokemon;
+        IPokemon pokemonRival = jugadorRival.SelectedPokemon;
+
+        // Chequeo si aun tiene pokemons
+        int estadoDelEquipo = Calculator.IndividualcombatValidation(jugadorActual.Equipo);
+
+        if (pokemonActual.Health == 0 && estadoDelEquipo == 0) // Si no puede seguir jugando, termina el juego.
+        {
+            ImpresoraDeTexto.FinDelJuego(jugadorRival.Name);
+        }
+        else if (pokemonActual.Health > 0 || estadoDelEquipo > 0) // Si tiene salud o hay otros Pokémon en el equipo, continúa el juego.
+        {
+            if (pokemonActual.Health == 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
+            {
+                Console.WriteLine($"Tu Pokémon {pokemonActual.Name} ha sido derrotado.");
+                Console.WriteLine("Debes seleccionar otro Pokémon: ");
+                ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
+                int pokemonSeleccionado;
+
+                while (true)
+                {
+                    if (int.TryParse(Console.ReadLine(), out pokemonSeleccionado) &&
+                        pokemonSeleccionado >= 0 && pokemonSeleccionado < jugadorActual.Equipo.Count &&
+                        jugadorActual.Equipo[pokemonSeleccionado].Health > 0)
                     {
-                        Console.WriteLine($"{pokemon.Name} está paralizado y no puede atacar este turno.");
+                        jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
+                        break;
                     }
                     else
                     {
-                        Console.WriteLine($"{pokemon.Name} está paralizado pero puede atacar.");
+                        Console.WriteLine(
+                            "Selección no válida. Ingresa un número correspondiente a un Pokémon con salud.");
                     }
-                    break;
-
-                case 4: // Dormido
-                    // El Pokémon pierde el turno
-                    Console.WriteLine($"{pokemon.Name} está dormido y pierde este turno.");
-
-                    // Intentar despertar con una probabilidad de 25%
-                    if (random.NextDouble() < 0.25)  // 25% de probabilidad de despertar
-                    {
-                        pokemon.EliminarEfectosDeEstado();   // Despierta
-                        Console.WriteLine($"{pokemon.Name} se ha despertado.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{pokemon.Name} sigue dormido.");
-                    }
-                    break;
-
-                default:
-                    break;
+                }
             }
+
+            // Continúa el juego con normalidad
+            string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name);
+            Combate.InicarAccion(seleccion);
         }
+    }
 
-        public static void SeleccionarItem(IPlayer jugador)
+    /// <summary>
+    /// Inicia la acción seleccionada por el jugador durante su turno.
+    /// </summary>
+    /// <param name="seleccion">La opción seleccionada por el jugador, como "A" para atacar.</param>
+    private static void InicarAccion(string seleccion)
+    {
+        if (seleccion == "A")
         {
-            List<IItem> inventario = jugador.Inventario;
-            List<IPokemon> equipo = jugador.Equipo;
-
-            Console.WriteLine("Selecciona un ítem para usar:");
-            bool seleccionValida = false;
-            while (!seleccionValida)
-            {
-                string entrada = Console.ReadLine();
-                if (int.TryParse(entrada, out int indice) && indice > 0 && indice <= inventario.Count)
-                {
-                    IItem itemSeleccionado = inventario[indice - 1];
-                    Console.WriteLine($"Has seleccionado: {itemSeleccionado.Nombre}");
-
-                    // Llamamos a ElegirPokemon para que el jugador seleccione un Pokémon
-                    IPokemon pokemonSeleccionado = ElegirPokemon(equipo);
-                    if (pokemonSeleccionado != null)
-                    {
-                        jugador.UsarItem(indice - 1, pokemonSeleccionado);  // Usar el ítem en el Pokémon elegido
-                        seleccionValida = true;  // Selección válida, terminamos el bucle
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Selección de ítem inválida, por favor elige un número válido.");
-                }
-            }
-        }
-
-        public static IPokemon ElegirPokemon(List<IPokemon> equipo)
-        {
-            Console.WriteLine("Selecciona un Pokémon de tu equipo:");
-
-            for (int i = 0; i < equipo.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}) {equipo[i].Name} - Salud: {equipo[i].Health}/{equipo[i].InicialHealth}");
-            }
-
-            bool seleccionValida = false;
-            IPokemon pokemonSeleccionado = null;
-            while (!seleccionValida)
-            {
-                string entradaPokemon = Console.ReadLine();
-                if (int.TryParse(entradaPokemon, out int indicePokemon) && indicePokemon > 0 && indicePokemon <= equipo.Count)
-                {
-                    pokemonSeleccionado = equipo[indicePokemon - 1];
-                    Console.WriteLine($"Has seleccionado a {pokemonSeleccionado.Name}.");
-                    seleccionValida = true;
-                }
-                else
-                {
-                    Console.WriteLine("Selección de Pokémon inválida. Por favor, intenta nuevamente.");
-                }
-            }
-
-            return pokemonSeleccionado;
+            // Aquí se gestionaría la acción de ataque
         }
     }
 }

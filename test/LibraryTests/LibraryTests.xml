@@ -4,11 +4,6 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
-        <member name="T:Tests.TestCalculator">
-            <summary>
-            Pruebas de la clase <see cref="T:Library.Static.Calculator"/>.
-            </summary>
-        </member>
         <member name="T:Tests.TestFabricaPokemon">
             <summary>
             Prueba de la clase <see cref="!:Train"/>.

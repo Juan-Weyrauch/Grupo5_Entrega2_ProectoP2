@@ -3,12 +3,18 @@ namespace ClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+/// <summary>
+/// La clase <see cref="FabricaAtaque"/> es responsable de gestionar los ataques disponibles para los Pokémon.
+/// Incluye métodos para generar ataques aleatorios y almacenar ataques en un diccionario.
+/// </summary>
 public static class FabricaAtaque
 {
     private static Dictionary<int, IAtaque> ataquesDiccionario = new();
-
-    public static void Executar()
+    /// <summary>
+    /// Método para cargar los ataques de los Pokémon en el diccionario.
+    /// Los ataques se almacenan con un índice único.
+    /// </summary>
+    public static void Ejecutar()
     {
         List<(string, int, int, string, int)> ataquesPokemon = new List<(string, int, int, string, int)>
         {
@@ -108,6 +114,13 @@ public static class FabricaAtaque
     }
 
     // Método para seleccionar 3 ataques aleatorios del mismo tipo y 1 ataque de cualquier tipo
+    /// <summary>
+    /// Método para generar una lista de ataques aleatorios de un tipo específico.
+    /// Selecciona tres ataques del mismo tipo y un ataque aleatorio de cualquier tipo.
+    /// </summary>
+    /// <param name="tipo">El tipo de ataque a seleccionar.</param>
+    /// <returns>Una lista de ataques seleccionados aleatoriamente.</returns>
+
        public  static List<IAtaque> GenerarAtaquesRandom(string tipo)
         {
             

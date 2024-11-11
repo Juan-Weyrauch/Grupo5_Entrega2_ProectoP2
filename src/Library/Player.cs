@@ -1,102 +1,88 @@
-namespace ClassLibrary;
-
-public class Player : IPlayer
+namespace ClassLibrary
 {
-    public string Name { get; }
-    // inventario quizas? Aca? 
-    public List <IPokemon> Equipo { get; private set; }
-    public IPokemon SelectedPokemon {get; private set;}
-    public List<IItem> Inventario { get; private set; }
-    public List<IPokemon> Cementerio { get; private set; }
-
-    public Player(string name, List<IPokemon> equipo, int EleccionEquipo)
+    /// <summary>
+    /// Representa un jugador en el juego, con un nombre, equipo de Pokémon, Pokémon seleccionado, inventario de ítems y un cementerio de Pokémon debilitados.
+    /// </summary>
+    public class Player : IPlayer
     {
-        Name = name;
-        Equipo = equipo;
-        SelectedPokemon = Equipo[EleccionEquipo-1]; // Esto permite elegir a el pokemon de una manera que tenga sentido.
-        Inventario = new List<IItem>
-        {
-            new SuperPotion(),
-            new SuperPotion(),
-            new SuperPotion(),
-            new SuperPotion(),
-            new Revive(),
-            new FullRestore(),
-            new FullRestore()
-        };
-    }   
-    public void UsarItem(int indiceItem, IPokemon objetivo)
-    {
-        if (indiceItem >= 0 && indiceItem < Inventario.Count)
-        {
-            IItem item = Inventario[indiceItem];
+        /// <summary>
+        /// Obtiene el nombre del jugador.
+        /// </summary>
+        public string Name { get; }
 
-            if (item is Revive && objetivo.Health == 0)
+        /// <summary>
+        /// Obtiene o establece el equipo de Pokémon del jugador.
+        /// </summary>
+        public List<IPokemon> Equipo { get; private set; }
+
+        /// <summary>
+        /// Obtiene o establece el Pokémon seleccionado por el jugador para luchar.
+        /// </summary>
+        public IPokemon SelectedPokemon { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el inventario de ítems del jugador.
+        /// </summary>
+        public List<IItem> Inventario { get; private set; }
+
+        /// <summary>
+        /// Obtiene o establece el cementerio de Pokémon debilitados del jugador.
+        /// </summary>
+        public List<IPokemon> Cementerio { get; private set; }
+
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <c>Player</c> con el nombre, equipo de Pokémon y la elección de un Pokémon inicial.
+        /// También asigna un inventario predeterminado de ítems.
+        /// </summary>
+        /// <param name="name">El nombre del jugador.</param>
+        /// <param name="equipo">La lista de Pokémon que conforman el equipo del jugador.</param>
+        /// <param name="EleccionEquipo">El índice del Pokémon elegido como inicial.</param>
+        public Player(string name, List<IPokemon> equipo, int EleccionEquipo)
+        {
+            Name = name;
+            Equipo = equipo;
+            SelectedPokemon = Equipo[EleccionEquipo]; // Esto permite elegir al Pokémon de una manera lógica.
+            Inventario = new List<IItem>
             {
-                // Usa Revive en un Pokémon debilitado
-                item.Usar(objetivo);
-                Inventario.RemoveAt(indiceItem);
-            }
-            else if (item is FullRestore && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
+                new SuperPotion(),
+                new SuperPotion(),
+                new SuperPotion(),
+                new SuperPotion(),
+                new Revive(),
+                new FullRestore(),
+                new FullRestore()
+            };
+        }
+
+        /// <summary>
+        /// Permite al jugador usar un ítem de su inventario en un Pokémon objetivo.
+        /// El ítem es eliminado del inventario después de ser utilizado.
+        /// </summary>
+        /// <param name="indiceItem">El índice del ítem que el jugador quiere usar.</param>
+        /// <param name="objetivo">El Pokémon sobre el cual se va a usar el ítem.</param>
+        public void UsarItem(int indiceItem, IPokemon objetivo)
+        {
+            // Verifica si el índice del ítem es válido
+            if (indiceItem >= 0 && indiceItem < Inventario.Count)
             {
-                // Usa FullRestore en un Pokémon vivo pero no completamente curado
-                item.Usar(objetivo);
-                Inventario.RemoveAt(indiceItem);
-            }
-            else if (item is SuperPotion && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
-            {
-                // Usa SuperPotion en un Pokémon vivo pero no completamente curado
-                item.Usar(objetivo);
-                Inventario.RemoveAt(indiceItem);
+                IItem item = Inventario[indiceItem];
+                item.Usar(objetivo); // Usa el ítem en el Pokémon objetivo
+                Inventario.RemoveAt(indiceItem); // Elimina el ítem después de usarlo
             }
             else
             {
-                // Si las condiciones no se cumplen, muestra un mensaje
-                Console.WriteLine("No puedes usar ese ítem en este Pokémon.");
+                // Si el índice es inválido, muestra un mensaje
+                Console.WriteLine("Ítem no válido.");
             }
         }
-        else
-        {
-            Console.WriteLine("Índice de ítem no válido.");
-        }
-    }
 
-    public void ActualizarEquipo()
-    {
-        foreach (var pokemon in Equipo.ToList()) // Usar ToList() para evitar modificar la lista mientras se itera
+        /// <summary>
+        /// Obtiene la cantidad de ítems en el inventario del jugador.
+        /// </summary>
+        /// <returns>La cantidad de ítems en el inventario.</returns>
+        public int GetInventarioCount()
         {
-            if (pokemon.Health == 0)
-            {
-                Cementerio.Add(pokemon);
-                Equipo.Remove(pokemon);
-                Console.WriteLine($"{pokemon.Name} ha sido movido al cementerio.");
-            }
+            return Inventario.Count();
         }
     }
-    public void SeleccionarProximoPokemon()
-    {
-        // Busca el primer Pokémon en el equipo que aún esté con vida
-        SelectedPokemon = Equipo.FirstOrDefault(pokemon => pokemon.Health > 0);
-
-        if (SelectedPokemon == null)
-        {
-            Console.WriteLine("Todos los Pokémon han sido debilitados.");
-            // Aquí se podría manejar la lógica de derrota
-        }
-        else
-        {
-            Console.WriteLine($"Ahora está en combate {SelectedPokemon.Name}.");
-        }
-    }
-    public bool TienePokemonVivos()
-    {
-        return Equipo.Any(pokemon => pokemon.Health > 0);
-    }
-    
-    public int GetInventarioCount() // Esto tendria que ser un visitor...
-    {
-        return Inventario.Count();
-    }
-
-    
 }

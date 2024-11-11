@@ -4,6 +4,543 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:ClassLibrary.Ataque">
+            <summary>
+            Representa un ataque en el juego, con propiedades que definen su nombre, poder, precisión, tipo y atributos especiales.
+            Esta clase implementa la interfaz <c>IAtaque</c> y se utiliza para definir los ataques que pueden ser utilizados por los Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Ataque.Name">
+            <summary>
+            Obtiene el nombre del ataque.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Ataque.Poder">
+            <summary>
+            Obtiene el poder del ataque, que determina la cantidad de daño que inflige.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Ataque.Precision">
+            <summary>
+            Obtiene la precisión del ataque, que indica la probabilidad de que el ataque tenga éxito.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Ataque.Tipo">
+            <summary>
+            Obtiene el tipo del ataque (por ejemplo, Fuego, Agua, Eléctrico, etc.).
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Ataque.Especial">
+            <summary>
+            Obtiene el valor especial del ataque, que puede estar relacionado con efectos adicionales o características específicas del ataque.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Ataque.#ctor(System.String,System.Int32,System.Int32,System.String,System.Int32)">
+            <summary>
+            Inicializa una nueva instancia de la clase <c>Ataque</c> con los valores proporcionados.
+            </summary>
+            <param name="name">El nombre del ataque.</param>
+            <param name="poder">El poder del ataque, que determina el daño infligido.</param>
+            <param name="precision">La precisión del ataque, que indica la probabilidad de éxito.</param>
+            <param name="tipo">El tipo de ataque (por ejemplo, Fuego, Agua, Eléctrico, etc.).</param>
+            <param name="especial">El valor especial del ataque, relacionado con efectos adicionales.</param>
+        </member>
+        <member name="T:ClassLibrary.FullRestore">
+            <summary>
+            Representa un objeto de tipo <c>FullRestore</c>, que es un ítem utilizado para restaurar completamente la salud de un Pokémon 
+            y eliminar cualquier efecto de estado negativo que pueda tener.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.FullRestore.Nombre">
+            <summary>
+            Obtiene el nombre del ítem, en este caso siempre será "FullRestore".
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.FullRestore.Usar(ClassLibrary.IPokemon)">
+            <summary>
+            Utiliza el <c>FullRestore</c> para restaurar completamente la salud del Pokémon y eliminar cualquier efecto negativo de estado.
+            Solo se puede usar si el Pokémon está vivo (su salud es mayor a 0).
+            </summary>
+            <param name="pokemon">El Pokémon al que se le va a aplicar el FullRestore.</param>
+        </member>
+        <member name="T:ClassLibrary.InfoVisitor">
+            <summary>
+            Implementa el patrón de diseño Visitor para proporcionar información sobre el objeto <see cref="T:ClassLibrary.IRegistroPokemon"/>.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.InfoVisitor.visitCrearPokemon(ClassLibrary.IRegistroPokemon)">
+            <summary>
+            Crea un Pokémon basado en el registro proporcionado.
+            </summary>
+            <param name="registroPokemon">El objeto <see cref="T:ClassLibrary.IRegistroPokemon"/> que contiene la información necesaria para crear un Pokémon.</param>
+            <returns>Un objeto <see cref="T:ClassLibrary.IPokemon"/> que representa al Pokémon creado.</returns>
+        </member>
+        <member name="M:ClassLibrary.InfoVisitor.visitNombreRegistro(ClassLibrary.IRegistroPokemon)">
+            <summary>
+            Obtiene el nombre del registro de Pokémon.
+            </summary>
+            <param name="registroPokemon">El objeto <see cref="T:ClassLibrary.IRegistroPokemon"/> que contiene la información del registro.</param>
+            <returns>El nombre del registro como una cadena de texto.</returns>
+        </member>
+        <member name="T:ClassLibrary.IAtaque">
+            <summary>
+            Define la interfaz para representar un ataque en el juego de Pokémon,
+            proporcionando propiedades para sus atributos, como el nombre, poder, precisión, tipo y si es un ataque especial.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IAtaque.Name">
+            <summary>
+            Obtiene el nombre del ataque.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IAtaque.Poder">
+            <summary>
+            Obtiene el poder del ataque, que determina su impacto en la salud del oponente.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IAtaque.Precision">
+            <summary>
+            Obtiene la precisión del ataque, que representa la probabilidad de éxito.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IAtaque.Tipo">
+            <summary>
+            Obtiene el tipo del ataque, como "Fuego", "Agua", etc., que afecta la efectividad según el tipo del oponente.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IAtaque.Especial">
+            <summary>
+            Indica si el ataque es especial (valor mayor que cero), lo cual puede afectar cómo interactúa con las defensas del oponente.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.IItem">
+            <summary>
+            Define la interfaz para representar un item en el juego de Pokémon,
+            proporcionando propiedades y métodos para su nombre y uso.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IItem.Nombre">
+            <summary>
+            Obtiene el nombre del item.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IItem.Usar(ClassLibrary.IPokemon)">
+            <summary>
+            Aplica el efecto del item en un Pokémon objetivo.
+            </summary>
+            <param name="pokemon">El Pokémon objetivo sobre el cual se usará el item.</param>
+        </member>
+        <member name="T:ClassLibrary.IPlayer">
+            <summary>
+            Define la interfaz para representar a un jugador en el juego de Pokémon,
+            proporcionando propiedades y métodos para gestionar su equipo, inventario y Pokémon seleccionados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPlayer.Name">
+            <summary>
+            Obtiene el nombre del jugador.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPlayer.Inventario">
+            <summary>
+            Obtiene la lista de items en el inventario del jugador.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPlayer.Equipo">
+            <summary>
+            Obtiene la lista de Pokémon que conforman el equipo del jugador.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPlayer.SelectedPokemon">
+            <summary>
+            Obtiene o establece el Pokémon actualmente seleccionado por el jugador.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPlayer.Cementerio">
+            <summary>
+            Obtiene la lista de Pokémon debilitados (cementerio) del jugador.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IPlayer.GetInventarioCount">
+            <summary>
+            Obtiene la cantidad de items en el inventario del jugador.
+            </summary>
+            <returns>El número de items en el inventario.</returns>
+        </member>
+        <member name="M:ClassLibrary.IPlayer.UsarItem(System.Int32,ClassLibrary.IPokemon)">
+            <summary>
+            Usa un item del inventario en un Pokémon objetivo.
+            </summary>
+            <param name="indiceItem">Índice del item en el inventario.</param>
+            <param name="objetivo">El Pokémon objetivo en el que se usará el item.</param>
+        </member>
+        <member name="T:ClassLibrary.IPokemon">
+            <summary>
+            Define la interfaz para representar un Pokémon, proporcionando propiedades para sus atributos básicos
+            y métodos para gestionar su salud y efectos de estado.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.Name">
+            <summary>
+            Obtiene el nombre del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.Damage">
+            <summary>
+            Obtiene el valor de daño base del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.Defense">
+            <summary>
+            Obtiene el valor de defensa base del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.Health">
+            <summary>
+            Obtiene la salud actual del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.Estado">
+            <summary>
+            Obtiene el estado actual del Pokémon. Los valores posibles son:
+            0 - Normal, 1 - Quemado, 2 - Envenenado, 3 - Paralizado, 4 - Dormido.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.Tipo">
+            <summary>
+            Obtiene el tipo elemental o categoría del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.InicialHealth">
+            <summary>
+            Obtiene el valor de salud inicial del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IPokemon.Ataques">
+            <summary>
+            Obtiene la lista de ataques disponibles para el Pokémon.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IPokemon.DecreaseHealth(System.Int32)">
+            <summary>
+            Reduce la salud del Pokémon en una cantidad específica después de aplicar los cálculos de daño.
+            </summary>
+            <param name="valueAfterCalculation">La cantidad de salud a restar.</param>
+        </member>
+        <member name="M:ClassLibrary.IPokemon.Curar(System.Int32)">
+            <summary>
+            Cura al Pokémon, restaurando su salud hasta un máximo de su salud inicial.
+            </summary>
+            <param name="cantidad">La cantidad de salud a restaurar.</param>
+        </member>
+        <member name="M:ClassLibrary.IPokemon.EliminarEfectosDeEstado">
+            <summary>
+            Elimina los efectos de estado actuales del Pokémon, restaurando su estado a normal (0).
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.IRegistroPokemon">
+            <summary>
+            Define la interfaz para los registros de Pokémon, proporcionando propiedades para sus atributos básicos
+            y métodos para crear y obtener información del Pokémon usando el patrón Visitor.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IRegistroPokemon.Name">
+            <summary>
+            Obtiene el nombre del registro de Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IRegistroPokemon.Damage">
+            <summary>
+            Obtiene el valor de daño base del Pokémon en el registro.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IRegistroPokemon.Health">
+            <summary>
+            Obtiene el valor de salud base del Pokémon en el registro.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IRegistroPokemon.Tipo">
+            <summary>
+            Obtiene el tipo elemental o categoría del Pokémon en el registro.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IRegistroPokemon.Ataques">
+            <summary>
+            Obtiene la lista de ataques disponibles para el Pokémon en el registro.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IRegistroPokemon.CrearPokemon">
+            <summary>
+            Crea un nuevo objeto <see cref="T:ClassLibrary.IPokemon"/> basado en los atributos del registro actual.
+            </summary>
+            <returns>Un objeto <see cref="T:ClassLibrary.IPokemon"/> creado a partir de este registro.</returns>
+        </member>
+        <member name="M:ClassLibrary.IRegistroPokemon.AcceptObtenerNombre(ClassLibrary.IVisitor)">
+            <summary>
+            Acepta un objeto Visitor para obtener el nombre del registro mediante el patrón Visitor.
+            </summary>
+            <param name="visitor">El objeto Visitor que realizará la operación.</param>
+            <returns>El nombre del registro de Pokémon.</returns>
+        </member>
+        <member name="M:ClassLibrary.IRegistroPokemon.AcceptCrearPokemon(ClassLibrary.IVisitor)">
+            <summary>
+            Acepta un objeto Visitor para crear un Pokémon a partir del registro mediante el patrón Visitor.
+            </summary>
+            <param name="visitor">El objeto Visitor que realizará la operación.</param>
+            <returns>Un nuevo objeto <see cref="T:ClassLibrary.IPokemon"/> creado por el Visitor.</returns>
+        </member>
+        <member name="T:ClassLibrary.IVisitor">
+            <summary>
+            Define la interfaz para la implementación del patrón Visitor, permitiendo que los visitantes realicen operaciones
+            sobre diferentes elementos de tipo <see cref="T:ClassLibrary.IRegistroPokemon"/>.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IVisitor.visitCrearPokemon(ClassLibrary.IRegistroPokemon)">
+            <summary>
+            Visita un registro de Pokémon para crear un nuevo objeto <see cref="T:ClassLibrary.IPokemon"/>.
+            </summary>
+            <param name="registroPokemon">El registro de Pokémon a partir del cual se creará un Pokémon.</param>
+            <returns>Un nuevo objeto <see cref="T:ClassLibrary.IPokemon"/> creado a partir del registro.</returns>
+        </member>
+        <member name="M:ClassLibrary.IVisitor.visitNombreRegistro(ClassLibrary.IRegistroPokemon)">
+            <summary>
+            Visita un registro de Pokémon y obtiene el nombre del mismo.
+            </summary>
+            <param name="registroPokemon">El registro de Pokémon del cual se obtendrá el nombre.</param>
+            <returns>El nombre del registro de Pokémon.</returns>
+        </member>
+        <member name="T:ClassLibrary.Player">
+            <summary>
+            Representa un jugador en el juego, con un nombre, equipo de Pokémon, Pokémon seleccionado, inventario de ítems y un cementerio de Pokémon debilitados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Player.Name">
+            <summary>
+            Obtiene el nombre del jugador.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Player.Equipo">
+            <summary>
+            Obtiene o establece el equipo de Pokémon del jugador.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Player.SelectedPokemon">
+            <summary>
+            Obtiene o establece el Pokémon seleccionado por el jugador para luchar.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Player.Inventario">
+            <summary>
+            Obtiene o establece el inventario de ítems del jugador.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Player.Cementerio">
+            <summary>
+            Obtiene o establece el cementerio de Pokémon debilitados del jugador.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Player.#ctor(System.String,System.Collections.Generic.List{ClassLibrary.IPokemon},System.Int32)">
+            <summary>
+            Inicializa una nueva instancia de la clase <c>Player</c> con el nombre, equipo de Pokémon y la elección de un Pokémon inicial.
+            También asigna un inventario predeterminado de ítems.
+            </summary>
+            <param name="name">El nombre del jugador.</param>
+            <param name="equipo">La lista de Pokémon que conforman el equipo del jugador.</param>
+            <param name="EleccionEquipo">El índice del Pokémon elegido como inicial.</param>
+        </member>
+        <member name="M:ClassLibrary.Player.UsarItem(System.Int32,ClassLibrary.IPokemon)">
+            <summary>
+            Permite al jugador usar un ítem de su inventario en un Pokémon objetivo.
+            El ítem es eliminado del inventario después de ser utilizado.
+            </summary>
+            <param name="indiceItem">El índice del ítem que el jugador quiere usar.</param>
+            <param name="objetivo">El Pokémon sobre el cual se va a usar el ítem.</param>
+        </member>
+        <member name="M:ClassLibrary.Player.GetInventarioCount">
+            <summary>
+            Obtiene la cantidad de ítems en el inventario del jugador.
+            </summary>
+            <returns>La cantidad de ítems en el inventario.</returns>
+        </member>
+        <member name="T:ClassLibrary.Pokemon">
+            <summary>
+            Representa un Pokémon en el juego, con atributos como su nombre, daño, defensa, salud, estado, tipo y ataques disponibles.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.Name">
+            <summary>
+            Obtiene el nombre del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.Damage">
+            <summary>
+            Obtiene el daño base del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.Defense">
+            <summary>
+            Obtiene la defensa base del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.Health">
+            <summary>
+            Obtiene la cantidad actual de salud del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.Estado">
+            <summary>
+            Obtiene el estado actual del Pokémon. Los valores posibles son:
+            0 - Normal, 1 - Quemado, 2 - Envenenado, 3 - Paralizado, 4 - Dormido.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.InicialHealth">
+            <summary>
+            Obtiene la salud máxima inicial del Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.Ataques">
+            <summary>
+            Obtiene la lista de ataques disponibles para el Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Pokemon.Tipo">
+            <summary>
+            Obtiene el tipo del Pokémon (por ejemplo, fuego, agua, planta, etc.).
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Pokemon.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.String,System.Collections.Generic.List{ClassLibrary.IAtaque})">
+            <summary>
+            Inicializa una nueva instancia de la clase <c>Pokemon</c> con los valores de nombre, daño, defensa, salud, tipo y lista de ataques.
+            El estado se inicializa como normal (0) y la salud inicial se establece al valor de la salud total.
+            </summary>
+            <param name="name">El nombre del Pokémon.</param>
+            <param name="damage">El daño base del Pokémon.</param>
+            <param name="defense">La defensa base del Pokémon.</param>
+            <param name="health">La salud total del Pokémon.</param>
+            <param name="tipo">El tipo del Pokémon (por ejemplo, fuego, agua, planta, etc.).</param>
+            <param name="ataques">La lista de ataques disponibles para el Pokémon.</param>
+        </member>
+        <member name="M:ClassLibrary.Pokemon.DecreaseHealth(System.Int32)">
+            <summary>
+            Disminuye la salud del Pokémon después de un cálculo de daño.
+            Si la salud es menor que 0, se establece a 0.
+            </summary>
+            <param name="valueAfterCalculation">La cantidad de daño calculado que se restará de la salud del Pokémon.</param>
+        </member>
+        <member name="M:ClassLibrary.Pokemon.Curar(System.Int32)">
+            <summary>
+            Cura al Pokémon, aumentando su salud en una cantidad específica sin exceder la salud máxima.
+            </summary>
+            <param name="cantidad">La cantidad de salud que se restaurará al Pokémon.</param>
+        </member>
+        <member name="M:ClassLibrary.Pokemon.EliminarEfectosDeEstado">
+            <summary>
+            Elimina todos los efectos de estado actuales del Pokémon, devolviendo su estado a normal (0).
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Registro">
+            <summary>
+            Representa un registro de un Pokémon, que contiene los atributos y ataques necesarios para crear un Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Registro.Name">
+            <summary>
+            Obtiene el nombre del Pokémon registrado.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Registro.Damage">
+            <summary>
+            Obtiene el daño base del Pokémon registrado.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Registro.Health">
+            <summary>
+            Obtiene la salud base del Pokémon registrado.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Registro.Defense">
+            <summary>
+            Obtiene la defensa base del Pokémon registrado.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Registro.Tipo">
+            <summary>
+            Obtiene el tipo de Pokémon registrado.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Registro.Ataques">
+            <summary>
+            Obtiene la lista de ataques del Pokémon registrado.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Registro.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.String,System.Collections.Generic.List{ClassLibrary.IAtaque})">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:ClassLibrary.Registro"/> con los valores proporcionados.
+            </summary>
+            <param name="name">El nombre del Pokémon.</param>
+            <param name="damage">El daño base del Pokémon.</param>
+            <param name="health">La salud base del Pokémon.</param>
+            <param name="defense">La defensa base del Pokémon.</param>
+            <param name="tipo">El tipo del Pokémon.</param>
+            <param name="ataques">La lista de ataques del Pokémon.</param>
+        </member>
+        <member name="M:ClassLibrary.Registro.CrearPokemon">
+            <summary>
+            Crea un nuevo objeto <see cref="T:ClassLibrary.IPokemon"/> basado en el registro de Pokémon actual.
+            </summary>
+            <returns>Un objeto <see cref="T:ClassLibrary.IPokemon"/> con los atributos del registro.</returns>
+        </member>
+        <member name="M:ClassLibrary.Registro.AcceptObtenerNombre(ClassLibrary.IVisitor)">
+            <summary>
+            Acepta un visitante que obtiene el nombre del registro de Pokémon.
+            </summary>
+            <param name="visitor">El visitante que realiza la operación.</param>
+            <returns>El nombre del registro de Pokémon.</returns>
+        </member>
+        <member name="M:ClassLibrary.Registro.AcceptCrearPokemon(ClassLibrary.IVisitor)">
+            <summary>
+            Acepta un visitante que crea un Pokémon basado en el registro de Pokémon.
+            </summary>
+            <param name="visitor">El visitante que realiza la operación.</param>
+            <returns>Un objeto <see cref="T:ClassLibrary.IPokemon"/> creado a partir del registro.</returns>
+        </member>
+        <member name="T:ClassLibrary.Revive">
+            <summary>
+            Representa un objeto de tipo <c>Revive</c>, que es un ítem que puede ser usado para revivir a un Pokémon debilitado.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Revive.Nombre">
+            <summary>
+            Obtiene el nombre del ítem, en este caso siempre será "Revive".
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Revive.Usar(ClassLibrary.IPokemon)">
+            <summary>
+            Utiliza el <c>Revive</c> para revivir al <paramref name="pokemon"/> si está debilitado (salud = 0).
+            El Pokémon es revivido con el 50% de su salud inicial.
+            </summary>
+            <param name="pokemon">El Pokémon al que se le va a aplicar el revivir.</param>
+        </member>
+        <member name="T:ClassLibrary.FabricaAtaque">
+            <summary>
+            La clase <see cref="T:ClassLibrary.FabricaAtaque"/> es responsable de gestionar los ataques disponibles para los Pokémon.
+            Incluye métodos para generar ataques aleatorios y almacenar ataques en un diccionario.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.FabricaAtaque.Ejecutar">
+            <summary>
+            Método para cargar los ataques de los Pokémon en el diccionario.
+            Los ataques se almacenan con un índice único.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.FabricaAtaque.GenerarAtaquesRandom(System.String)">
+            <summary>
+            Método para generar una lista de ataques aleatorios de un tipo específico.
+            Selecciona tres ataques del mismo tipo y un ataque aleatorio de cualquier tipo.
+            </summary>
+            <param name="tipo">El tipo de ataque a seleccionar.</param>
+            <returns>Una lista de ataques seleccionados aleatoriamente.</returns>
+        </member>
         <member name="F:ClassLibrary.FabricaPokemon.PokedexPokemon">
             <summary>
             Los registros son clases que tienen la informacion de la creacion de cada pokemon. Estos tienen un metodo que
@@ -12,94 +549,274 @@
         </member>
         <member name="M:ClassLibrary.FabricaPokemon.CargarPokemons">
             <summary>
-            Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
+            Carga los Pokémon en la Pokedex. Este método crea los registros de Pokémon y los almacena
+            en el diccionario <c>PokedexPokemon</c> utilizando el <see cref="T:ClassLibrary.Registro"/> y el <see cref="T:ClassLibrary.FabricaAtaque"/>.
             </summary>
+        </member>
+        <member name="M:ClassLibrary.FabricaPokemon.DevolverNombresPokedex">
+            <summary>
+            Devuelve una lista de nombres de Pokémon desde la Pokedex.
+            Utiliza el patrón Visitor para obtener el nombre de cada Pokémon sin modificar sus clases individuales.
+            </summary>
+            <returns>Una lista de nombres de Pokémon en formato "número) nombre".</returns>
+        </member>
+        <member name="M:ClassLibrary.FabricaPokemon.InstanciarPokes(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Instancia una lista de Pokémon para un jugador específico utilizando los números de la Pokedex.
+            Cada número de Pokémon se corresponde con un registro de la Pokedex que se instanciará como un objeto <see cref="T:ClassLibrary.IPokemon"/>.
+            </summary>
+            <param name="entrada">Lista de números de Pokémon seleccionados por el jugador.</param>
+            <returns>Lista de objetos <see cref="T:ClassLibrary.IPokemon"/> correspondientes a los números proporcionados.</returns>
+        </member>
+        <member name="M:ClassLibrary.FabricaPokemon.DevolverTotal">
+            <summary>
+            Devuelve el número total de Pokémon en la Pokedex.
+            </summary>
+            <returns>El número total de Pokémon en la Pokedex.</returns>
         </member>
         <member name="T:ClassLibrary.Fachada">
             <summary>
             La clase <c>Fachada</c> es el punto de entrada principal para gestionar el bucle del juego y el proceso de creación de jugadores.
+            Su función es coordinar las diferentes etapas del juego, como iniciar el juego, crear jugadores, y gestionar el combate.
             </summary>
         </member>
         <member name="M:ClassLibrary.Fachada.Start">
             <summary>
             Inicia el bucle principal del juego. Pide al usuario que inicie un nuevo juego creando jugadores o que salga.
+            El juego sigue hasta que el usuario decida salir, eligiendo la opción para crear jugadores y jugar, o salir.
             </summary>
         </member>
         <member name="M:ClassLibrary.Fachada.CrearJugador(System.Int32)">
             <summary>
-            Crea un jugador con un número especificado, solicitando su nombre y permitiéndole seleccionar Pokémon.
+            Crea un jugador con un número especificado, solicitando su nombre y permitiéndole seleccionar Pokémon para su equipo.
+            El jugador puede elegir hasta 6 Pokémon, y se le pide que seleccione un Pokémon inicial para comenzar el juego.
             </summary>
             <param name="playerNumber">El número del jugador (1 o 2) que se está creando.</param>
-            <returns>Un objeto <c>Player</c> que representa al jugador creado.</returns>
+            <returns>Un objeto <c>Player</c> que representa al jugador creado, con su nombre y equipo de Pokémon.</returns>
+        </member>
+        <member name="T:ClassLibrary.ImpresoraDeTexto">
+            <summary>
+            Clase estática que maneja la impresión de mensajes en la consola relacionados con el flujo del juego.
+            </summary>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.StartPrint">
             <summary>
-            
+            Imprime el menú de inicio cuando comienza el juego.
             </summary>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.EndPrint">
             <summary>
-            
+            Imprime un mensaje de despedida cuando se elige la opción de salir del juego.
             </summary>
         </member>
-        <member name="M:ClassLibrary.ImpresoraDeTexto.FinDelJuego">
+        <member name="M:ClassLibrary.ImpresoraDeTexto.FinDelJuego(System.String)">
             <summary>
-            
+            Imprime un mensaje cuando el juego termina, indicando al ganador.
             </summary>
+            <param name="nombreJugador">El nombre del jugador ganador.</param>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.PlayerName(System.Int32)">
             <summary>
-            
+            Imprime un mensaje para que el jugador ingrese su nombre.
             </summary>
-            <param name="num"></param>
+            <param name="num">El número de jugador (1 o 2).</param>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.mostrarListaPokemons(System.String)">
             <summary>
-            
+            Muestra la lista de Pokémon que puede elegir el jugador.
             </summary>
-            <param name="jugador"></param>
+            <param name="jugador">El nombre del jugador cuya lista de Pokémon se muestra.</param>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.selectYourPokemon(System.Int32)">
             <summary>
-            
+            Imprime un mensaje indicando que el jugador debe seleccionar su Pokémon en la posición indicada.
             </summary>
+            <param name="posicion">La posición del Pokémon que el jugador debe seleccionar.</param>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.ValorFueraDeRango">
             <summary>
-            
+            Imprime un mensaje indicando que el valor ingresado está fuera de rango.
             </summary>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.MostrarPokemons(ClassLibrary.IPlayer)">
             <summary>
-            
+            Muestra el equipo de Pokémon del jugador.
             </summary>
-            <param name="jugador"></param>
+            <param name="jugador">El jugador cuyo equipo de Pokémon se va a mostrar.</param>
         </member>
-        <member name="M:ClassLibrary.ImpresoraDeTexto.EligePokemonInicial(System.Collections.Generic.List{ClassLibrary.IPokemon})">
+        <member name="M:ClassLibrary.ImpresoraDeTexto.ImprimirEquipo(System.Collections.Generic.List{ClassLibrary.IPokemon})">
             <summary>
-            
+            Muestra el equipo del jugador en la consola.
             </summary>
-            <param name="Equipo"></param>
+            <param name="Equipo">Lista de Pokémon en el equipo del jugador.</param>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.InsertarNombre(System.Int32)">
             <summary>
-            
+            Solicita y retorna el nombre del jugador.
             </summary>
-            <param name="numero"></param>
+            <param name="numero">El número del jugador que está ingresando su nombre.</param>
+            <returns>El nombre del jugador como una cadena de texto.</returns>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.Argumentos(System.Int32)">
             <summary>
-            
+            Imprime un mensaje de error según el argumento pasado.
             </summary>
-            <param name="argument"></param>
+            <param name="argument">Un valor entero que determina el tipo de error a mostrar.</param>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.ImprimirEquipoDelJugador(System.Collections.Generic.List{ClassLibrary.IPokemon})">
+            <summary>
+            Imprime el equipo del jugador en la consola, indicando que está listo para la batalla.
+            </summary>
+            <param name="equipo">El equipo de Pokémon del jugador.</param>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.ImprimirPokemonSeleccionado(System.Int32,System.Collections.Generic.List{ClassLibrary.IPokemon})">
+            <summary>
+            Imprime el nombre del Pokémon seleccionado en la consola.
+            </summary>
+            <param name="index">El índice del Pokémon seleccionado.</param>
+            <param name="equipo">El equipo de Pokémon del jugador.</param>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.TurnoJugador(System.String)">
+            <summary>
+            Devuelve la elección del jugador como una cadena de texto.
+            </summary>
+            <param name="jugador">El nombre del jugador.</param>
+            <returns>La acción seleccionada por el jugador como una cadena de texto.</returns>
+        </member>
+        <member name="M:ClassLibrary.ImpresoraDeTexto.ImprimirItems(System.Collections.Generic.List{ClassLibrary.IItem})">
+            <summary>
+            Imprime los ítems del jugador en la consola, agrupándolos por tipo y cantidad.
+            </summary>
+            <param name="items">Lista de ítems del jugador.</param>
+        </member>
+        <member name="T:ClassLibrary.TablaDeTipos">
+            <summary>
+            La clase <c>TablaDeTipos</c> gestiona las relaciones de fortalezas, debilidades e inmunidades
+            entre los tipos de Pokémon. Su función es proporcionar los datos sobre las interacciones de los tipos
+            y calcular la efectividad de un ataque según el tipo del Pokémon atacado.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.TablaDeTipos.TablaTiposPokemon">
+            <summary>
+            Diccionario que almacena las relaciones de fortalezas, debilidades e inmunidades de cada tipo de Pokémon.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.TablaDeTipos.CrearTabla">
+            <summary>
+            Inicializa el diccionario <c>TablaTiposPokemon</c> con las relaciones de fortalezas, debilidades e inmunidades
+            de los tipos de Pokémon.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.TablaDeTipos.ObtenerRelaciones(System.String)">
+            <summary>
+            Obtiene las relaciones de un tipo específico de Pokémon, incluyendo sus fortalezas, debilidades e inmunidades.
+            </summary>
+            <param name="tipo">El tipo de Pokémon cuya relación se desea obtener.</param>
+            <returns>Una tupla con tres listas: fortalezas, debilidades e inmunidades del tipo.</returns>
+        </member>
+        <member name="M:ClassLibrary.TablaDeTipos.ObtenterRelacionMatematica(System.String,System.String)">
+            <summary>
+            Calcula la efectividad de un ataque basado en las relaciones de tipos. La efectividad
+            se devuelve como un valor numérico: 0 para inmunidad, 0.5 para debilidad, 2 para fortaleza,
+            y 1 para una relación neutral.
+            </summary>
+            <param name="tipoAtaque">El tipo del ataque que se está utilizando.</param>
+            <param name="tipoPokemon">El tipo del Pokémon que está siendo atacado.</param>
+            <returns>Devuelve un valor numérico que representa la efectividad del ataque.</returns>
+        </member>
+        <member name="T:ClassLibrary.SuperPotion">
+            <summary>
+            Representa un objeto de tipo <c>SuperPotion</c>, que es un ítem que puede ser usado para curar a un Pokémon.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.SuperPotion.Nombre">
+            <summary>
+            Obtiene el nombre del ítem, en este caso siempre será "SuperPotion".
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ClassLibrary.SuperPotion.Usar(ClassLibrary.IPokemon)" -->
+        <member name="T:Library.Static.Calculator">
+            <summary>
+            El objetivo de esta clase es realizar cualquier tipo de cálculo y devolver el valor adecuado.
+            Esto nos sirve para simplificar la lectura del código, ya sea de la clase Combate o Fachada,
+            que son las clases que más se benefician de Calculator.
+            </summary>
+        </member>
+        <member name="M:Library.Static.Calculator.GetValidatedNumber(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Valida que el número ingresado esté dentro del rango [min, max] y devuelve el valor adecuado.
+            </summary>
+            <param name="min">El valor mínimo permitido.</param>
+            <param name="max">El valor máximo permitido.</param>
+            <param name="PokemonValue">El valor actual del Pokémon a validar.</param>
+            <returns>El valor validado dentro del rango permitido.</returns>
         </member>
         <member name="M:Library.Static.Calculator.CombatValidation(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
             <summary>
-            
+            Valida que los jugadores aún tengan Pokémon vivos para seguir jugando.
             </summary>
-            <param name="jugador1"></param>
-            <param name="jugador2"></param>
-            <returns>boolean</returns>
+            <param name="jugador1">El primer jugador.</param>
+            <param name="jugador2">El segundo jugador.</param>
+            <returns>Devuelve <c>true</c> si ambos jugadores tienen Pokémon vivos, <c>false</c> si alguno no tiene.</returns>
+        </member>
+        <member name="M:Library.Static.Calculator.IndividualcombatValidation(System.Collections.Generic.List{ClassLibrary.IPokemon})">
+            <summary>
+            Valida si un jugador tiene al menos un Pokémon disponible para el combate.
+            </summary>
+            <param name="jugador">El jugador que se va a validar.</param>
+            <returns>Devuelve 0 si no tiene Pokémon disponibles, 1 si tiene al menos uno.</returns>
+        </member>
+        <member name="M:Library.Static.Calculator.CalcularDañoporTipo(ClassLibrary.IPokemon,ClassLibrary.IPokemon,ClassLibrary.IAtaque)">
+            <summary>
+            Calcula el daño total de un ataque en función del tipo de Pokémon y ataque.
+            </summary>
+            <param name="pokemonActual">El Pokémon atacante.</param>
+            <param name="pokemonRival">El Pokémon defensor.</param>
+            <param name="ataqueActual">El ataque que está siendo utilizado.</param>
+            <returns>El daño final calculado.</returns>
+        </member>
+        <member name="M:Library.Static.Calculator.CheckVida(System.Int32,ClassLibrary.IPokemon)">
+            <summary>
+            Comprueba si el Pokémon sigue vivo.
+            </summary>
+            <param name="vidaDelPokemon">La vida actual del Pokémon.</param>
+            <param name="pokemonActual">El Pokémon que se va a comprobar.</param>
+            <returns>Devuelve 0 si el Pokémon ha sido derrotado (vida = 0), de lo contrario devuelve 1.</returns>
+        </member>
+        <member name="T:Library.Combate">
+            <summary>
+            Esta clase maneja la lógica del combate entre dos jugadores, gestionando el turno de los jugadores, la selección de Pokémon y la ejecución de ataques.
+            </summary>
+        </member>
+        <member name="M:Library.Combate.Recibir(ClassLibrary.IPokemon,System.Int32)">
+            <summary>
+            Recibe el daño que un Pokémon debe restar a su salud.
+            </summary>
+            <param name="pokemon">El Pokémon al que se le aplica el daño.</param>
+            <param name="damage">El daño que el Pokémon recibirá.</param>
+        </member>
+        <member name="M:Library.Combate.DeterminarTurno(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
+            <summary>
+            Determina el turno entre los dos jugadores y maneja la lógica del combate entre ellos.
+            Se alterna entre el jugador 1 y el jugador 2, realizando el combate hasta que uno de los jugadores no tenga Pokémon disponibles.
+            </summary>
+            <param name="Jugador1">El primer jugador del combate.</param>
+            <param name="Jugador2">El segundo jugador del combate.</param>
+        </member>
+        <member name="M:Library.Combate.Combatir(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
+            <summary>
+            Ejecuta la lógica de combate entre los Pokémon seleccionados de los jugadores actuales.
+            Si un Pokémon es derrotado, se le permite al jugador seleccionar otro Pokémon si tiene disponible.
+            Si un jugador pierde todos sus Pokémon, termina el juego.
+            </summary>
+            <param name="jugadorActual">El jugador cuyo Pokémon está en combate.</param>
+            <param name="jugadorRival">El jugador rival cuyo Pokémon está en combate.</param>
+        </member>
+        <member name="M:Library.Combate.InicarAccion(System.String)">
+            <summary>
+            Inicia la acción seleccionada por el jugador durante su turno.
+            </summary>
+            <param name="seleccion">La opción seleccionada por el jugador, como "A" para atacar.</param>
         </member>
     </members>
 </doc>
