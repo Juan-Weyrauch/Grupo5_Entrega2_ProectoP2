@@ -1,8 +1,5 @@
-using ClassLibrary;
-using Library.Static;
-
 using System;
-using System.Linq;
+using ClassLibrary;
 using Library.Static;
 
 namespace Library
@@ -39,7 +36,6 @@ namespace Library
 
         private static void Combatir(IPlayer jugadorActual, IPlayer jugadorRival)
         {
-            int contadorEAtaquesEspeciales;
             IPokemon pokemonActual = jugadorActual.SelectedPokemon;
             IPokemon pokemonRival = jugadorRival.SelectedPokemon;
             _pokemonActual = jugadorActual.SelectedPokemon;
@@ -57,24 +53,7 @@ namespace Library
                 if (pokemonActual.Health <= 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
                 {
                     Console.WriteLine($"Tu Pokémon {pokemonActual.Name} ha sido derrotado.");
-                    Console.WriteLine("Debes seleccionar otro Pokémon: ");
-                    ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
-
-                    while (true)
-                    {
-                        Console.WriteLine("Por favor selecciona un pokemon:");
-                        if (int.TryParse(Console.ReadLine(), out int pokemonSeleccionado) &&
-                            pokemonSeleccionado >= 0 && pokemonSeleccionado < jugadorActual.Equipo.Count &&
-                            jugadorActual.Equipo[pokemonSeleccionado].Health > 0)
-                        {
-                            jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Selección no válida. Ingresa un número correspondiente a un Pokémon con salud.");
-                        }
-                    }
+                    SeleccionarNuevoPokemon(jugadorActual);
                 }
                 
                 // Si el Pokémon está bien y listo, se continúa con la acción
@@ -84,13 +63,11 @@ namespace Library
 
         private static void IniciarAccion(IPlayer jugadorActual, IPlayer jugadorRival)
         {
-            int contadorAtaquesEspeciales;
             IPokemon pokemonActualJugador = jugadorActual.SelectedPokemon;
             IPokemon pokemonActualRival = jugadorRival.SelectedPokemon;
 
             // Solicita al jugador su movimiento
-            // Esto permite imprimir que pokemon tiene el jugador ahora mismo.
-            string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name,pokemonActualJugador.Name,pokemonActualJugador.Health,pokemonActualJugador.InicialHealth);
+            string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name, pokemonActualJugador.Name, pokemonActualJugador.Health, pokemonActualJugador.InicialHealth);
             
             // A = Atacar, B = Cambiar Pokémon, C = Usar Item
             if (seleccion == "A")
@@ -98,9 +75,7 @@ namespace Library
                 Console.WriteLine("¿Con qué deseas atacar?");
                 ImpresoraDeTexto.MostrarAtaques(jugadorActual);
 
-                int ataqueSeleccionado = Convert.ToInt16(Console.ReadLine()) -1 ; // Para desbugear los ataques.
-
-                // Validar que la selección de ataque sea válida
+                int ataqueSeleccionado = Convert.ToInt16(Console.ReadLine()) - 1;
                 ataqueSeleccionado = Calculator.ValidAtackSelection(ataqueSeleccionado, jugadorActual.SelectedPokemon);
 
                 IAtaque ataquePokemon = pokemonActualJugador.Ataques[ataqueSeleccionado];
@@ -110,12 +85,14 @@ namespace Library
                 {
                     int damage = Calculator.CalcularDañoPorTipo(jugadorActual.SelectedPokemon, jugadorRival.SelectedPokemon, ataquePokemon);
                     pokemonActualRival.DecreaseHealth(damage);
-                    ImpresoraDeTexto.MostrarAtaques(jugadorActual);
-                    ImpresoraDeTexto.PokemonAtacado(pokemonActualRival.Name,pokemonActualJugador.Name,ataquePokemon.Name);
+                    Console.WriteLine($"{pokemonActualJugador.Name} atacó a {pokemonActualRival.Name} causando {damage} puntos de daño.");
+
                     if (pokemonActualRival.Health == 0)
                     {
-                        ImpresoraDeTexto.MuerteDelPokemon(pokemonActualRival);
+                        Console.WriteLine($"{pokemonActualRival.Name} ha sido derrotado.");
                         jugadorRival.EliminarPokemon(pokemonActualRival);
+                        ImpresoraDeTexto.MuerteDelPokemon(pokemonActualRival);
+                        SeleccionarNuevoPokemon(jugadorRival);
                     }
                 }
                 else
@@ -124,44 +101,16 @@ namespace Library
                     EfectuarAtaqueEspecial(jugadorActual, jugadorRival, ataquePokemon);
                 }
             }
-            // B = Cambiar de Pokémon
-            else if (seleccion == "B")
+            else if (seleccion == "B") // Cambiar Pokémon
             {
-                Console.WriteLine("¿A qué Pokémon deseas cambiar?");
-                ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
-                int pokemonSeleccionado = Convert.ToInt16(Console.ReadLine());
-                // Imprime el pokemon  a que ha sido cambiado el juego:
-                
-                // Actualiza el Pokémon seleccionado
-                jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
-                ImpresoraDeTexto.CambiarPokemon(pokemonActualJugador.Name, jugadorActual.SelectedPokemon.Name); // Hay que cambiarlo por un visitor
+                CambiarPokemon(jugadorActual);
             }
-            // C = Usar Item
-            else if (seleccion == "C")
+            else if (seleccion == "C") // Usar Item
             {
-                Console.WriteLine("¿Qué item deseas usar?");
-                int inventoryStatus = ImpresoraDeTexto.ImprimirItems(jugadorActual.Inventario);
-
-                if (inventoryStatus == 0) // Si no tiene ítems para usar
-                {
-                    // Aquí tampoco necesitas hacer otra llamada a IniciarAccion.
-                }
-                else if (inventoryStatus == 1) // Si tiene ítems para usar
-                {
-                    int itemSeleccionado = Convert.ToInt16(Console.ReadLine());
-                    jugadorActual.UsarItem(itemSeleccionado, jugadorActual.SelectedPokemon);
-                }
+                UsarItem(jugadorActual);
             }
-
-            // El flujo regresa al siguiente turno
         }
         
-        /// <summary>
-        /// Este método setea el estado del Pokémon rival solamente si el ataque utilizado es 'especial'
-        /// </summary>
-        /// <param name="jugadorActual"></param>
-        /// <param name="jugadorRival"></param>
-        /// <param name="ataque"></param>
         private static void EfectuarAtaqueEspecial(IPlayer jugadorActual, IPlayer jugadorRival, IAtaque ataque)
         {
             IAtaque ataqueActual = ataque;
@@ -169,7 +118,6 @@ namespace Library
             string nombreAtaque = ataqueActual.Name;
             string nombrePoke = jugadorRival.SelectedPokemon.Name;
 
-            // Generador de número aleatorio
             Random rnd = new Random();
     
             if (tipo == 1) // Quemar
@@ -201,18 +149,76 @@ namespace Library
         
         public static void RealizarAtaque(IPokemon atacante, IPokemon defensor, IAtaque ataque)
         {
-            // Verifica si el Pokémon atacante puede atacar antes de realizar el ataque
             if (!atacante.PuedeAtacar())
             {
                 Console.WriteLine($"{atacante.Name} no puede realizar el ataque debido a su estado.");
-                return; // Sale del método si el Pokémon no puede atacar
+                return;
             }
 
-            // Si el Pokémon puede atacar, procede con el ataque
             defensor.DecreaseHealth(ataque.Poder);
             Console.WriteLine($"{atacante.Name} ataca a {defensor.Name} con {ataque.Name} causando {ataque.Poder} de daño.");
         }
 
+        private static void CambiarPokemon(IPlayer jugadorActual)
+        {
+            Console.WriteLine("¿A qué Pokémon deseas cambiar?");
+            ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
+            int pokemonSeleccionado = Convert.ToInt16(Console.ReadLine()) - 1;
 
+            if (pokemonSeleccionado >= 0 && pokemonSeleccionado < jugadorActual.Equipo.Count && jugadorActual.Equipo[pokemonSeleccionado].Health > 0)
+            {
+                IPokemon pokemonActualJugador = jugadorActual.SelectedPokemon;
+                jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
+                ImpresoraDeTexto.CambiarPokemon(pokemonActualJugador.Name, jugadorActual.SelectedPokemon.Name);
+            }
+            else
+            {
+                Console.WriteLine("Selección no válida. Asegúrate de seleccionar un Pokémon con vida.");
+            }
+        }
+
+        private static void UsarItem(IPlayer jugadorActual)
+        {
+            Console.WriteLine("¿Qué ítem deseas usar?");
+            int inventoryStatus = ImpresoraDeTexto.ImprimirItems(jugadorActual.Inventario);
+
+            if (inventoryStatus == 1)
+            {
+                int itemSeleccionado = Convert.ToInt16(Console.ReadLine()) - 1;
+                jugadorActual.UsarItem(itemSeleccionado);
+            }
+            else
+            {
+                Console.WriteLine("No tienes ítems en tu inventario.");
+            }
+        }
+
+        private static void SeleccionarNuevoPokemon(IPlayer jugador)
+        {
+            if (jugador.Equipo.Count > 0)
+            {
+                Console.WriteLine("Selecciona un nuevo Pokémon de tu equipo:");
+                ImpresoraDeTexto.ImprimirEquipo(jugador.Equipo);
+
+                while (true)
+                {
+                    if (int.TryParse(Console.ReadLine(), out int pokemonSeleccionado) &&
+                        pokemonSeleccionado >= 1 && pokemonSeleccionado <= jugador.Equipo.Count &&
+                        jugador.Equipo[pokemonSeleccionado - 1].Health > 0)
+                    {
+                        jugador.SelectedPokemon = jugador.Equipo[pokemonSeleccionado - 1];
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Selección no válida. Ingresa un número correspondiente a un Pokémon con salud.");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{jugador.Name} no tiene más Pokémon disponibles.");
+            }
+        }
     }
 }

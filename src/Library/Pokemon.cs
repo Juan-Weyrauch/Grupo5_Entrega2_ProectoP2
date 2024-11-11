@@ -29,16 +29,27 @@ public class Pokemon : IPokemon
         TurnosDormido = 0;
     }
 
-    public void DecreaseHealth(int valueAfterCalculation) // Resta de vida despues del calculo de daño. 
+    public void DecreaseHealth(int damage)
     {
-        Health -= valueAfterCalculation;
-        if (Health < 0) Health = 0;
+        // Resta el daño al health actual
+        Health -= damage;
+
+        // Asegúrate de que el health no sea menor que 0
+        if (Health < 0)
+        {
+            Health = 0;
+        }
+
+        Console.WriteLine($"{Name} ha recibido {damage} puntos de daño. Salud actual: {Health}/{InicialHealth}");
     }
+
 
     public void Curar(int cantidad)
     {
+        // Aumenta la salud sin exceder la salud inicial
         Health = Math.Min(Health + cantidad, InicialHealth);
     }
+
 
     public void EliminarEfectosDeEstado()
     {

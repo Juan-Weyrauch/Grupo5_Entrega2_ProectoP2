@@ -4,6 +4,28 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="M:ClassLibrary.Player.UsarItem(System.Int32,ClassLibrary.IPokemon)">
+            <summary>
+            Usa un ítem del inventario en el Pokémon objetivo.
+            </summary>
+            <param name="indiceItem">Índice del ítem en el inventario.</param>
+            <param name="objetivo">El Pokémon en el cual se usará el ítem.</param>
+        </member>
+        <member name="M:ClassLibrary.Player.GetInventarioCount">
+            <summary>
+            Devuelve el conteo de ítems en el inventario.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Player.SeleccionarPokemonParaRevivir">
+            <summary>
+            Selecciona un Pokémon del cementerio para revivir.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Player.SeleccionarPokemonDelEquipo">
+            <summary>
+            Selecciona un Pokémon vivo del equipo para usar un ítem en él.
+            </summary>
+        </member>
         <member name="F:ClassLibrary.FabricaPokemon.PokedexPokemon">
             <summary>
             Los registros son clases que tienen la informacion de la creacion de cada pokemon. Estos tienen un metodo que
@@ -14,23 +36,6 @@
             <summary>
             Implementar el patrón Visitor nos permite definir operaciones en las clases de los Pokémon sin modificar sus clases individuales.
             </summary>
-        </member>
-        <member name="T:ClassLibrary.Fachada">
-            <summary>
-            La clase <c>Fachada</c> es el punto de entrada principal para gestionar el bucle del juego y el proceso de creación de jugadores.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.Fachada.Start">
-            <summary>
-            Inicia el bucle principal del juego. Pide al usuario que inicie un nuevo juego creando jugadores o que salga.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.Fachada.CrearJugador(System.Int32)">
-            <summary>
-            Crea un jugador con un número especificado, solicitando su nombre y permitiéndole seleccionar Pokémon.
-            </summary>
-            <param name="playerNumber">El número del jugador (1 o 2) que se está creando.</param>
-            <returns>Un objeto <c>Player</c> que representa al jugador creado.</returns>
         </member>
         <member name="M:ClassLibrary.ImpresoraDeTexto.StartPrint">
             <summary>
@@ -131,13 +136,10 @@
             <param name="pokemonActual"></param>
             <returns></returns>
         </member>
-        <member name="M:Library.Combate.EfectuarAtaqueEspecial(ClassLibrary.IPlayer,ClassLibrary.IPlayer,ClassLibrary.IAtaque)">
+        <member name="M:ConsoleApplication.Fachada.UsarItemEnCombate(ClassLibrary.IPlayer)">
             <summary>
-            Este método setea el estado del Pokémon rival solamente si el ataque utilizado es 'especial'
+            Permite al jugador usar un ítem en el flujo del juego.
             </summary>
-            <param name="jugadorActual"></param>
-            <param name="jugadorRival"></param>
-            <param name="ataque"></param>
         </member>
     </members>
 </doc>
