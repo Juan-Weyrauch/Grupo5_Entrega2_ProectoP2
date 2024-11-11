@@ -31,8 +31,29 @@ public class Player : IPlayer
         if (indiceItem >= 0 && indiceItem < Inventario.Count)
         {
             IItem item = Inventario[indiceItem];
-            item.Usar(objetivo);
-            Inventario.RemoveAt(indiceItem); // Elimina el ítem después de usarlo
+            if (item is Revive && objetivo.Health == 0)
+            {
+                // Usa Revive en un Pokémon debilitado
+                item.Usar(objetivo);
+                Inventario.RemoveAt(indiceItem);
+            }
+            else if (item is FullRestore && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
+            {
+                // Usa FullRestore en un Pokémon vivo pero no completamente curado
+                item.Usar(objetivo);
+                Inventario.RemoveAt(indiceItem);
+            }
+            else if (item is SuperPotion && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
+            {
+                // Usa SuperPotion en un Pokémon vivo pero no completamente curado
+                item.Usar(objetivo);
+                Inventario.RemoveAt(indiceItem);
+            }
+            else
+            {
+                // Si las condiciones no se cumplen, muestra un mensaje
+                Console.WriteLine("No puedes usar ese ítem en este Pokémon.");
+            }
         }
         else
         {
