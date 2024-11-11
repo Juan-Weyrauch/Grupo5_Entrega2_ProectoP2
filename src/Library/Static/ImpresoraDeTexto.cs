@@ -199,7 +199,7 @@ public static class ImpresoraDeTexto
     public static string? TurnoJugador(string jugador, string pokemon, int health, int intialhealth)
     {
 
-        Console.WriteLine($"Es el turno del jugador {jugador}\n" + $"Tu pokemon {pokemon} {health} / {intialhealth}." +
+        Console.WriteLine($"Es el turno del jugador {jugador}\n" + $"Tu pokemon {pokemon} {health}/{intialhealth} . " +
                           $"Selecciona lo que desees hacer\n" +
                           $"A) Atacar \n" +
                           $"B) Cambiar Pokemon \n" +
@@ -302,8 +302,6 @@ public static class ImpresoraDeTexto
             case 4:
                 Console.WriteLine($"{nombrePokemon} está dormido por {nombreAtaque}.");
                 break;
-
-
         }
 
     }

@@ -54,7 +54,7 @@ namespace Library
             }
             else if ((pokemonActual.Health > 0 || estadoDelEquipo > 0) && estadoDelPokemon == 0 ) // Si sigue con pokemons en estado normal
             {
-                if (pokemonActual.Health == 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
+                if (pokemonActual.Health <= 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
                 {
                     Console.WriteLine($"Tu Pokémon {pokemonActual.Name} ha sido derrotado.");
                     Console.WriteLine("Debes seleccionar otro Pokémon: ");
@@ -155,7 +155,7 @@ namespace Library
 
             // El flujo regresa al siguiente turno
         }
-
+        
         /// <summary>
         /// Este método setea el estado del Pokémon rival solamente si el ataque utilizado es 'especial'
         /// </summary>
@@ -164,62 +164,55 @@ namespace Library
         /// <param name="ataque"></param>
         private static void EfectuarAtaqueEspecial(IPlayer jugadorActual, IPlayer jugadorRival, IAtaque ataque)
         {
-            // 1 = Quemar, 2 = Envenenar, 3 = Paralizar, 4 = Dormir
             IAtaque ataqueActual = ataque;
             int tipo = ataqueActual.Especial;
             string nombreAtaque = ataqueActual.Name;
-            string nombrePoke = _pokemonRival.Name;
-            // Determinar el random
+            string nombrePoke = jugadorRival.SelectedPokemon.Name;
+
+            // Generador de número aleatorio
             Random rnd = new Random();
-            int randomTiming = rnd.Next(1, 10);
-            
+    
             if (tipo == 1) // Quemar
             {
-                // Ataca con veneno (pierde 10% de HP en cada turno)
-                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,1);
-                int damage = (int)Math.Round(_pokemonRival.Health * 0.90);
-                
-                _pokemonRival.DecreaseHealth(damage);
-                _pokemonRival.CambiarEstado(1);
+                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 1);
+                int damage = (int)Math.Round(jugadorRival.SelectedPokemon.Health * 0.10); // daño del 10%
+                jugadorRival.SelectedPokemon.DecreaseHealth(damage);
+                jugadorRival.SelectedPokemon.CambiarEstado(1); // Estado quemado
             }
             else if (tipo == 2) // Envenenar
             {
-                // Ataca con veneno (pierde 5% de HP en cada turno)
-                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,2);
-                int damage = (int)Math.Round(_pokemonRival.Health * 0.95);
-                _pokemonRival.DecreaseHealth(damage);
-                _pokemonRival.CambiarEstado(2);
+                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 2);
+                int damage = (int)Math.Round(jugadorRival.SelectedPokemon.Health * 0.05); // daño del 5%
+                jugadorRival.SelectedPokemon.DecreaseHealth(damage);
+                jugadorRival.SelectedPokemon.CambiarEstado(2); // Estado envenenado
             }
             else if (tipo == 3) // Paralizar
             {
-                // El Pokémon tiene una probabilidad de paralizar (puede atacar o no aleatorio)
-                if (randomTiming == 3 || randomTiming == 7)
-                {
-                    _pokemonRival.CambiarEstado(0); // Estado normal
-                    
-                }
-                else
-                {
-                    ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,3);
-                    
-                    _pokemonRival.CambiarEstado(3); // Estado paralizado
-                }
+                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 3);
+                jugadorRival.SelectedPokemon.CambiarEstado(3); // Estado paralizado
             }
             else if (tipo == 4) // Dormir
             {
-                // Duerme al enemigo (entre 1 y 4 turnos)
-                randomTiming = rnd.Next(1, 4);
-                if (randomTiming == 2 || randomTiming == 4)
-                {
-                    Console.WriteLine($"El Pokémon {_pokemonRival.Name} está despierto!");
-                    _pokemonRival.CambiarEstado(0); // Estado normal
-                }
-                else
-                {
-                    ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque,4);
-                    _pokemonRival.CambiarEstado(4); // Estado dormido
-                }
+                ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 4);
+                jugadorRival.SelectedPokemon.CambiarEstado(4); // Estado dormido
+                jugadorRival.SelectedPokemon.TurnosDormido = rnd.Next(1, 4); // Duerme entre 1 y 3 turnos
             }
         }
+        
+        public static void RealizarAtaque(IPokemon atacante, IPokemon defensor, IAtaque ataque)
+        {
+            // Verifica si el Pokémon atacante puede atacar antes de realizar el ataque
+            if (!atacante.PuedeAtacar())
+            {
+                Console.WriteLine($"{atacante.Name} no puede realizar el ataque debido a su estado.");
+                return; // Sale del método si el Pokémon no puede atacar
+            }
+
+            // Si el Pokémon puede atacar, procede con el ataque
+            defensor.DecreaseHealth(ataque.Poder);
+            Console.WriteLine($"{atacante.Name} ataca a {defensor.Name} con {ataque.Name} causando {ataque.Poder} de daño.");
+        }
+
+
     }
 }
