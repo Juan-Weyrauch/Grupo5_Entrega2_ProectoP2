@@ -100,13 +100,18 @@ namespace Library
 
         public static void AplicarEfectoEstado(IPokemon pokemon)
         {
+            Random random = new Random();  // Crear una nueva instancia de Random en cada llamada
+
             switch (pokemon.EstadoActual)
             {
                 case Estado.Paralizado:
-                    if (!pokemon.PuedeAtacar())
+                    if (random.NextDouble() < 0.5)  // 50% de probabilidad de no poder atacar
                     {
-                        Console.WriteLine($"{pokemon.Name} está paralizado y pierde el turno.");
-                        return; // Sale si el Pokémon pierde el turno
+                        Console.WriteLine($"{pokemon.Name} está paralizado y no puede atacar.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{pokemon.Name} está paralizado pero puede atacar.");
                     }
                     break;
 
@@ -117,16 +122,53 @@ namespace Library
                         pokemon.TurnosDormido--; // Reduce los turnos de sueño
                         return; // Sale si el Pokémon pierde el turno
                     }
+                    else
+                    {
+                        // Verifica si el Pokémon se despierta antes de terminar los 4 turnos
+                        if (random.NextDouble() < 0.25) // 25% de probabilidad de despertar antes
+                        {
+                            Console.WriteLine($"{pokemon.Name} se ha despertado antes de tiempo.");
+                            pokemon.EstadoActual = Estado.Normal; // Cambia el estado a normal
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{pokemon.Name} sigue dormido.");
+                        }
+                    }
                     break;
 
                 case Estado.Quemado:
                     Console.WriteLine($"{pokemon.Name} está quemado y recibe daño residual.");
                     pokemon.DecreaseHealth((int)(pokemon.InicialHealth * 0.10)); // Daño residual por quemadura
+
+                    // Verificación de muerte por quemadura
+                    if (pokemon.Health <= 0)
+                    {
+                        Console.WriteLine($"{pokemon.Name} ha muerto por quemaduras.");
+                        // Lógica para eliminar al Pokémon y elegir otro
+                        // Aquí puedes llamar a la función que maneja el cambio de Pokémon
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{pokemon.Name} sufre daño por quemaduras.");
+                    }
                     break;
 
                 case Estado.Envenenado:
                     Console.WriteLine($"{pokemon.Name} está envenenado y recibe daño residual.");
                     pokemon.DecreaseHealth((int)(pokemon.InicialHealth * 0.05)); // Daño residual por veneno
+
+                    // Verificación de muerte por veneno
+                    if (pokemon.Health <= 0)
+                    {
+                        Console.WriteLine($"{pokemon.Name} ha muerto por envenenamiento.");
+                        // Lógica para eliminar al Pokémon y elegir otro
+                        // Aquí puedes llamar a la función que maneja el cambio de Pokémon
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{pokemon.Name} sufre daño por veneno.");
+                    }
                     break;
 
                 default:
