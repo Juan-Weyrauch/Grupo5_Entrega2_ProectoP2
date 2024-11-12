@@ -164,6 +164,7 @@ namespace Library
                         Console.WriteLine($"{pokemon.Name} ha muerto por envenenamiento.");
                         // Lógica para eliminar al Pokémon y elegir otro
                         // Aquí puedes llamar a la función que maneja el cambio de Pokémon
+                        
                     }
                     else
                     {
