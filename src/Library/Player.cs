@@ -1,82 +1,131 @@
-namespace ClassLibrary;
-
-public class Player : IPlayer
+namespace ClassLibrary
 {
-    public string Name { get; }
-    // inventario quizas? Aca? 
-    public List <IPokemon> Equipo { get; private set; }
-    public IPokemon SelectedPokemon {get; set;}
-    public List<IItem> Inventario { get; private set; }
-    public List<IPokemon> Cementerio { get; private set; }
+    public class Player : IPlayer
+    {
+        public string Name { get; }
+        public List<IPokemon> Equipo { get; private set; }
+        public IPokemon SelectedPokemon { get; set; }
+        public List<IItem> Inventario { get; private set; }
+        public List<IPokemon> Cementerio { get; private set; }
 
-    public Player(string name, List<IPokemon> equipo, int EleccionEquipo)
-    {
-        Name = name;
-        Equipo = equipo;
-        SelectedPokemon = Equipo[EleccionEquipo]; // Esto permite elegir a el pokemon de una manera que tenga sentido.
-        Cementerio = new List<IPokemon>();
-        Inventario = new List<IItem>
+        public Player(string name, List<IPokemon> equipo, int EleccionEquipo)
         {
-            new SuperPotion(),
-            new SuperPotion(),
-            new SuperPotion(),
-            new SuperPotion(),
-            new Revive(),
-            new FullRestore(),
-            new FullRestore()
-        };
-    }   
-  public  void UsarItem(int indiceItem, IPokemon objetivo)
-    {
-        if (indiceItem >= 0 && indiceItem < Inventario.Count)
+            Name = name;
+            Equipo = equipo;
+            SelectedPokemon = Equipo[EleccionEquipo]; 
+            Cementerio = new List<IPokemon>();
+            Inventario = new List<IItem>
+            {
+                new SuperPotion(),
+                new SuperPotion(),
+                new SuperPotion(),
+                new SuperPotion(),
+                new Revive(),
+                new FullRestore(),
+                new FullRestore()
+            };
+        }
+
+        public void UsarItem(int indiceItem, IPokemon objetivo)
         {
-            IItem item = Inventario[indiceItem];
-            if (item is Revive && objetivo.Health == 0)
+            if (indiceItem >= 0 && indiceItem < Inventario.Count)
             {
-                // Usa Revive en un Pokémon debilitado
-                item.Usar(objetivo);
-                Inventario.RemoveAt(indiceItem);
-            }
-            else if (item is FullRestore && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
-            {
-                // Usa FullRestore en un Pokémon vivo pero no completamente curado
-                item.Usar(objetivo);
-                Inventario.RemoveAt(indiceItem);
-            }
-            else if (item is SuperPotion && objetivo.Health > 0 && objetivo.Health < objetivo.InicialHealth)
-            {
-                // Usa SuperPotion en un Pokémon vivo pero no completamente curado
-                item.Usar(objetivo);
-                Inventario.RemoveAt(indiceItem);
+                IItem item = Inventario[indiceItem];
+
+                if (item is SuperPotion || item is FullRestore)
+                {
+                    // El jugador puede elegir un Pokémon vivo
+                    if (objetivo == null || objetivo.IsDead) 
+                        objetivo = SeleccionarPokemon(Equipo.Where(p => p.Health > 0).ToList());
+                }
+                else if (item is Revive)
+                {
+                    // El jugador selecciona un Pokémon del cementerio
+                    if (objetivo == null || !Cementerio.Contains(objetivo))
+                        objetivo = SeleccionarPokemon(Cementerio);
+
+                    if (objetivo != null && Cementerio.Contains(objetivo))
+                    {
+                        item.Usar(objetivo);  
+                        Cementerio.Remove(objetivo);  
+                        Equipo.Add(objetivo);  
+                        Console.WriteLine($"{objetivo.Name} ha sido revivido y ahora tiene {objetivo.Health}/{objetivo.InicialHealth} HP.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No hay Pokémon muertos en el cementerio o selección inválida.");
+                        return; 
+                    }
+                }
+
+                // Si el objetivo no es nulo, usamos el ítem
+                if (objetivo != null)
+                {
+                    item.Usar(objetivo);
+                    Inventario.RemoveAt(indiceItem); 
+                }
+                else
+                {
+                    Console.WriteLine("Selección de Pokémon no válida.");
+                }
             }
             else
             {
-                // Si las condiciones no se cumplen, muestra un mensaje
-                Console.WriteLine("No puedes usar ese ítem en este Pokémon.");
+                Console.WriteLine("Ítem no válido.");
             }
         }
-        else
+
+        private IPokemon SeleccionarPokemon(List<IPokemon> listaPokemons)
         {
-            Console.WriteLine("Ítem no válido.");
+            if (listaPokemons.Count == 0)
+            {
+                Console.WriteLine("No hay Pokémon disponibles.");
+                return null;
+            }
+
+            // Mostrar la lista de Pokémon disponibles para elegir
+            Console.WriteLine("Selecciona un Pokémon:");
+            for (int i = 0; i < listaPokemons.Count; i++)
+            {
+                var pokemon = listaPokemons[i];
+                Console.WriteLine($"{i + 1}) {pokemon.Name} {pokemon.Health}/{pokemon.InicialHealth} HP");
+            }
+
+            // Esperar la entrada del usuario
+            int eleccion = int.Parse(Console.ReadLine()) - 1;
+
+            if (eleccion >= 0 && eleccion < listaPokemons.Count)
+            {
+                return listaPokemons[eleccion];
+            }
+            else
+            {
+                Console.WriteLine("Opción inválida.");
+                return null;
+            }
         }
-        
-    }
 
-    public int GetInventarioCount() // Esto tendria que ser un visitor...
-    {
-        return Inventario.Count();
-    }
-
-    public void EliminarPokemon(IPokemon objetivo)
-    {
-        if (objetivo == null || Equipo == null || Cementerio == null)
-            return; // Evitar la excepción si alguno es nulo
-
-        if (Equipo.Contains(objetivo))
+        public void EliminarPokemon(IPokemon objetivo)
         {
-            Equipo.Remove(objetivo);
-            Cementerio.Add(objetivo); // Agregar al Cementerio
+            if (objetivo == null || Equipo == null || Cementerio == null)
+                return;
+
+            if (Equipo.Contains(objetivo))
+            {
+                Equipo.Remove(objetivo);
+                Cementerio.Add(objetivo); // Agregar al Cementerio
+
+                if (SelectedPokemon == objetivo && Equipo.Count > 0)
+                {
+                    SelectedPokemon = SeleccionarPokemon(Equipo);
+                    Console.WriteLine($"{Name} ha seleccionado un nuevo Pokémon: {SelectedPokemon.Name}");
+                }
+            }
+        }
+
+        public int GetInventarioCount() 
+        {
+            return Inventario.Count();
         }
     }
-
 }

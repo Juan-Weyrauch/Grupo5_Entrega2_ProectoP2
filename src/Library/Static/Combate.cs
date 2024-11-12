@@ -1,9 +1,7 @@
 using ClassLibrary;
 using Library.Static;
-
 using System;
 using System.Linq;
-using Library.Static;
 
 namespace Library
 {
@@ -18,41 +16,59 @@ namespace Library
 
         public static void DeterminarTurno(IPlayer jugador1, IPlayer jugador2)
         {
-            int turno = 0;
+            _jugadorActual = jugador1;
+            _jugadorRival = jugador2;
+
             while (Calculator.CombatValidation(jugador1, jugador2))
             {
-                // Es turno del jugador 1
-                Console.WriteLine($"Es turno del jugador {jugador1.Name}");
-                Combatir(jugador1, jugador2);
-                
-                // Verifica si el combate terminó después del turno del jugador 1
-                if (!Calculator.CombatValidation(jugador1, jugador2)) break;
-                
-                // Es turno del jugador 2
-                Console.WriteLine($"Es turno del jugador {jugador2.Name}");
-                Combatir(jugador2, jugador1);
+                Console.WriteLine($"Es el turno de {_jugadorActual.Name}");
 
-                // Verifica si el combate terminó después del turno del jugador 2
-                if (!Calculator.CombatValidation(jugador1, jugador2)) break;
+                // Aplicar el efecto de estado al Pokémon actual antes de cualquier acción
+                AplicarEfectoEstado(_jugadorActual.SelectedPokemon);
+
+                // Si el Pokémon puede atacar, ejecuta la acción
+                if (_jugadorActual.SelectedPokemon.PuedeAtacar())
+                {
+                    IniciarAccion(_jugadorActual, _jugadorRival);
+                }
+
+                // Cambia de jugador al final del turno
+                CambiarJugador();
+
+                // Verificar el estado del combate después de cada turno
+                if (!Calculator.CombatValidation(jugador1, jugador2))
+                {
+                    break;
+                }
             }
         }
 
-        private static void Combatir(IPlayer jugadorActual, IPlayer jugadorRival)
+        // Método auxiliar para cambiar el jugador
+        private static void CambiarJugador()
         {
-            int contadorEAtaquesEspeciales;
+            var temp = _jugadorActual;
+            _jugadorActual = _jugadorRival;
+            _jugadorRival = temp;
+        }
+
+        public static void Combatir(IPlayer jugadorActual, IPlayer jugadorRival)
+        {
             IPokemon pokemonActual = jugadorActual.SelectedPokemon;
             IPokemon pokemonRival = jugadorRival.SelectedPokemon;
-            _pokemonActual = jugadorActual.SelectedPokemon;
-            _pokemonRival = jugadorRival.SelectedPokemon;
+            _pokemonActual = pokemonActual;
+            _pokemonRival = pokemonRival;
             int estadoDelPokemon = Calculator.ChequearEstado(pokemonActual);
-    
+
+            // Aplicar el efecto de estado antes de cualquier acción
+            AplicarEfectoEstado(pokemonActual);
+
             // Chequeo si aun tiene pokemons
             int estadoDelEquipo = Calculator.IndividualcombatValidation(jugadorActual.Equipo);
             if (pokemonActual.Health == 0 && estadoDelEquipo == 0) // Si no puede seguir jugando, termina el juego.
             {
                 ImpresoraDeTexto.FinDelJuego(jugadorRival.Name);
             }
-            else if ((pokemonActual.Health > 0 || estadoDelEquipo > 0) && estadoDelPokemon == 0 ) // Si sigue con pokemons en estado normal
+            else if ((pokemonActual.Health > 0 || estadoDelEquipo > 0) && estadoDelPokemon == 0) // Si sigue con pokemons en estado normal
             {
                 if (pokemonActual.Health <= 0) // Si el Pokémon actual está fuera de combate, debe elegir otro.
                 {
@@ -76,20 +92,54 @@ namespace Library
                         }
                     }
                 }
-                
+
                 // Si el Pokémon está bien y listo, se continúa con la acción
                 IniciarAccion(jugadorActual, jugadorRival);
             }
         }
 
+        public static void AplicarEfectoEstado(IPokemon pokemon)
+        {
+            switch (pokemon.EstadoActual)
+            {
+                case Estado.Paralizado:
+                    if (!pokemon.PuedeAtacar())
+                    {
+                        Console.WriteLine($"{pokemon.Name} está paralizado y pierde el turno.");
+                        return; // Sale si el Pokémon pierde el turno
+                    }
+                    break;
+
+                case Estado.Dormido:
+                    if (pokemon.TurnosDormido > 0)
+                    {
+                        Console.WriteLine($"{pokemon.Name} está dormido y pierde el turno.");
+                        pokemon.TurnosDormido--; // Reduce los turnos de sueño
+                        return; // Sale si el Pokémon pierde el turno
+                    }
+                    break;
+
+                case Estado.Quemado:
+                    Console.WriteLine($"{pokemon.Name} está quemado y recibe daño residual.");
+                    pokemon.DecreaseHealth((int)(pokemon.InicialHealth * 0.10)); // Daño residual por quemadura
+                    break;
+
+                case Estado.Envenenado:
+                    Console.WriteLine($"{pokemon.Name} está envenenado y recibe daño residual.");
+                    pokemon.DecreaseHealth((int)(pokemon.InicialHealth * 0.05)); // Daño residual por veneno
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         private static void IniciarAccion(IPlayer jugadorActual, IPlayer jugadorRival)
         {
-            int contadorAtaquesEspeciales;
             IPokemon pokemonActualJugador = jugadorActual.SelectedPokemon;
             IPokemon pokemonActualRival = jugadorRival.SelectedPokemon;
 
             // Solicita al jugador su movimiento
-            // Esto permite imprimir que pokemon tiene el jugador ahora mismo.
             string seleccion = ImpresoraDeTexto.TurnoJugador(jugadorActual.Name,pokemonActualJugador.Name,pokemonActualJugador.Health,pokemonActualJugador.InicialHealth);
             
             // A = Atacar, B = Cambiar Pokémon, C = Usar Item
@@ -130,11 +180,8 @@ namespace Library
                 Console.WriteLine("¿A qué Pokémon deseas cambiar?");
                 ImpresoraDeTexto.ImprimirEquipo(jugadorActual.Equipo);
                 int pokemonSeleccionado = Convert.ToInt16(Console.ReadLine());
-                // Imprime el pokemon  a que ha sido cambiado el juego:
-                
-                // Actualiza el Pokémon seleccionado
                 jugadorActual.SelectedPokemon = jugadorActual.Equipo[pokemonSeleccionado];
-                ImpresoraDeTexto.CambiarPokemon(pokemonActualJugador.Name, jugadorActual.SelectedPokemon.Name); // Hay que cambiarlo por un visitor
+                ImpresoraDeTexto.CambiarPokemon(pokemonActualJugador.Name, jugadorActual.SelectedPokemon.Name);
             }
             // C = Usar Item
             else if (seleccion == "C")
@@ -152,16 +199,8 @@ namespace Library
                     jugadorActual.UsarItem(itemSeleccionado, jugadorActual.SelectedPokemon);
                 }
             }
-
-            // El flujo regresa al siguiente turno
         }
-        
-        /// <summary>
-        /// Este método setea el estado del Pokémon rival solamente si el ataque utilizado es 'especial'
-        /// </summary>
-        /// <param name="jugadorActual"></param>
-        /// <param name="jugadorRival"></param>
-        /// <param name="ataque"></param>
+
         private static void EfectuarAtaqueEspecial(IPlayer jugadorActual, IPlayer jugadorRival, IAtaque ataque)
         {
             IAtaque ataqueActual = ataque;
@@ -177,42 +216,23 @@ namespace Library
                 ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 1);
                 int damage = (int)Math.Round(jugadorRival.SelectedPokemon.Health * 0.10); // daño del 10%
                 jugadorRival.SelectedPokemon.DecreaseHealth(damage);
-                jugadorRival.SelectedPokemon.CambiarEstado(1); // Estado quemado
+                jugadorRival.SelectedPokemon.CambiarEstado(1); // Cambia el estado del rival a quemado
             }
-            else if (tipo == 2) // Envenenar
+            else if (tipo == 2) // Dormir
             {
                 ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 2);
-                int damage = (int)Math.Round(jugadorRival.SelectedPokemon.Health * 0.05); // daño del 5%
-                jugadorRival.SelectedPokemon.DecreaseHealth(damage);
-                jugadorRival.SelectedPokemon.CambiarEstado(2); // Estado envenenado
+                jugadorRival.SelectedPokemon.CambiarEstado(2);
             }
             else if (tipo == 3) // Paralizar
             {
                 ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 3);
-                jugadorRival.SelectedPokemon.CambiarEstado(3); // Estado paralizado
+                jugadorRival.SelectedPokemon.CambiarEstado(3);
             }
-            else if (tipo == 4) // Dormir
+            else if (tipo == 4) // Veneno
             {
                 ImpresoraDeTexto.ImprimirCambioEstado(nombrePoke, nombreAtaque, 4);
-                jugadorRival.SelectedPokemon.CambiarEstado(4); // Estado dormido
-                jugadorRival.SelectedPokemon.TurnosDormido = rnd.Next(1, 4); // Duerme entre 1 y 3 turnos
+                jugadorRival.SelectedPokemon.CambiarEstado(4);
             }
         }
-        
-        public static void RealizarAtaque(IPokemon atacante, IPokemon defensor, IAtaque ataque)
-        {
-            // Verifica si el Pokémon atacante puede atacar antes de realizar el ataque
-            if (!atacante.PuedeAtacar())
-            {
-                Console.WriteLine($"{atacante.Name} no puede realizar el ataque debido a su estado.");
-                return; // Sale del método si el Pokémon no puede atacar
-            }
-
-            // Si el Pokémon puede atacar, procede con el ataque
-            defensor.DecreaseHealth(ataque.Poder);
-            Console.WriteLine($"{atacante.Name} ataca a {defensor.Name} con {ataque.Name} causando {ataque.Poder} de daño.");
-        }
-
-
     }
 }

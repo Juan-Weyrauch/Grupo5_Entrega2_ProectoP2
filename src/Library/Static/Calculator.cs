@@ -3,11 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 namespace Library.Static;
 using ClassLibrary;
 
-/// <summary>
-/// El objetivo de esta calse es realizar cualquier tipo de calculo y devolver el valor adecuado.
-/// Esto nos sirve para simplificar la lectura del codigo, ya sea de la calse Combate o Fachada,
-/// que son las clases que mas se fenefician de Calculator. 
-/// </summary>
 public static class Calculator
 {
     public static int GetValidatedNumber(int min, int max, int PokemonValue)
@@ -34,8 +29,6 @@ public static class Calculator
         return PokemonValue; // Retorna el valor validado
     }
 
-       
-    
     /// <summary>
     /// Valida que los jugadores aun tengan pokemones vivios para seguir jugando
     /// </summary>
@@ -66,14 +59,14 @@ public static class Calculator
     /// <returns></returns>
     public static int CalcularDañoPorTipo(IPokemon pokemonActual, IPokemon pokemonRival, IAtaque ataqueActual)
     {
-        int dañoCalculado = (pokemonActual.Damage + ataqueActual.Poder - pokemonRival.Defense)/2;
-        double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(ataqueActual.Tipo,pokemonRival.Tipo) * dañoCalculado;
+        int dañoCalculado = (pokemonActual.Damage + ataqueActual.Poder - pokemonRival.Defense) / 2;
+        double valorSinRedondear = TablaDeTipos.ObtenterRelacionMatematica(ataqueActual.Tipo, pokemonRival.Tipo) * dañoCalculado;
         int valorfinal = (int)Math.Round(valorSinRedondear);
         return valorfinal;
     }
-    
+
     /// <summary>
-    /// Calcula y devuelve si el pokeom aun sigue con vida.
+    /// Calcula y devuelve si el pokemon aun sigue con vida.
     /// </summary>
     /// <param name="pokemonActual"></param>
     /// <returns></returns>
@@ -115,16 +108,14 @@ public static class Calculator
 
     public static int ChequearEstado(IPokemon pokemon)
     {
-        int estado = pokemon.Estado;
-        if (estado == 0)
+        // Ahora usamos directamente el enum Estado en lugar de un valor numérico
+        if (pokemon.EstadoActual == Estado.Normal)
         {
-            return 0;
+            return 0; // Normal
         }
         else
         {
-            return 1;
+            return 1; // Otros estados
         }
     }
-    
-
 }

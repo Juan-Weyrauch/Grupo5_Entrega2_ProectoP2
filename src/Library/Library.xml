@@ -100,13 +100,6 @@
             <param name="jugador"></param>
             <returns></returns>
         </member>
-        <member name="T:Library.Static.Calculator">
-            <summary>
-            El objetivo de esta calse es realizar cualquier tipo de calculo y devolver el valor adecuado.
-            Esto nos sirve para simplificar la lectura del codigo, ya sea de la calse Combate o Fachada,
-            que son las clases que mas se fenefician de Calculator. 
-            </summary>
-        </member>
         <member name="M:Library.Static.Calculator.CombatValidation(ClassLibrary.IPlayer,ClassLibrary.IPlayer)">
             <summary>
             Valida que los jugadores aun tengan pokemones vivios para seguir jugando
@@ -126,18 +119,10 @@
         </member>
         <member name="M:Library.Static.Calculator.CheckVida(System.Int32,ClassLibrary.IPokemon)">
             <summary>
-            Calcula y devuelve si el pokeom aun sigue con vida.
+            Calcula y devuelve si el pokemon aun sigue con vida.
             </summary>
             <param name="pokemonActual"></param>
             <returns></returns>
-        </member>
-        <member name="M:Library.Combate.EfectuarAtaqueEspecial(ClassLibrary.IPlayer,ClassLibrary.IPlayer,ClassLibrary.IAtaque)">
-            <summary>
-            Este método setea el estado del Pokémon rival solamente si el ataque utilizado es 'especial'
-            </summary>
-            <param name="jugadorActual"></param>
-            <param name="jugadorRival"></param>
-            <param name="ataque"></param>
         </member>
     </members>
 </doc>
